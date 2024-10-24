@@ -210,7 +210,7 @@ fun TextComposer(
         @Composable { TextFormatting(state = it.richTextEditorState) }
     }
 
-    val sendOrRecordButton = when {
+    val sendOrRecordButton = /*when {
         enableVoiceMessages && !canSendMessage ->
             when (voiceMessageState) {
                 VoiceMessageState.Idle,
@@ -221,7 +221,7 @@ fun TextComposer(
                 }
             }
         else -> sendButton
-    }
+    }*/ sendButton
 
     val voiceRecording = @Composable {
         when (voiceMessageState) {
