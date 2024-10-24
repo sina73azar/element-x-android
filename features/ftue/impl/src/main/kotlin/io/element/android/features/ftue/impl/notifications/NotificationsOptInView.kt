@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -53,7 +54,10 @@ fun NotificationsOptInView(
 ) {
     BackHandler(onBack = onBack)
 
-    HeaderFooterPage(
+    LaunchedEffect(Unit) {
+        state.eventSink(NotificationsOptInEvents.NotNowClicked)
+    }
+/*    HeaderFooterPage(
         modifier = modifier
             .statusBarsPadding()
             .fillMaxSize(),
@@ -62,7 +66,7 @@ fun NotificationsOptInView(
         footer = { NotificationsOptInFooter(state) },
     ) {
         NotificationsOptInContent()
-    }
+    }*/
 }
 
 @Composable
