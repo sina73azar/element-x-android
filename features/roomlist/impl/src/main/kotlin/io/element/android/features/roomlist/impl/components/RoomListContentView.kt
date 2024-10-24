@@ -187,12 +187,12 @@ private fun RoomsViewList(
     ) {
         when (state.securityBannerState) {
             SecurityBannerState.SetUpRecovery -> {
-                item {
+             /*   item {
                     SetUpRecoveryKeyBanner(
                         onContinueClick = onSetUpRecoveryClick,
                         onDismissClick = { updatedEventSink(RoomListEvents.DismissBanner) }
                     )
-                }
+                }*/
             }
             SecurityBannerState.RecoveryKeyConfirmation -> {
                 item {
