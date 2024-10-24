@@ -27,7 +27,7 @@ class LandActivity : ComponentActivity() {
         setContent {
             ElementTheme {
                 Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-                    Button(text = "go to sample", onClick = {
+                    Button(text = "go to element", onClick = {
                         val intent = Intent(this@LandActivity, io.element.android.x.MainActivity::class.java)
                         startActivity(intent)
                     })
