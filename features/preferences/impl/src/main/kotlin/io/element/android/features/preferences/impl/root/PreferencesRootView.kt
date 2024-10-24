@@ -103,7 +103,7 @@ fun PreferencesRootView(
             onDeactivateClick = onDeactivateClick,
         )
 
-        Footer(
+/*        Footer(
             version = state.version,
             deviceId = state.deviceId,
             onClick = if (!state.showDeveloperSettings) {
@@ -111,7 +111,7 @@ fun PreferencesRootView(
             } else {
                 null
             }
-        )
+        )*/
     }
 }
 
@@ -129,13 +129,13 @@ private fun ColumnScope.ManageAppSection(
             onClick = onOpenNotificationSettings,
         )
     }
-    if (state.showLockScreenSettings) {
+/*    if (state.showLockScreenSettings) {
         ListItem(
             headlineContent = { Text(stringResource(id = CommonStrings.common_screen_lock)) },
             leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Lock())),
             onClick = onOpenLockScreenSettings,
         )
-    }
+    }*/
     if (state.showSecureBackup) {
         ListItem(
             headlineContent = { Text(stringResource(id = CommonStrings.common_chat_backup)) },
@@ -197,45 +197,45 @@ private fun ColumnScope.GeneralSection(
     onSignOutClick: () -> Unit,
     onDeactivateClick: () -> Unit,
 ) {
-    ListItem(
+/*    ListItem(
         headlineContent = { Text(stringResource(id = CommonStrings.common_about)) },
         leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Info())),
         onClick = onOpenAbout,
-    )
-    ListItem(
+    )*/
+/*    ListItem(
         headlineContent = { Text(stringResource(id = CommonStrings.common_report_a_problem)) },
         leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.ChatProblem())),
         onClick = onOpenRageShake
-    )
-    if (state.showAnalyticsSettings) {
+    )*/
+/*    if (state.showAnalyticsSettings) {
         ListItem(
             headlineContent = { Text(stringResource(id = CommonStrings.common_analytics)) },
             leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Chart())),
             onClick = onOpenAnalytics,
         )
-    }
-    ListItem(
+    }*/
+/*    ListItem(
         headlineContent = { Text(stringResource(id = CommonStrings.common_advanced_settings)) },
         leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Settings())),
         onClick = onOpenAdvancedSettings,
-    )
-    if (state.showDeveloperSettings) {
+    )*/
+/*    if (state.showDeveloperSettings) {
         DeveloperPreferencesView(onOpenDeveloperSettings)
-    }
+    }*/
     ListItem(
         headlineContent = { Text(stringResource(id = CommonStrings.action_signout)) },
         leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.SignOut())),
         style = ListItemStyle.Destructive,
         onClick = onSignOutClick,
     )
-    if (state.canDeactivateAccount) {
+/*    if (state.canDeactivateAccount) {
         ListItem(
             headlineContent = { Text(stringResource(id = CommonStrings.action_deactivate_account)) },
             leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Warning())),
             style = ListItemStyle.Destructive,
             onClick = onDeactivateClick,
         )
-    }
+    }*/
 }
 
 @Composable
