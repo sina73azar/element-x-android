@@ -508,12 +508,12 @@ private fun MessagesViewTopBar(
             }
         },
         actions = {
-            CallMenuItem(
+           /* CallMenuItem(
                 isCallOngoing = callState == RoomCallState.ONGOING,
                 onClick = onJoinCallClick,
                 enabled = callState != RoomCallState.DISABLED
             )
-            Spacer(Modifier.width(8.dp))
+            Spacer(Modifier.width(8.dp))*/
         },
         windowInsets = WindowInsets(0.dp)
     )
