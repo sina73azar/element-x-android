@@ -38,17 +38,13 @@
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|uiMode"
-            android:exported="true"
+            android:exported="false"
             android:launchMode="singleTop"
             android:theme="@style/Theme.ElementX.Splash"
             android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
             <!-- Handle deep-link for notification ./tools/adb/deeplink.sh -->
-            <intent-filter>
+<!--            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data
@@ -63,9 +59,9 @@
 
                 <data android:scheme="io.element" />
             </intent-filter>
-            <!--
+            &lt;!&ndash;
               Element web links
-            -->
+            &ndash;&gt;
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -73,19 +69,19 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data android:scheme="https" />
-                <!-- Note: we can't use "*.element.io" here because it'll intercept the "mas.element.io" domain too. -->
-                <!-- Matching asset file: https://app.element.io/.well-known/assetlinks.json -->
+                &lt;!&ndash; Note: we can't use "*.element.io" here because it'll intercept the "mas.element.io" domain too. &ndash;&gt;
+                &lt;!&ndash; Matching asset file: https://app.element.io/.well-known/assetlinks.json &ndash;&gt;
                 <data android:host="app.element.io" />
-                <!-- Matching asset file: https://develop.element.io/.well-known/assetlinks.json -->
+                &lt;!&ndash; Matching asset file: https://develop.element.io/.well-known/assetlinks.json &ndash;&gt;
                 <data android:host="develop.element.io" />
-                <!-- Matching asset file: https://staging.element.io/.well-known/assetlinks.json -->
+                &lt;!&ndash; Matching asset file: https://staging.element.io/.well-known/assetlinks.json &ndash;&gt;
                 <data android:host="staging.element.io" />
             </intent-filter>
-            <!--
+            &lt;!&ndash;
               matrix.to links
               Note: On Android 12 and higher clicking a web link (that is not an Android App Link) always shows content in a web browser
               https://developer.android.com/training/app-links#web-links
-            -->
+            &ndash;&gt;
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -95,9 +91,9 @@
                 <data android:scheme="https" />
                 <data android:host="matrix.to" />
             </intent-filter>
-            <!--
+            &lt;!&ndash;
               links from matrix.to website
-            -->
+            &ndash;&gt;
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -107,9 +103,18 @@
                 <data android:scheme="element" />
                 <data android:host="user" />
                 <data android:host="room" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
 
+        <activity
+            android:name="io.element.android.x.LandActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ElementX">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <!-- Using an activity-alias for incoming share intent, in order
         to be able to disable the feature programmatically -->
         <activity-alias

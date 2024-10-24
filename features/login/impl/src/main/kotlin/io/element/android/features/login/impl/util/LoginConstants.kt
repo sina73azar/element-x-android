@@ -13,6 +13,6 @@ import io.element.android.features.login.impl.accountprovider.AccountProvider
 val defaultAccountProvider = AccountProvider(
     url = AuthenticationConfig.DEFAULT_HOMESERVER_URL,
     subtitle = null,
-    isPublic = AuthenticationConfig.DEFAULT_HOMESERVER_URL == AuthenticationConfig.MATRIX_ORG_URL,
-    isMatrixOrg = AuthenticationConfig.DEFAULT_HOMESERVER_URL == AuthenticationConfig.MATRIX_ORG_URL,
+    isPublic = AuthenticationConfig.DEFAULT_HOMESERVER_URL == AuthenticationConfig.MATRIX_DANESH_REFAH_URL,
+    isMatrixOrg = AuthenticationConfig.DEFAULT_HOMESERVER_URL == AuthenticationConfig.MATRIX_DANESH_REFAH_URL,
 )
