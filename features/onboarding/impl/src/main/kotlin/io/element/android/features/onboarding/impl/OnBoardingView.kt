@@ -7,10 +7,12 @@
 
 package io.element.android.features.onboarding.impl
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -18,10 +20,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.QrCode
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -32,10 +37,10 @@ import io.element.android.compound.tokens.generated.CompoundIcons
 import io.element.android.libraries.designsystem.atomic.atoms.ElementLogoAtom
 import io.element.android.libraries.designsystem.atomic.atoms.ElementLogoAtomSize
 import io.element.android.libraries.designsystem.atomic.molecules.ButtonColumnMolecule
-import io.element.android.libraries.designsystem.atomic.pages.OnBoardingPage
 import io.element.android.libraries.designsystem.preview.ElementPreview
 import io.element.android.libraries.designsystem.preview.PreviewsDayNight
 import io.element.android.libraries.designsystem.theme.components.Button
+import io.element.android.libraries.designsystem.theme.components.CircularProgressIndicator
 import io.element.android.libraries.designsystem.theme.components.Icon
 import io.element.android.libraries.designsystem.theme.components.IconButton
 import io.element.android.libraries.designsystem.theme.components.IconSource
@@ -60,24 +65,33 @@ fun OnBoardingView(
     onReportProblem: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    OnBoardingPage(
-        modifier = modifier,
-        content = {
-            OnBoardingContent(
-                state = state,
-                onOpenDeveloperSettings = onOpenDeveloperSettings
-            )
-        },
-        footer = {
-            OnBoardingButtons(
-                state = state,
-                onSignInWithQrCode = onSignInWithQrCode,
-                onSignIn = onSignIn,
-                onCreateAccount = onCreateAccount,
-                onReportProblem = onReportProblem,
-            )
-        }
-    )
+    LaunchedEffect(Unit) {
+        onSignIn()
+    }
+    Box(
+        modifier = Modifier.fillMaxHeight()
+            .background(Color.White), contentAlignment = Center
+    ) {
+//        CircularProgressIndicator()
+        /*        OnBoardingPage(
+                    modifier = modifier,
+                    content = {
+                        OnBoardingContent(
+                            state = state,
+                            onOpenDeveloperSettings = onOpenDeveloperSettings
+                        )
+                    },
+                    footer = {
+                        OnBoardingButtons(
+                            state = state,
+                            onSignInWithQrCode = onSignInWithQrCode,
+                            onSignIn = onSignIn,
+                            onCreateAccount = onCreateAccount,
+                            onReportProblem = onReportProblem,
+                        )
+                    }
+                )*/
+    }
 }
 
 @Composable
@@ -149,7 +163,8 @@ private fun OnBoardingButtons(
     onCreateAccount: () -> Unit,
     onReportProblem: () -> Unit,
 ) {
-    ButtonColumnMolecule {
+
+    ButtonColumnMolecule() {
         val signInButtonStringRes = if (state.canLoginWithQrCode || state.canCreateAccount) {
             R.string.screen_onboarding_sign_in_manually
         } else {
@@ -167,8 +182,8 @@ private fun OnBoardingButtons(
             text = stringResource(id = signInButtonStringRes),
             onClick = onSignIn,
             modifier = Modifier
-                .fillMaxWidth()
-                .testTag(TestTags.onBoardingSignIn)
+                    .fillMaxWidth()
+                    .testTag(TestTags.onBoardingSignIn)
         )
         if (state.canCreateAccount) {
             TextButton(
@@ -181,8 +196,8 @@ private fun OnBoardingButtons(
         // Add a report problem text button. Use a Text since we need a special theme here.
         Text(
             modifier = Modifier
-                .padding(16.dp)
-                .clickable(onClick = onReportProblem),
+                    .padding(16.dp)
+                    .clickable(onClick = onReportProblem),
             text = stringResource(id = CommonStrings.common_report_a_problem),
             style = ElementTheme.typography.fontBodySmRegular,
             color = ElementTheme.colors.textSecondary,

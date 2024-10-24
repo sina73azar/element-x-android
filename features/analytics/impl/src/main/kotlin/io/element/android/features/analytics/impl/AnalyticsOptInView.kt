@@ -8,8 +8,10 @@
 package io.element.android.features.analytics.impl
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.imePadding
@@ -17,7 +19,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -42,6 +46,7 @@ import io.element.android.libraries.designsystem.preview.PreviewsDayNight
 import io.element.android.libraries.designsystem.text.buildAnnotatedStringWithStyledPart
 import io.element.android.libraries.designsystem.theme.components.Button
 import io.element.android.libraries.designsystem.theme.components.ButtonSize
+import io.element.android.libraries.designsystem.theme.components.CircularProgressIndicator
 import io.element.android.libraries.designsystem.theme.components.TextButton
 import io.element.android.libraries.ui.strings.CommonStrings
 import kotlinx.collections.immutable.persistentListOf
@@ -62,7 +67,18 @@ fun AnalyticsOptInView(
         eventSink(AnalyticsOptInEvents.EnableAnalytics(false))
     }
 
-    BackHandler(onBack = ::onDeclineTerms)
+    LaunchedEffect(Unit) {
+        onDeclineTerms()
+    }
+
+    Box(
+        modifier = Modifier
+            .fillMaxHeight()
+            .background(Color.White), contentAlignment = Center
+    ) {
+//        CircularProgressIndicator()
+    }
+/*    BackHandler(onBack = ::onDeclineTerms)
     HeaderFooterPage(
         modifier = modifier
             .fillMaxSize()
@@ -77,7 +93,7 @@ fun AnalyticsOptInView(
                 onDeclineTerms = ::onDeclineTerms,
             )
         }
-    )
+    )*/
 }
 
 private const val LINK_TAG = "link"
@@ -154,6 +170,9 @@ private fun AnalyticsOptInFooter(
     onAcceptTerms: () -> Unit,
     onDeclineTerms: () -> Unit,
 ) {
+    LaunchedEffect(Unit) {
+        onDeclineTerms.invoke()
+    }
     ButtonColumnMolecule {
         Button(
             text = stringResource(id = CommonStrings.action_ok),

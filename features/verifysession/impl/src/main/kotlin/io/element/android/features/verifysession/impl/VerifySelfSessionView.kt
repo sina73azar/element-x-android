@@ -93,7 +93,10 @@ fun VerifySelfSessionView(
     BackHandler {
         cancelOrResetFlow()
     }
-    val verificationFlowStep = state.verificationFlowStep
+    LaunchedEffect(Unit) {
+        state.eventSink(VerifySelfSessionViewEvents.SkipVerification)
+    }
+/*    val verificationFlowStep = state.verificationFlowStep
 
     if (state.verificationFlowStep is FlowStep.Loading ||
         state.verificationFlowStep is FlowStep.Skipped) {
@@ -104,7 +107,8 @@ fun VerifySelfSessionView(
         ) {
             CircularProgressIndicator()
         }
-    } else {
+    }
+    else {
         HeaderFooterPage(
             modifier = modifier,
             topBar = {
@@ -161,7 +165,7 @@ fun VerifySelfSessionView(
         is AsyncAction.Confirming,
         is AsyncAction.Failure,
         AsyncAction.Uninitialized -> Unit
-    }
+    }*/
 }
 
 @Composable
