@@ -70,7 +70,7 @@ fun OnBoardingView(
     }
     Box(
         modifier = Modifier.fillMaxHeight()
-            .background(Color.White), contentAlignment = Center
+    /*        .background(Color.White)*/, contentAlignment = Center
     ) {
 //        CircularProgressIndicator()
         /*        OnBoardingPage(

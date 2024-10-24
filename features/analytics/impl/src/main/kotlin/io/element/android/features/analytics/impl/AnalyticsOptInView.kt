@@ -73,8 +73,7 @@ fun AnalyticsOptInView(
 
     Box(
         modifier = Modifier
-            .fillMaxHeight()
-            .background(Color.White), contentAlignment = Center
+            .fillMaxHeight(), contentAlignment = Center
     ) {
 //        CircularProgressIndicator()
     }

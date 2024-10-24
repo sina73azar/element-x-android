@@ -94,8 +94,8 @@ fun LoginPasswordView(
 
     Box(
         modifier = Modifier
-            .fillMaxHeight()
-            .background(Color.White), contentAlignment = Center
+            .fillMaxHeight()/*
+            .background(Color.White)*/, contentAlignment = Center
     ) {
         CircularProgressIndicator()
     }
