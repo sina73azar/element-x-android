@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@drawable/bottom_sheet_bg">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_sheet_bg">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/refah_icon_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp"
+            android:tint="@color/colorPrimary"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_contact_book"
+            tools:ignore="VectorDrawableCompat" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleSheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ui_normal_size"
+            android:layout_marginLeft="8dp"
+            android:fontFamily="@font/font_regular"
+            android:text="@string/search_contact"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/ui_text_normal"
+            app:layout_constraintBottom_toBottomOf="@id/refah_icon_img"
+            app:layout_constraintStart_toEndOf="@+id/refah_icon_img"
+            app:layout_constraintTop_toTopOf="@id/refah_icon_img" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnClosePopUp"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:tint="@color/gray"
+            app:layout_constraintBottom_toBottomOf="@id/refah_icon_img"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/refah_icon_img"
+            app:srcCompat="@drawable/ic_done"
+            tools:ignore="VectorDrawableCompat" />
+
+        <View
+            android:id="@+id/line"
+            style="@style/line_style"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleSheet" />
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/svItems"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:background="@drawable/search_bg"
+            android:clickable="true"
+            android:focusable="true"
+            app:defaultQueryHint="@string/search_contact"
+            app:iconifiedByDefault="false"
+            app:layout_constraintEnd_toStartOf="@+id/editContact"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line"
+            app:theme="@style/AppSearchView" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/editContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:layout_marginStart="-8dp"
+            android:gravity="center"
+            android:text="@string/edit_delete_contact"
+            android:textColor="@color/snackbar_blue"
+            android:textSize="@dimen/ui_text_nano"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/svItems"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/svItems"
+            app:layout_constraintTop_toTopOf="@id/svItems" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/account_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp"
+            android:clipToPadding="true"
+            android:fillViewport="true"
+            android:paddingBottom="@dimen/_100sdp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/svItems" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

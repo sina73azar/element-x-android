@@ -1,0 +1,70 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+//apply plugin: 'com.jfrog.bintray'
+//apply plugin: 'com.github.dcendents.android-maven'
+
+ext {
+    bintrayRepo = "PersianDatePicker"
+    bintrayName = "com.xdev.arch.persiancalendar.datepicker"
+
+    libraryName = "persiancalendar"
+
+    publishedGroupId = 'com.xdev.arch.persiancalendar.datepicker'
+    artifact = 'datepicker'
+    libraryVersion = '0.3.2'
+
+    libraryDescription = "Shamsi/Jalali date picker with material design (rewritten from Googls's material-components for android in Kotlin)"
+    siteUrl = 'https://github.com/axdeveloper/PersianDatePicker'
+    gitUrl = 'https://github.com/axdeveloper/PersianDatePicker.git'
+    developerId = 'xdeveloper'
+    developerName = 'Adel Dadras'
+    developerEmail = 'xdev.arch@gmail.com'
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+android {
+    namespace = "com.xdev.arch.persiancalendar"
+    compileSdkVersion 34
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 34
+        versionCode 1
+        versionName "0.3.2"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17.toString()
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.22"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+}
+
+//if (project.rootProject.file('local.properties').exists()) {
+//    apply from: 'http://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+//    apply from: 'http://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+//}

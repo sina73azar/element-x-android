@@ -1,0 +1,574 @@
+package com.drp.card_facilities.presentation.topup.compose.inquiry
+
+import android.content.Intent
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.BasicAlertDialog
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
+import androidx.compose.material3.TabRowDefaults
+import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringArrayResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.LayoutDirection
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.drp.card_facilities.R
+import com.drp.card_facilities.presentation.app_shared_viewmodel.SharedViewModelEvents
+import com.drp.card_facilities.presentation.app_source_card_handler.SourceCardEvents
+import com.drp.card_facilities.presentation.bill.inquiry.separated.TabContent
+import com.drp.card_facilities.presentation.phone_contact.SuperAppPhoneContactActivity
+import com.drp.card_facilities.presentation.topup.compose.TopUpEvents
+import com.drp.card_facilities.presentation.topup.compose.TopUpScreenState
+import com.drp.card_facilities.presentation.topup.compose.TopUpViewModel
+import com.drp.card_facilities.presentation.topup.compose.payment.TopUpPaymentWithWalletBottomSheet
+import com.drp.card_facilities.presentation.topup.topUpInquiryReceipt
+import com.drp.refah.card_facilities.utility.enums.MobileOperatorTab
+import com.drp.refah.ui.data.model.CustomToggleModel
+import com.drp.refah.ui.data.model.SnackBarType
+import com.drp.refah.ui.theme.Delightful_purple
+import com.drp.refah.ui.theme.Irancell_Yellow
+import com.drp.refah.ui.theme.Rightel_Purple
+import com.drp.shared_ui.model.CardShotItemInfo
+import com.drp.shared_ui.model.SearchSheetItemModel
+import com.drp.shared_ui.theme.ApplicationTheme
+import com.drp.shared_ui.widget.CardFacilityAmountEditText
+import com.drp.shared_ui.widget.CardNumberShotWidget
+import com.drp.shared_ui.widget.Combo
+import com.drp.shared_ui.widget.CustomSingleSelectionToggle
+import com.drp.shared_ui.widget.CustomTopAppBar
+import com.drp.shared_ui.widget.LoadingButton
+import com.drp.shared_ui.widget.NetworkErrorDialogContent
+import com.drp.shared_ui.widget.PasswordEditText
+import com.drp.shared_ui.widget.PhoneAutoEditText
+import com.drp.shared_ui.widget.SearchSheet
+import com.drp.shared_ui.widget.SnackBarCompose
+import kotlinx.coroutines.flow.collectLatest
+
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
+@Composable
+fun TopUpInquiryScreen(
+    modifier: Modifier = Modifier,
+    viewModel: TopUpViewModel? = null,
+    navController: NavHostController = rememberNavController(),
+    selectedCard: CardShotItemInfo? = null
+) {
+    val uiState = viewModel?.uiState?.collectAsStateWithLifecycle()?.value ?: TopUpScreenState()
+
+    LaunchedEffect(key1 = Unit) {
+        if (selectedCard != null)
+            viewModel?.sendSourceCardEvent(SourceCardEvents.SetSelectedCard(selectedCard))
+    }
+
+    val snackBarHostState: SnackbarHostState = remember {
+        SnackbarHostState()
+    }
+    val currentSnackType by remember {
+        mutableStateOf(SnackBarType.FAIL)
+    }
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val context = LocalContext.current
+
+    val selectedTab = uiState.selectedMobileOperatorTab
+
+    val cardOrWalletToggleModel: List<CustomToggleModel> = listOf(
+        CustomToggleModel(0, stringResource(id = R.string.pay_with_wallet_st)),
+        CustomToggleModel(1, stringResource(id = R.string.pay_with_card_st))
+    )
+
+    val toggleModel: List<CustomToggleModel> = listOf(
+        CustomToggleModel(
+            0, stringResource(id = R.string.dialog_common)
+        ), CustomToggleModel(
+            1, stringResource(id = R.string.top_up_wow)
+        )
+    )
+
+    var wowAmountSelectionSheet by remember {
+        mutableStateOf(false)
+    }
+
+    var monthSelectionSheet by remember {
+        mutableStateOf(false)
+    }
+
+    var yearSelectionSheet by remember {
+        mutableStateOf(false)
+    }
+
+    /**
+     * Expire date fields
+     * */
+
+    val months = stringArrayResource(id = R.array.month).toList()
+    val years = stringArrayResource(id = R.array.years).toList()
+    val wowAmounts = listOf("50,000", "100,000", "200,000")
+
+    /** handling error messages */
+    LaunchedEffect(key1 = true) {
+        viewModel?.errors?.collectLatest {
+            snackBarHostState.showSnackbar(it.asString(context))
+        }
+    }
+
+    /** handling failure dialog */
+    AnimatedVisibility(
+        visible = uiState.inquiry.isFail() || uiState.topUpPayment.isFail()
+    ) {
+        BasicAlertDialog(onDismissRequest = {
+            viewModel?.sendEvent(TopUpEvents.DismissFailureDialog)
+        }) {
+            NetworkErrorDialogContent(closeAction = {
+                viewModel?.sendEvent(TopUpEvents.DismissFailureDialog)
+            })
+        }
+    }
+
+    LaunchedEffect(key1 = true) {
+        viewModel?.sendEvent(TopUpEvents.ChangeCardOrWalletToggle(cardOrWalletToggleModel[0]))
+    }
+
+    /** screen region */
+    Scaffold(snackbarHost = {
+        SnackBarCompose(
+            snackbarHostState = snackBarHostState, snackBarType = currentSnackType
+        )
+    }, topBar = {
+        CustomTopAppBar(headerTxt = stringResource(id = R.string.topup_title), onBackClick = {
+            navController.popBackStack()
+        })
+    }) { paddingValues ->
+        Column(
+            modifier = modifier.padding(top = paddingValues.calculateTopPadding())
+        ) {
+
+            CustomSingleSelectionToggle(
+                modifier = Modifier
+                    .padding(
+                        horizontal = dimensionResource(id = com.drp.shared_ui.R.dimen.medium_padding)
+                    )
+                    .padding(top = dimensionResource(id = com.drp.shared_ui.R.dimen.large_padding)),
+                data = cardOrWalletToggleModel
+            ) { toggleModel ->
+                viewModel?.sendEvent(TopUpEvents.ChangeCardOrWalletToggle(toggleModel))
+            }
+
+            if (uiState.cardOrWalletToggle?.id == 1)
+                CardNumberShotWidget(
+//                    modifier = Modifier.padding(top = dimensionResource(id = com.drp.shared_ui.R.dimen.small_padding)),
+                    isJustRefahSourceCardEnabled = false,
+                    selectedCard = uiState.sourceCardUiState.selectedCard,
+                    cardsList = uiState.sharedViewModelUiState.cardsList,
+                    onSelectedCardChange = {
+                        viewModel?.sendSourceCardEvent(SourceCardEvents.SetSelectedCard(it))
+                        it?.panExpiryMonth?.let { expireMonth ->
+                            it.panExpiryYear?.let { expireYear ->
+                                years.filter { it.contains(expireYear) }.first()
+                                    .let { fullExpireYear ->
+                                        viewModel?.sendSourceCardEvent(
+                                            SourceCardEvents.SetMonth(expireMonth)
+                                        )
+                                        viewModel?.sendSourceCardEvent(
+                                            SourceCardEvents.SetYear(fullExpireYear)
+                                        )
+                                    }
+                            }
+                        } ?: run {
+                            viewModel?.sendSourceCardEvent(SourceCardEvents.SetMonth(""))
+                            viewModel?.sendSourceCardEvent(SourceCardEvents.SetYear(""))
+                        }
+                    },
+                    onCardRemoved = {
+                        viewModel?.sendSharedViewModelEvent(SharedViewModelEvents.RemoveCard(it.id))
+                    },
+                    onCardSetToDefault = {
+                        viewModel?.sendSharedViewModelEvent(
+                            SharedViewModelEvents.SetToDefaultCard(
+                                it.id
+                            )
+                        )
+                    },
+                    onCardEdited = {
+                        viewModel?.sendSharedViewModelEvent(SharedViewModelEvents.EditCard(it))
+                    },
+                    onCardAdd = {
+                        viewModel?.sendSharedViewModelEvent(
+                            SharedViewModelEvents.AddCard(
+                                it
+                            )
+                        )
+                    })
+
+            ElevatedCard(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = dimensionResource(id = com.drp.shared_ui.R.dimen.medium_padding))
+                    .verticalScroll(
+                        rememberScrollState()
+                    )
+                    .padding(vertical = dimensionResource(id = com.drp.shared_ui.R.dimen.medium_padding)),
+                elevation = CardDefaults.elevatedCardElevation(
+                    defaultElevation = dimensionResource(id = com.drp.shared_ui.R.dimen.small_elevation)
+                ),
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.White
+                )
+            ) {
+                val tabTitles = listOf(
+                    stringResource(id = R.string.top_up_mtn_title),
+                    stringResource(id = R.string.top_up_mci_title),
+                    stringResource(id = R.string.top_up_rightel_title)
+                )
+                TabRow(modifier = Modifier
+                    .padding(top = dimensionResource(id = com.drp.shared_ui.R.dimen.large_padding))
+                    .padding(horizontal = dimensionResource(id = com.drp.shared_ui.R.dimen.large_padding))
+                    .clip(
+                        RoundedCornerShape(dimensionResource(id = com.drp.shared_ui.R.dimen.large_corner))
+                    ),
+                    containerColor = Delightful_purple,
+                    selectedTabIndex = selectedTab.ordinal,
+                    indicator = { tabPositions ->
+                        val selectedTabPosition = tabPositions[selectedTab.ordinal]
+                        TabRowDefaults.SecondaryIndicator(
+                            modifier = Modifier.tabIndicatorOffset(selectedTabPosition),
+                            color = when (uiState.selectedMobileOperatorTab) {
+                                MobileOperatorTab.MTN -> Irancell_Yellow
+                                MobileOperatorTab.MCI -> MaterialTheme.colorScheme.primary
+                                MobileOperatorTab.RIGHTEL -> Rightel_Purple
+                            }
+                        )
+                    }) {
+                    tabTitles.forEachIndexed { index, title ->
+                        val curTabType = MobileOperatorTab.entries.toTypedArray()[index]
+                        Tab(
+                            selected = selectedTab.ordinal == index,
+                            onClick = {
+                                viewModel?.sendEvent(
+                                    TopUpEvents.ChangeMobileOperatorTab(
+                                        curTabType
+                                    )
+                                )
+                            },
+                            text = {
+                                TabContent(
+                                    title, selectedTab.ordinal == index
+                                )
+                            },
+                            modifier = Modifier.heightIn(min = dimensionResource(id = com.drp.shared_ui.R.dimen.button_height)),
+                        )
+                    }
+                }
+
+                if (selectedTab == MobileOperatorTab.MTN)
+                    CustomSingleSelectionToggle(
+                        modifier = Modifier
+                            .padding(
+                                horizontal = dimensionResource(id = com.drp.shared_ui.R.dimen.extra_large_padding)
+                            )
+                            .padding(top = dimensionResource(id = com.drp.shared_ui.R.dimen.extra_large_padding)),
+                        data = toggleModel
+                    ) { toggleModel ->
+                        viewModel?.sendEvent(TopUpEvents.ChangeSelectedToggle(toggleModel))
+                    }
+
+
+                PhoneAutoEditText(modifier = Modifier.padding(top = dimensionResource(id = com.drp.shared_ui.R.dimen.large_padding)),
+                    value = uiState.mobileNumber,
+                    onValueChange = {
+                        viewModel?.sendEvent(
+                            TopUpEvents.SetMobileNumber(
+                                mobileNumber = it
+                            )
+                        )
+                        if (it.isEmpty()) viewModel?.sendEvent(
+                            TopUpEvents.DismissMobilePhoneSpinner
+                        )
+                    },
+                    contactSheetList = uiState.mobileContactSheetList,
+                    spinnerListContact = uiState.mobilePhoneContactSpinner,
+                    onDismissSpinner = {
+                        viewModel?.sendEvent(
+                            TopUpEvents.DismissMobilePhoneSpinner
+                        )
+                    },
+                    onSpinnerDropDownClick = {
+                        viewModel?.sendEvent(
+                            TopUpEvents.SetMobileNumber(it)
+                        )
+                    },
+                    phoneContactIntent = Intent(
+                        context, SuperAppPhoneContactActivity::class.java
+                    ),
+                    label = stringResource(id = com.drp.shared_ui.R.string.mobile_no),
+                    placeHolder = stringResource(id = com.drp.shared_ui.R.string.mobile_no),
+                    errorMessage = uiState.mobileNumberValidationMessage.asString(),
+                    dumpErrorMessage = {
+                        viewModel?.sendEvent(
+                            TopUpEvents.DumpMobilePhoneNumberValidationMessage
+                        )
+                    })
+
+
+                if (selectedTab == MobileOperatorTab.MTN && uiState.selectedToggle == toggleModel[1]) Combo(
+                    modifier = Modifier
+                        .padding(horizontal = dimensionResource(id = com.drp.shared_ui.R.dimen.extra_large_padding))
+                        .padding(top = dimensionResource(id = com.drp.shared_ui.R.dimen.small_padding))
+                        .padding(bottom = dimensionResource(id = com.drp.shared_ui.R.dimen.large_padding)),
+                    mValue = uiState.wowAmount,
+                    onClick = { wowAmountSelectionSheet = true },
+                    onValueChange = {
+                        viewModel?.sendEvent(TopUpEvents.SetWowAmount(it))
+                    },
+                    isLoading = false,
+                    label = stringResource(id = R.string.amount_in_irr),
+                    placeHolder = stringResource(id = R.string.amount_in_irr),
+                    isError = uiState.wowAmountError,
+                    dismissError = {
+                        viewModel?.sendEvent(TopUpEvents.DumpWowAmountError)
+                    })
+                else CardFacilityAmountEditText(modifier = Modifier.padding(
+                    top = dimensionResource(
+                        id = com.drp.shared_ui.R.dimen.small_padding
+                    )
+                ),
+                    value = uiState.amount,
+                    onValueChange = {
+                        viewModel?.sendEvent(TopUpEvents.SetAmount(it))
+                    },
+                    label = stringResource(id = R.string.amount),
+                    placeHolder = stringResource(id = R.string.amount),
+                    errorMessage = uiState.amountValidationMessage.asString(),
+                    dumpErrorMessage = {
+                        viewModel?.sendEvent(TopUpEvents.DumpAmountValidationMessage)
+                    })
+
+                if (uiState.cardOrWalletToggle?.id == 1) {
+                    PasswordEditText(modifier = Modifier
+                        .padding(horizontal = dimensionResource(id = com.drp.shared_ui.R.dimen.large_padding))
+                        .padding(top = dimensionResource(id = com.drp.shared_ui.R.dimen.small_padding)),
+                        text = uiState.sourceCardUiState.cvv2,
+                        label = stringResource(id = R.string.transfer_card_cvv2),
+                        placeholder = stringResource(id = R.string.transfer_card_cvv2),
+                        maxLength = 4,
+                        keyboardType = KeyboardType.NumberPassword,
+                        onTextChange = {
+                            viewModel?.sendSourceCardEvent(SourceCardEvents.SetCvv2(cvv2 = it))
+                        },
+                        errorMessage = uiState.sourceCardUiState.cvv2ValidationMessage.asString(),
+                        dumpErrorMessage = {
+                            viewModel?.sendSourceCardEvent(SourceCardEvents.DumpCvv2ValidationMessage)
+                        })
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = dimensionResource(id = com.drp.shared_ui.R.dimen.extra_large_padding))
+                            .padding(top = dimensionResource(id = com.drp.shared_ui.R.dimen.small_padding))
+                    ) {
+                        Combo(modifier = Modifier.weight(0.5f),
+                            mValue = uiState.sourceCardUiState.month,
+                            onClick = { monthSelectionSheet = true },
+                            onValueChange = {
+                                viewModel?.sendSourceCardEvent(SourceCardEvents.SetMonth(it))
+                            },
+                            isLoading = false,
+                            label = stringResource(id = R.string.month),
+                            placeHolder = stringResource(id = R.string.month),
+                            isError = uiState.sourceCardUiState.monthError,
+                            dismissError = {
+                                viewModel?.sendSourceCardEvent(SourceCardEvents.DumpMonthError)
+                            })
+                        Spacer(modifier = Modifier.width(dimensionResource(id = com.drp.shared_ui.R.dimen.medium_padding)))
+                        Combo(modifier = Modifier.weight(0.5f),
+                            mValue = uiState.sourceCardUiState.year,
+                            onClick = { yearSelectionSheet = true },
+                            onValueChange = {
+                                viewModel?.sendSourceCardEvent(SourceCardEvents.SetYear(it))
+                            },
+                            isLoading = false,
+                            label = stringResource(id = R.string.year),
+                            placeHolder = stringResource(id = R.string.year),
+                            isError = uiState.sourceCardUiState.yearError,
+                            dismissError = {
+                                viewModel?.sendSourceCardEvent(SourceCardEvents.DumpYearError)
+                            })
+                    }
+                }
+
+                LoadingButton(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            top = 24.dp,
+                            bottom = dimensionResource(id = com.drp.shared_ui.R.dimen.large_padding)
+                        ),
+                    loading = uiState.inquiry.isLoading(),
+                    paddingHorizontal = dimensionResource(id = com.drp.shared_ui.R.dimen.large_padding),
+                    onClick = {
+                        keyboardController?.hide()
+                        viewModel?.sendEvent(
+                            TopUpEvents.Inquiry
+                        )
+                    },
+                    btnLabel = stringResource(id = R.string.submit_continue)
+                )
+
+                /**
+                 * Expire date selection
+                 * */
+                SearchSheet(sheetVisible = monthSelectionSheet,
+                    onDismiss = { monthSelectionSheet = false },
+                    items = months.map { monthStr ->
+                        SearchSheetItemModel(value = monthStr)
+                    },
+                    onItemClick = { itemModel ->
+                        viewModel?.sendSourceCardEvent(
+                            SourceCardEvents.SetMonth(itemModel.value)
+                        )
+                        if (itemModel.value.isNotEmpty()) viewModel?.sendSourceCardEvent(
+                            SourceCardEvents.DumpMonthError
+                        )
+                        monthSelectionSheet = false
+                    })
+                SearchSheet(sheetVisible = yearSelectionSheet,
+                    onDismiss = { yearSelectionSheet = false },
+                    items = years.map { yearStr ->
+                        SearchSheetItemModel(value = yearStr)
+                    },
+                    onItemClick = { itemModel ->
+                        viewModel?.sendSourceCardEvent(SourceCardEvents.SetYear(itemModel.value))
+                        if (itemModel.value.isNotEmpty()) viewModel?.sendSourceCardEvent(
+                            SourceCardEvents.DumpYearError
+                        )
+                        yearSelectionSheet = false
+                    })
+
+                SearchSheet(sheetVisible = wowAmountSelectionSheet,
+                    onDismiss = { wowAmountSelectionSheet = false },
+                    items = wowAmounts.map { wowAmount ->
+                        SearchSheetItemModel(value = wowAmount)
+                    },
+                    gridCount = 2,
+                    onItemClick = { itemModel ->
+                        viewModel?.sendEvent(
+                            TopUpEvents.SetWowAmount(itemModel.value)
+                        )
+                        if (itemModel.value.isNotEmpty()) viewModel?.sendEvent(TopUpEvents.DumpWowAmountError)
+                        wowAmountSelectionSheet = false
+                    })
+
+                /** top up inquiry bottom sheet */
+
+                /*uiState.inquiry.let { inquiryState ->
+                    if (inquiryState.isSuccess())
+                        TopUpPaymentBottomSheet(
+                            visibility = inquiryState.isSuccess(),
+                            viewModel = viewModel,
+                            receiptItems = topUpInquiryReceipt(
+                                cardNumber = if (uiState.cardOrWalletToggle?.id == 0) uiState.sourceCardUiState.selectedCard?.pan
+                                    ?: "" else "",
+                                operatorType = selectedTab,
+                                mobileNumber = uiState.mobileNumber,
+                                chargeType = if (uiState.selectedMobileOperatorTab == MobileOperatorTab.MTN && uiState.selectedToggle?.id == 1) stringArrayResource(
+                                    id = R.array.type_charge_array
+                                )[1]
+                                else stringArrayResource(
+                                    id = R.array.type_charge_array
+                                )[0],
+                                amount = if (uiState.selectedMobileOperatorTab == MobileOperatorTab.MTN && uiState.selectedToggle?.id == 1) uiState.wowAmount.filter { it.isDigit() }
+                                    .toLong()
+                                else uiState.amount
+                            ),
+                            snackBarHost = {
+                                SnackBarCompose(
+                                    snackbarHostState = snackBarHostState,
+                                    snackBarType = currentSnackType
+                                )
+                            },
+                            navigateToLanding = {
+                                navController.popBackStack()
+                            }) {
+                            viewModel?.sendEvent(TopUpEvents.DismissPaymentBottomSheet)
+                        }
+                }*/
+
+                if (uiState.walletOtpBottomSheetVisibility)
+                    TopUpPaymentWithWalletBottomSheet(
+                        visibility = uiState.walletOtpBottomSheetVisibility,
+                        viewModel = viewModel,
+                        receiptItems = topUpInquiryReceipt(
+                            cardNumber = if (uiState.cardOrWalletToggle?.id == 1) uiState.sourceCardUiState.selectedCard?.pan
+                                ?: "" else "",
+                            walletId = if (uiState.cardOrWalletToggle?.id == 0) uiState.walletUiState.shahkarUserData.walletId.toString() else "",
+                            operatorType = selectedTab,
+                            mobileNumber = uiState.mobileNumber,
+                            chargeType = if (uiState.selectedMobileOperatorTab == MobileOperatorTab.MTN && uiState.selectedToggle?.id == 1) stringArrayResource(
+                                id = R.array.type_charge_array
+                            )[1]
+                            else stringArrayResource(
+                                id = R.array.type_charge_array
+                            )[0],
+                            amount = if (uiState.selectedMobileOperatorTab == MobileOperatorTab.MTN && uiState.selectedToggle?.id == 1) uiState.wowAmount.filter { it.isDigit() }
+                                .toLong()
+                            else uiState.amount
+                        ),
+                        snackBarHost = {
+                            SnackBarCompose(
+                                snackbarHostState = snackBarHostState,
+                                snackBarType = currentSnackType
+                            )
+                        },
+                        navigateToLanding = {
+                            navController.popBackStack()
+                        }
+                    ) {
+                        viewModel?.sendEvent(TopUpEvents.DismissPaymentBottomSheet)
+                    }
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun TopUpInquiryScreenPreview() {
+    ApplicationTheme {
+        CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
+            TopUpInquiryScreen()
+        }
+    }
+}

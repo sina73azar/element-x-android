@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/_200sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bottom_sheet_bg">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/refah_icon_img"
+        android:layout_width="32dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/_8sdp"
+        android:scaleType="centerInside"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_vpn_key"
+        android:tint="@color/colorPrimary"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitleSheet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/ui_normal_size"
+        android:layout_marginLeft="8dp"
+        android:fontFamily="@font/font_regular"
+        android:text="@string/vpn_title"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/ui_text_normal"
+        app:layout_constraintBottom_toBottomOf="@id/refah_icon_img"
+        app:layout_constraintStart_toEndOf="@+id/refah_icon_img"
+        app:layout_constraintTop_toTopOf="@id/refah_icon_img" />
+
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="0.75dp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:background="@color/line_color"
+        app:layout_constraintTop_toBottomOf="@id/tvTitleSheet" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.45"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivAlert"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guidLine"
+        app:srcCompat="@drawable/ic_alert"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:tint="@color/yellow"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/descVpn"
+        android:gravity="center"
+        android:fontFamily="@font/font_regular"
+        android:text="@string/vpn_title_description"
+        app:layout_constraintTop_toBottomOf="@id/ivAlert"
+        android:layout_marginTop="@dimen/_8sdp"/>
+    <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+        android:id="@+id/btnAccept"
+        style="@style/button_blue_style"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:text="@string/exit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descVpn"
+        app:layout_constraintWidth_percent="0.4" />
+</androidx.constraintlayout.widget.ConstraintLayout>

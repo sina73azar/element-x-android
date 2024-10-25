@@ -1,0 +1,294 @@
+<resources>
+    <string name="card_facility_db_name">card_facility_db_name</string>
+
+    <!--  landing page titles  -->
+    <string name="landing_header_title_st">خدمات کارت بانک رفاه</string>
+    <string name="card_services_title_st">خدمات کارت</string>
+    <string name="bill_services_title_st">خدمات قبض</string>
+    <string name="loan_services_title_st">تسهیلات</string>
+
+    <!--  card services sub items  -->
+    <string name="card_to_card_st">کارت به کارت</string>
+    <string name="card_balance_st">موجودی کارت</string>
+    <string name="depositable_card_balance_st">موجودی قابل برداشت کارت</string>
+    <string name="card_statement_st">سه گردش آخر</string>
+
+    <!--  bill services sub items  -->
+    <string name="bill_payment_st">پرداخت قبض</string>
+    <string name="charge_payment_st">خرید شارژ</string>
+    <string name="insurance_bill_payment_st"> بیمه تامین اجتماعی</string>
+
+    <!--  loan services sub items  -->
+    <string name="loan_payment_st">پرداخت قسط</string>
+
+    <!--  bill  -->
+    <string name="bill_id_title">شناسه قبض</string>
+    <string name="pay_id_title">شناسه پرداخت</string>
+    <string name="submit_continue">ثبت و ادامه</string>
+    <string name="bill_payment_title">تایید پرداخت قبض</string>
+    <string name="ok">تایید</string>
+    <string name="cancel">انصراف</string>
+    <string name="data_validation_bill_id">شناسه قبض را صحیح وارد نمایید</string>
+    <string name="data_validation_pay_id">شناسه پرداخت را صحیح وارد نمایید</string>
+    <string name="data_validation_two_ids">شناسه قبض یا شناسه پرداخت اشتباه می‌باشد</string>
+    <string name="data_validation_pin">رمز خود را صحیح وارد نمایید</string>
+    <string name="bill_by_followup_title">پرداخت با شناسه</string>
+    <string name="bill_by_inquiry_title">استعلام و پرداخت</string>
+    <string name="bill_phone">تلفن ثابت</string>
+    <string name="bill_mobile">تلفن همراه</string>
+    <string name="bill_water">آب</string>
+    <string name="bill_elec">برق</string>
+    <string name="bill_gas">گاز</string>
+    <string name="telephone_with_city_code">تلفن ثابت(باپیش شماره)</string>
+    <string name="data_validation_amount">مبلغ مورد نظر را وارد نمایید</string>
+    <string name="data_validation_cvv2">لطفا CVV2 را صحیح و با دقت وارد نمایید</string>
+    <string name="insurance_bill_inquiry_title">پرداخت  حق بیمه</string>
+    <string name="transfer_card_cvv2">کد اعتبار سنجی دوم (CVV2)</string>
+    <string name="transfer_card_expire">تاریخ انقضا</string>
+    <string name="month">ماه</string>
+    <string name="year">سال</string>
+    <string name="conversion_account">شماره حساب</string>
+    <string name="top_up_operator">اپراتور</string>
+    <string name="type_of_charge">نوع شارژ</string>
+    <string name="dialog_common">عادی</string>
+    <string name="top_up_wow">شگفت انگیز</string>
+    <string name="top_up_rightel_mobile_no">شماره موبایل</string>
+    <string name="topup_title">خرید شارژ</string>
+    <string name="top_up_payment_title">تایید خرید شارژ</string>
+    <string name="save_mobile_in_contact">ذخیره شماره موبایل مقصد</string>
+    <string name="facilities_id">شماره تسهیلات</string>
+    <string name="description">توضیحات (اختیاری)</string>
+    <string name="installment_title">پرداخت قسط</string>
+    <string name="failure_loan_payment_id">مشتری گرامی، برای پرداخت قسط، شماره تسهیلات مورد نظر خود را به درستی وارد نمایید.</string>
+    <!--  Internet Package  -->
+    <string name="internet_package_st">بسته اینترنتی</string>
+    <string name="internet_package_title">خرید بسته اینترنتی</string>
+    <string name="rightel_internet_package_title">خرید اینترنت رایتل</string>
+    <string name="data_validation_telephoneNo">شماره تلفن را صحیح وارد نمایید</string>
+    <string name="mid_term">میان دوره</string>
+    <string name="final_term">پایان دوره</string>
+    <string name="paid_bill_error_st">قبض پرداخت شده است</string>
+    <string name="data_validation_mobileNo">شماره موبایل را صحیح وارد نمایید</string>
+    <string name="top_up_mtn_title">ایرانسل</string>
+    <string name="top_up_mci_title">همراه اول</string>
+    <string name="top_up_rightel_title">رایتل</string>
+    <string name="pay_id_bill_error_st">خطا در استعلام قبض</string>
+
+    <!-- cheque -->
+    <string name="sayadi_cheque">چک صیادی</string>
+
+    <string name="postpaid_simcard_st">دائمی</string>
+    <string name="prepaid_simcard_st">اعتباری</string>
+    <string name="category_hourly_st">ساعتی</string>
+    <string name="category_three_month_st">سه ماهه</string>
+    <string name="category_six_month_st">شش ماهه</string>
+    <string name="category_yearly_st">سالانه</string>
+
+    <string name="no_package_type_found">بسته ای یافت نشد</string>
+    <string name="internet_package_payment_st">پرداخت بسته اینترنتی</string>
+    <string name="package_type_st">نوع</string>
+    <string name="package_amount_with_tax">مبلغ با مالیات</string>
+    <string name="statement_filter_type_all">همه</string>
+    <string name="amount">مبلغ</string>
+    <string name="amount_in_irr">مبلغ (ریال)</string>
+    <string name="mobile_no">شماره موبایل</string>
+    <string name="save_loan_in_contat">ذخیره شماره تسهیلات </string>
+    <string name="loan_installment_payment_title">تایید پرداخت اقساط</string>
+    <string name="save_mobile_number">ذخیره شماره موبایل</string>
+    <string-array name="years">
+        <item>1398</item>
+        <item>1399</item>
+        <item>1400</item>
+        <item>1401</item>
+        <item>1402</item>
+        <item>1403</item>
+        <item>1404</item>
+        <item>1405</item>
+        <item>1406</item>
+        <item>1407</item>
+        <item>1408</item>
+        <item>1409</item>
+    </string-array>
+    <string-array name="month">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    <string-array name="type_charge_array">
+        <item>عادی</item>
+        <item>شگفت انگیز</item>
+    </string-array>
+    <string-array name="price_array">
+        <item>"50,000"</item>
+        <item>"100,000"</item>
+        <item>"200,000"</item>
+    </string-array>
+
+
+    <string name="destination_card_scan">اسکن کارت مقصد</string>
+    <string name="inquiry_card_title">کارت به کارت</string>
+    <string name="from_refah_source">از کارت رفاه</string>
+    <string name="from_other_source_card">از کارت های دیگر</string>
+    <string name="data_validation_pan">شماره کارت را درست وارد نمایید</string>
+    <string name="invalid_source_card">کارت مبدا اشتباه می باشد</string>
+    <string name="empty_source_card_st">کارت مبدا را مشخص کنید</string>
+    <string name="invalid_dest_card_st">کارت مفصد را درست وارد نمایید</string>
+    <string name="same_source_dest_card">کارت مبدا و مقصد یکسان می باشد</string>
+
+    <!--HUB-->
+    <string name="hub_card_enroll" translatable="false">ثبت کارت</string>
+    <string name="need_hub_enrollment">نیاز به ثبت کارت در شاپرک</string>
+    <string name="hub_card_enrollment_dialogue_text">با توجه به دستور عمل بانک مرکزی بانک شما به سامانه هاب شاپرک اضافه گردیده است.لازم است ابتدا اطلاعات کارت خود را دراین سامانه ثبت کنید.بعد از ثبت می توانید به برنامه بازگردید و تراکنش را ادامه دهید.</string>
+    <string name="all">همه</string>
+    <string name="hub_transfer_logs_title">تراکنش های کارتی</string>
+
+    <string name="hub_transfer_status_template_txt">وضعیت تراکنش : %1$s </string>
+    <string name="hub_transfer_status_success">موفق </string>
+    <string name="hub_transfer_status_unsuccess">ناموفق </string>
+    <string name="hub_transfer_status_progress">درحال اجرا </string>
+    <string name="new_str">جدید</string>
+    <string name="no_registered_hub_card">هیچ کارت مبدا ثبت شده در شاپرکی یافت نشد</string>
+    <string name="edit_sources_status_activate">فعالسازی</string>
+    <string name="data_validation_pan_destination">شماره کارت مقصد را درست وارد نمایید</string>
+    <string name="statement_filters_clear_">حذف فیلتر ها</string>
+    <string name="no_statement_data">هیچ تراکنشی یافت نشد</string>
+    <string name="sources_card">کارت مبدا</string>
+    <string name="card_destination">کارت مقصد</string>
+    <string name="detail_transaction">جزییات تراکنش</string>
+    <string name="statement_filter_duration">از تاریخ %1$s تا تاریخ %2$s</string>
+    <string name="invalid_date_time_range">محدوده تاریخ-زمان نامعتبر می‌باشد</string>
+    <string name="invalid_high_of_range_date">تاریخ و یا زمان نامعتبر می‌باشد– تاریخ بیشتر از محدوده مجاز می‌باشد</string>
+
+    <!--  card list  -->
+    <string name="no_item_destination_card">کارت مقصدی یافت نشد</string>
+    <string name="card_list_title">لیست کارت</string>
+    <!-- card action -->
+    <string name="card_owner_name">نام دارنده کارت: </string>
+    <string name="card_number">شماره کارت: </string>
+    <string name="card_info">مشخصات کارت</string>
+    <!--  setting  -->
+    <string name="setting_header_title_st">تنظیمات</string>
+    <string name="authentication_st">احراز هویت</string>
+    <string name="setting_logout_title_st">خروج</string>
+    <string name="password_validation_st">رمز عبور خود را صحیح وارد نمایید</string>
+    <string name="repeat_password_validation_st">تکرار رمز عبور خود را صحیح وارد نمایید</string>
+
+    <!--  authentication  -->
+    <string name="password_login_st">ورود با رمز عبور</string>
+    <string name="biometric_login_st">ورود با اثرانگشت</string>
+    <string name="authentication_types_st">روش های احراز هویت</string>
+    <string name="auth_services_st">سرویس های فعال احراز هویت</string>
+    <string name="set_password_st">تعیین رمز</string>
+    <string name="password_repeat_label">تکرار رمز عبور</string>
+    <string name="password_remove_st">حذف رمز عبور</string>
+    <string name="finger_print_is_not_available">امکان استفاده از اثرانگشت در این دستگاه وجود ندارد</string>
+    <string name="biometric_auth_title">احراز هویت بیومتریک</string>
+    <string name="biometric_auth_desc">به منظور احراز هویت اثرانگشت خود را قرار داده یا در صورت فعال بودن احراز هویت با تصویر به دوربین نگاه کنید</string>
+    <string name="biometric_auth_error_st">احراز هویت با مشکل مواجه شده است</string>
+    <string name="date">تاریخ</string>
+    <string name="hour">ساعت</string>
+    <string name="cheque_followup_code">شماره پیگیری</string>
+    <string name="save_pan_in_contact">ذخیره شماره کارت مقصد</string>
+
+    <!--  balance  -->
+    <string name="balance_inquiry_error_st">خطا در استعلام موجودی کارت</string>
+    <string name="balance_title">موجودی: </string>
+
+    <!--  contacts  -->
+    <string name="contact_title">لیست مخاطب‌ها</string>
+    <string name="no_item_contact">مخاطبی یافت نشد.</string>
+
+    <!-- top up -->
+    <string name="data_validation_topup_amount">مبلغ مورد نظر باید بیشتر از  %1$s  و کمتر از %2$s  ریال باشد</string>
+
+    <!-- transaction history -->
+    <string name="transaction_history_title">فهرست تراکنش ها</string>
+    <string name="empty_transaction_history">تراکنشی یافت نشد</string>
+    <string name="remove">حذف</string>
+    <string name="details">جزئیات</string>
+    <string name="search_by_card_number">جستجو بر اساس کارت مبدا</string>
+    <string name="increase_st">افزایش</string>
+    <string name="transfer_st">انتقال</string>
+    <string name="decrease_st">کاهش</string>
+    <string name="bills_st">قبض ها</string>
+    <string name="cards_st">کارت ها</string>
+    <string name="history_st">تاریخچه</string>
+    <string name="chatbot_st">چت بات</string>
+    <string name="messenger_st">پیام رسان</string>
+    <string name="insurance_bill_refah_land_title">تامین اجتماعی</string>
+    <string name="pay_with_card_st">پرداخت با کارت</string>
+    <string name="pay_with_wallet_st">پراخت با کیف پول</string>
+
+    <!-- refah land wallet add screen -->
+    <string name="increase_balance_st">افزایش موجودی</string>
+    <string name="wallet_add_description_st">شرح تراکنش (اختیاری)</string>
+    <string name="your_wallet_qr_code">رمزینه کیف پول</string>
+
+    <!-- refah land wallet minus screen -->
+    <string name="decrease_balance_st">کاهش موجودی</string>
+    <string name="data_validation_iban">شماره شبا وارد شده صحیح نمی‌باشد</string>
+    <string name="destination_iban_st">به شماره شبا مقصد</string>
+    <string name="destination_iban_without_ir_st">شماره شبا مقصد بدون IR</string>
+
+    <!-- refah land wallet to wallet screen -->
+    <string name="destination_wallet_id_st">شناسه کیف مقصد</string>
+    <string name="wallet_id_st">شناسه کیف پول</string>
+    <string name="wallet_to_wallet_st">کیف به کیف</string>
+    <string name="wallet_id_validation_st">شناسه کیف مقصد را وارد نمایید</string>
+    <string name="card_toggle">شماره کارت</string>
+    <string name="iban_toggle">شماره شبا</string>
+
+    <!--home -->
+    <string name="gardeshgari_st">گردشگری</string>
+    <string name="kargozari_bours_st">کارگزاری بورس</string>
+    <string name="sandogh_negin_st">صندوق نگین</string>
+    <string name="bimeh_refah_st">بیمه رفاه</string>
+
+    <string name="time_st">ساعت:</string>
+    <string name="date_st">تاریخ:</string>
+
+    <!-- licence negative score -->
+    <string name="licence_negative_score_title_st">استعلام نمره منفی گواهینامه</string>
+    <string name="licence_negative_score_st">نمره منفی</string>
+    <string name="licence_number_st">شماره گواهینامه</string>
+    <string name="national_id_st">کد ملی</string>
+    <string name="inquiry_st">استعلام</string>
+    <string name="licence_number_error_st">شماره گواهینامه را صحیح وارد نمایید</string>
+    <string name="data_validation_national_code_st">کدملی وارد شده صحیح نمی‌باشد</string>
+    <string name="licence_score_inquiry_error_st">خطا در استعلام گواهینامه</string>
+    <string name="licence_score_inquiry_allowed_to_drive">گواهینامه معتبر است</string>
+    <string name="licence_score_inquiry_not_allowed_to_drive">گواهینامه معتبر نیست</string>
+
+    <!-- tracking post -->
+    <string name="tracking_title_st">رهگیری پستی</string>
+    <string name="tracking_post_title_st">رهگیری بسته پستی</string>
+    <string name="tracking_post_number_st">کد رهگیری</string>
+    <string name="tracking_post_number_error_st">کد رهگیری را صحیح وارد نمایید</string>
+    <string name="tracking_post_inquiry_error_st">خطا در استعلام بسته پستی</string>
+    <string name="receiver_name_st">گیرنده:</string>
+    <string name="source_st">مبدا:</string>
+    <string name="destination_st">مقصد:</string>
+    <string name="post_date_st">تاریخ:</string>
+    <string name="location_st">موقعیت:</string>
+
+    <!-- iban convertor -->
+    <string name="iban_convertor_title_st">مبدل شبا</string>
+    <string name="card_to_iban_st">کارت به شبا</string>
+    <string name="account_to_iban_st">حساب به شبا</string>
+    <string name="iban_to_account_st">شبا به حساب</string>
+    <string name="iban_without_ir_st">شماره شبا بدون IR</string>
+    <string name="convert_st">تبدیل</string>
+    <string name="data_validation_pan_st">شماره کارت را درست وارد نمایید</string>
+    <string name="data_validation_account_st">شماره حساب را درست وارد نمایید</string>
+    <string name="bank_name_st">نام بانک</string>
+    <string name="iban_convertor_error_st">خطا در تبدیل</string>
+</resources>

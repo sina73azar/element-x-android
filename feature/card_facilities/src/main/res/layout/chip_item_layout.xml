@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/myFilterChipCustomStyle"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/chip_height"
+    android:fontFamily="@font/font_regular"
+    android:minWidth="@dimen/chip_min_width"
+    android:text="@string/category_hourly_st"
+    android:textAlignment="center"
+    android:textAppearance="@style/chipTextAppearance"
+    android:textSize="@dimen/ui_text_small"
+    app:checkedIcon="@null"
+    app:chipIcon="@drawable/ic_60day"
+    app:chipStartPadding="@dimen/_8sdp"
+    app:textEndPadding="@dimen/_4sdp"
+    app:textStartPadding="@dimen/_4sdp"
+    app:chipIconEnabled="true"/>

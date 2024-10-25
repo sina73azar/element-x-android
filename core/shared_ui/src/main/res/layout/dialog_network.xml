@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/card_view_bg"
+        android:layout_margin="@dimen/_4sdp"
+        android:gravity="center"
+        android:padding="@dimen/ui_large_size"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/icon"
+            android:layout_width="@dimen/ui_img_medium"
+            android:layout_height="@dimen/ui_img_medium"
+            android:layout_marginTop="@dimen/ui_huge_size"
+            app:srcCompat="@drawable/ic_network"
+            app:tint="@color/colorPrimary"
+            tools:ignore="VectorDrawableCompat" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_regular"
+            android:layout_marginTop="@dimen/ui_big_size"
+            android:gravity="center"
+            android:text="@string/network_dialog_title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_regular"
+            android:layout_marginTop="@dimen/ui_big_size"
+            android:gravity="center"
+            android:text="@string/network_dialog_description" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ui_huge_size"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnConfirm"
+                android:layout_width="wrap_content"
+                style="@style/button_blue_style"
+                android:text="@string/network_setting"
+                android:visibility="visible"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDismiss"
+                style="@style/button_cancle_style"
+                android:layout_width="80dp"
+                android:text="@string/close" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

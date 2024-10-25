@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearTxt"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/content_from_edge">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivInfoPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/icon_margin"
+        android:tint="@color/orange"
+        android:visibility="gone"
+        android:background="?selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="@+id/txtValueIl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtValueIl"
+        app:layout_constraintTop_toTopOf="@+id/txtValueIl"
+        app:srcCompat="@drawable/ic_circle_info"
+        tools:visibility="visible" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtValueIl"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layoutDirection="ltr"
+        app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+        app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+        app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+        app:boxCornerRadiusTopStart="@dimen/_8sdp"
+        app:boxStrokeColor="@color/my_outlined_stroke_color"
+        app:endIconMode="clear_text"
+        app:hintTextColor="@color/colorAccentDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivInfoPassword"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:hint="به کارت">
+
+        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+            android:id="@+id/txtValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:fontFamily="@font/font_regular"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:lines="1"
+            android:maxLength="25"
+            android:minHeight="?attr/actionBarSize"
+            android:paddingStart="@dimen/_40sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:singleLine="true"
+            android:textSize="@dimen/ui_text_normal" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvIrCurrency"
+        style="@style/ir_currency_txt"
+        android:text="@string/irr_currency"
+        app:layout_constraintBottom_toBottomOf="@+id/txtValueIl"
+        app:layout_constraintEnd_toEndOf="@+id/txtValueIl"
+        app:layout_constraintTop_toTopOf="@+id/txtValueIl" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvNumeric"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/ui_text_micro"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@id/txtValueIl"
+        app:layout_constraintStart_toStartOf="@+id/txtValueIl"
+        app:layout_constraintTop_toBottomOf="@+id/txtValueIl" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

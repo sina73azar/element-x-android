@@ -29,6 +29,12 @@ plugins {
     alias(libs.plugins.ktlint)
     alias(libs.plugins.dependencygraph)
     alias(libs.plugins.sonarqube)
+
+//    alias(libs.plugins.org.jetbrains.kotlin.android) apply false
+    alias(libs.plugins.hilt) apply false
+//    alias(libs.plugins.org.jetbrains.kotlin.jvm) apply false
+    alias(libs.plugins.jetbrains.compose).apply(false)
+    alias(libs.plugins.room) apply false
 }
 
 tasks.register<Delete>("clean").configure {

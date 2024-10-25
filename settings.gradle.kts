@@ -8,16 +8,20 @@
 import java.net.URI
 
 pluginManagement {
+    includeBuild("build_logic")
     repositories {
         includeBuild("plugins")
         gradlePluginPortal()
         google()
         mavenCentral()
+        maven(url = "https://maven.google.com")
     }
 }
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+
+        mavenLocal()
         maven {
             url = URI("https://jitpack.io")
             content {
@@ -50,6 +54,9 @@ dependencyResolutionManagement {
                 includeModule("com.github.matrix-org", "matrix-analytics-events")
             }
         }
+        maven(url = "https://maven.google.com")
+        maven(url = "https://jitpack.io")
+        maven(url = "https://pay.cards/maven")
         flatDir {
             dirs("libraries/matrix/libs")
         }
@@ -71,6 +78,20 @@ include(":anvilannotations")
 include(":anvilcodegen")
 
 include(":samples:minimal")
+
+
+include(":core")
+include(":core:data")
+include(":core:shared_ui")
+include(":core:utils")
+include(":core:navigation")
+
+
+include(":feature")
+include (":feature:persiancalendar")
+include (":feature:shahkar")
+
+include(":feature:card_facilities")
 
 fun includeProjects(directory: File, path: String, maxDepth: Int = 1) {
     directory.listFiles().orEmpty().also { it.sort() }.forEach { file ->

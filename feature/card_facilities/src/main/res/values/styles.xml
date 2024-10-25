@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="normal_title_txt">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/font_regular</item>
+        <item name="android:textSize">@dimen/ui_text_small</item>
+        <item name="android:layout_marginTop">@dimen/_8sdp</item>
+        <item name="android:layout_marginStart">@dimen/_16sdp</item>
+        <item name="android:layout_marginLeft">@dimen/_16sdp</item>
+        <item name="android:lineSpacingExtra">@dimen/_8sdp</item>
+    </style>
+    <style name="CustomTabStyle" parent="Theme.MaterialComponents.Light">
+        <item name="android:fontFamily">@font/font_regular</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="lable_txt_style">
+        <item name="android:layout_width">@dimen/_40sdp</item>
+        <item name="android:layout_height">@dimen/_20sdp</item>
+        <item name="android:background">@color/light_gray</item>
+        <item name="android:fontFamily">@font/font_regular</item>
+        <item name="android:textSize">@dimen/ui_text_small</item>
+        <item name="android:textColor">@color/omg_text_unselected</item>
+    </style>
+    <style name="myBothButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/both_btn_stroke_color_selector</item>
+        <item name="backgroundTint">@color/both_btn_text_btn_bg_color_selector</item>
+    </style>
+    <style name="switch_btn">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/_16sdp</item>
+        <item name="android:checked">false</item>
+        <item name="android:thumb">@drawable/custom_thumb</item>
+        <item name="track">@drawable/custom_track</item>
+    </style>
+    <style name="chipTextAppearance" parent="@style/TextAppearance.MaterialComponents.Chip">
+        <item name="android:fontFamily">@font/font_regular</item>
+    </style>
+    <style name="myFilterChipCustomStyle" parent="@style/Widget.MaterialComponents.Chip.Filter">
+        <item name="chipBackgroundColor">@color/custom_filter_chip_background_color_selector</item>
+        <item name="android:textColor">@color/custom_filter_chip_text_color_selector</item>
+        <item name="checkedIconTint">@color/white</item>
+        <item name="chipStrokeWidth">0.8dp</item>
+        <item name="chipStrokeColor">@color/custom_filter_chip_stroke_color_selector</item>
+        <item name="chipIconTint">@color/custom_filter_chip_icon_tint_color_selector</item>
+    </style>
+
+</resources>

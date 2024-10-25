@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_constraint"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/cardComposeShot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_height="@dimen/_50sdp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/medium_padding"
+        app:layout_constraintTop_toBottomOf="@id/cardComposeShot"
+        android:background="@drawable/card_view_bg">
+
+        <LinearLayout
+            android:id="@+id/linearBarcode"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_margin="@dimen/_16sdp"
+            android:background="@drawable/barcode_btn_bg"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center"
+                android:tint="@color/irdcs_gray"
+                app:srcCompat="@drawable/card_scanner"
+                tools:ignore="VectorDrawableCompat" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/font_bold"
+                android:text="@string/destination_card_scan"
+                android:textSize="@dimen/ui_text_normal" />
+        </LinearLayout>
+
+
+        <com.drp.shared_ui.widget.xml.PanEditText
+            android:id="@+id/txtDestinationPan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:hint="@string/transfer_card_destination"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearBarcode" />
+
+        <com.drp.shared_ui.widget.xml.AmountEditText
+            android:id="@+id/etPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:hint="@string/amount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/txtDestinationPan"
+            app:layout_constraintTop_toBottomOf="@+id/txtDestinationPan" />
+
+        <com.drp.shared_ui.widget.xml.PasswordInput
+            android:id="@+id/etCVV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left|center_vertical"
+            android:hint="@string/transfer_card_cvv2"
+            android:inputType="numberPassword"
+            android:maxLength="4"
+            app:constraint_direction="ltr"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/etPrice"
+            app:layout_constraintTop_toBottomOf="@id/etPrice" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/expiration_txt"
+            style="@style/normal_title_txt"
+            android:text="@string/transfer_card_expire"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etCVV" />
+
+        <com.drp.shared_ui.widget.xml.MySpinner
+            android:id="@+id/spinnerMonth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/month"
+            app:layout_constraintEnd_toStartOf="@id/guidLine"
+            app:layout_constraintStart_toStartOf="@id/etCVV"
+            app:layout_constraintTop_toBottomOf="@id/expiration_txt" />
+
+        <com.drp.shared_ui.widget.xml.MySpinner
+            android:id="@+id/spinnerYear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/year"
+            app:layout_constraintEnd_toEndOf="@id/etCVV"
+            app:layout_constraintStart_toEndOf="@id/guidLine"
+            app:layout_constraintTop_toBottomOf="@id/expiration_txt" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidLine"
+            android:layout_width="@dimen/_1sdp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+            android:id="@+id/btnInquiry"
+            style="@style/button_blue_style"
+            android:layout_marginTop="@dimen/_32sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:text="@string/submit_continue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinnerYear" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="bank_view">
+        <attr name="android:gravity" />
+        <attr name="android:textDirection" />
+        <attr name="android:maxLength" />
+        <attr name="android:layoutDirection" />
+        <attr name="android:inputType" />
+        <attr name="android:hint" />
+        <attr name="android:background" />
+        <attr name="android:digits" />
+        <attr name="constraint_direction" >
+            <!-- Left-to-Right. -->
+            <enum name="ltr" value="0" />
+            <!-- Right-to-Left. -->
+            <enum name="rtl" value="1" />
+            <!-- Inherit from parent. -->
+            <enum name="inherit" value="2" />
+            <!-- Locale. -->
+            <enum name="locale" value="3" />
+        </attr>
+        <attr name="tint_background" format="reference"/>
+        <attr name="header_background" format="reference"/>
+        <attr name="header" format="reference"/>
+        <attr name="showClear" format="boolean"/>
+        <attr name="hasValidator" format="boolean"/>
+        <attr name="startCalendarToday" format="boolean"/>
+        <attr name="ReadOnly" format="boolean"/>
+    </declare-styleable>
+</resources>

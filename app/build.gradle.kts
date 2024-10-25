@@ -26,6 +26,8 @@ import java.util.Locale
 
 plugins {
     id("io.element.android-compose-application")
+    id("com.google.devtools.ksp")
+    id("kotlin-kapt")
     alias(libs.plugins.kotlin.android)
     // When using precompiled plugins, we need to apply the firebase plugin like this
     id(libs.plugins.firebaseAppDistribution.get().pluginId)
@@ -35,6 +37,11 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     // To be able to update the firebase.xml files, uncomment and build the project
     // id("com.google.gms.google-services")
+    /** land */
+
+    alias(libs.plugins.modular.android.compose)
+
+    alias(libs.plugins.modular.android.hilt)
 }
 
 setupKover()
@@ -285,6 +292,14 @@ dependencies {
     testImplementation(projects.libraries.matrix.test)
 
     koverDependencies()
+
+    /** land */
+    implementation(project(":core:shared_ui"))
+    implementation(project(":core:data"))
+    implementation(project(":feature:card_facilities"))
+    implementation(project(":feature:shahkar"))
+    implementation(project(mapOf("path" to ":core:utils")))
+
 }
 
 tasks.withType<GenerateBuildConfig>().configureEach {

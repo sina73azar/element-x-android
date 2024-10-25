@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="national_code_st">کد ملی/شناسه ملی</string>
+    <string name="mobile_no_st">شماره موبایل</string>
+    <string name="login_st">ورود</string>
+    <string name="data_validation_national_code_st">کدملی وارد شده صحیح نمی‌باشد</string>
+    <string name="mobile_no_register_failure_title_st"> شماره همراه اشتباه است</string>
+    <string name="data_validation_birth_date_st">تاریخ تولد را وارد نمایید</string>
+    <string name="birth_date_st">تاریخ تولد</string>
+    <string name="account_login_title_st">ورود به حساب کاربری</string>
+    <string name="activation_otp_info_st">به منظور فعالسازی دسترسی به پیامک اجباری است</string>
+    <string name="submit_continue_st">ثبت و ادامه</string>
+    <string name="otp_register_failure_description_st">مشتری گرامی لطفا پیامک فعالسازی که به شماره همراه ثبت شده در شعبه، ارسال شده است را وارد نمایید.</string>
+    <string name="retry_code_st">ارسال مجدد کد</string>
+    <string name="activation_number_title_st">کد تایید برای شماره موبایل <![CDATA[<b><font color=#015a97>  %1$s  </font></b>]]>  ارسال گردید.</string>
+    <string name="network_error_st">ارتباط اینترنت خود را بررسی کنید</string>
+    <string name="unknown_error_st">بروز خطای نامشخص</string>
+    <string name="request_again_st">بعد از اتمام زمان مشخص شده درخواست دریافت پیامک را مجدد ثبت نمایید</string>
+
+</resources>

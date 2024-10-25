@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray">
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            app:chipSpacingHorizontal="@dimen/_6sdp"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/allTypeChip"
+                style="@style/myFilterChipCustomStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/chip_height"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:checked="true"
+                android:fontFamily="@font/font_regular"
+                android:minWidth="@dimen/chip_min_width"
+                android:text="@string/statement_filter_type_all"
+                android:textAlignment="center"
+                android:textAppearance="@style/chipTextAppearance"
+                android:textSize="@dimen/ui_text_small"
+                app:checkedIcon="@null"
+                app:chipIcon="@drawable/ic_all_category"
+                app:chipIconEnabled="true"
+                app:chipStartPadding="@dimen/_8sdp"
+                app:textEndPadding="@dimen/_4sdp"
+                app:textStartPadding="@dimen/_4sdp" />
+
+            <!--<com.google.android.material.chip.Chip
+                android:id="@+id/hourTypeChip"
+                style="@style/myFilterChipCustomStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/chip_height"
+                android:fontFamily="@font/font_regular"
+                android:minWidth="@dimen/chip_min_width"
+                android:text="@string/category_hourly_st"
+                android:textAlignment="center"
+                android:textAppearance="@style/chipTextAppearance"
+                android:textSize="@dimen/ui_text_small"
+                app:checkedIcon="@null"
+                app:chipIcon="@drawable/ic_hour2"
+                app:chipIconEnabled="true"
+                app:chipStartPadding="@dimen/_8sdp"
+                app:textEndPadding="@dimen/_4sdp"
+                app:textStartPadding="@dimen/_4sdp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/dayTypeChip"
+                style="@style/myFilterChipCustomStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/chip_height"
+                android:fontFamily="@font/font_regular"
+                android:minWidth="@dimen/chip_min_width"
+                android:text="@string/daily"
+                android:textAlignment="center"
+                android:textAppearance="@style/chipTextAppearance"
+                android:textSize="@dimen/ui_text_small"
+                app:checkedIcon="@null"
+                app:chipIcon="@drawable/ic_day"
+                app:chipIconEnabled="true"
+                app:chipStartPadding="@dimen/_8sdp"
+                app:textEndPadding="@dimen/_8sdp"
+                app:textStartPadding="@dimen/_4sdp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/weekTypeChip"
+                style="@style/myFilterChipCustomStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/chip_height"
+                android:fontFamily="@font/font_regular"
+                android:minWidth="@dimen/chip_min_width"
+                android:text="@string/weekly"
+                android:textAlignment="center"
+                android:textAppearance="@style/chipTextAppearance"
+                android:textSize="@dimen/ui_text_small"
+                app:checkedIcon="@null"
+                app:chipIcon="@drawable/ic_weekly2"
+                app:chipIconEnabled="true"
+                app:chipStartPadding="@dimen/_8sdp"
+                app:textEndPadding="@dimen/_4sdp"
+                app:textStartPadding="@dimen/_4sdp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/monthTypeChip"
+                style="@style/myFilterChipCustomStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/chip_height"
+                android:fontFamily="@font/font_regular"
+                android:minWidth="@dimen/chip_min_width"
+                android:text="@string/monthly"
+                android:textAlignment="center"
+                android:textAppearance="@style/chipTextAppearance"
+                android:textSize="@dimen/ui_text_small"
+                app:checkedIcon="@null"
+                app:chipIcon="@drawable/ic_monthly"
+                app:chipIconEnabled="true"
+                app:chipStartPadding="@dimen/_8sdp"
+                app:textEndPadding="@dimen/_4sdp"
+                app:textStartPadding="@dimen/_4sdp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/threeMonthTypeChip"
+                style="@style/myFilterChipCustomStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/chip_height"
+                android:fontFamily="@font/font_regular"
+                android:minWidth="@dimen/chip_min_width"
+                android:text="@string/category_three_month_st"
+                android:textAlignment="center"
+                android:textAppearance="@style/chipTextAppearance"
+                android:textSize="@dimen/ui_text_small"
+                app:checkedIcon="@null"
+                app:chipIcon="@drawable/ic_60day"
+                app:chipIconEnabled="true"
+                app:chipStartPadding="@dimen/_8sdp"
+                app:textEndPadding="@dimen/_4sdp"
+                app:textStartPadding="@dimen/_4sdp" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/sixMonthTypeChip"
+                style="@style/myFilterChipCustomStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/chip_height"
+                android:fontFamily="@font/font_regular"
+                android:minWidth="@dimen/chip_min_width"
+                android:text="@string/category_six_month_st"
+                android:textAlignment="center"
+                android:textAppearance="@style/chipTextAppearance"
+                android:textSize="@dimen/ui_text_small"
+                app:checkedIcon="@null"
+                app:chipIcon="@drawable/ic_60day"
+                app:chipIconEnabled="true"
+                app:chipStartPadding="@dimen/_8sdp"
+                app:textEndPadding="@dimen/_4sdp"
+                app:textStartPadding="@dimen/_4sdp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/yearlyTypeChip"
+                style="@style/myFilterChipCustomStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/chip_height"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:fontFamily="@font/font_regular"
+                android:minWidth="@dimen/chip_min_width"
+                android:text="@string/category_yearly_st"
+                android:textAlignment="center"
+                android:textAppearance="@style/chipTextAppearance"
+                android:textSize="@dimen/ui_text_small"
+                app:checkedIcon="@null"
+                app:chipIcon="@drawable/ic_60day"
+                app:chipIconEnabled="true"
+                app:chipStartPadding="@dimen/_8sdp"
+                app:textEndPadding="@dimen/_4sdp"
+                app:textStartPadding="@dimen/_4sdp" />-->
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/packagesRv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingHorizontal="@dimen/_4sdp"
+        android:paddingTop="@dimen/_8sdp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2"
+        tools:itemCount="5"
+        tools:listitem="@layout/package_type_item" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

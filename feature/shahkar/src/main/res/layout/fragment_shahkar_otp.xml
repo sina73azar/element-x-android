@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:animateLayoutChanges="true"
+            android:background="@drawable/bottom_sheet_bg"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/refahIconImg"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/_8sdp"
+                android:scaleType="centerInside"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_refah"
+                app:tint="@color/colorPrimary" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/titleTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ui_normal_size"
+                android:layout_marginEnd="@dimen/ui_normal_size"
+                android:fontFamily="@font/font_regular"
+                android:text="@string/account_login_title_st"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/ui_text_normal"
+                app:layout_constraintBottom_toBottomOf="@id/refahIconImg"
+                app:layout_constraintStart_toEndOf="@id/refahIconImg"
+                app:layout_constraintTop_toTopOf="@id/refahIconImg" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/dismissBtn"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:scaleType="center"
+                android:tint="@color/gray"
+                app:layout_constraintBottom_toBottomOf="@id/refahIconImg"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/refahIconImg"
+                app:srcCompat="@drawable/ic_close"
+                tools:ignore="VectorDrawableCompat" />
+
+            <View
+                android:id="@+id/lineView"
+                android:layout_width="match_parent"
+                android:layout_height="0.75dp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@color/line_color"
+                app:layout_constraintTop_toBottomOf="@id/titleTv" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/dataConstraint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lineView">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/verificationCodeTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/left_margin"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/left_margin"
+                    android:layout_marginBottom="32dp"
+                    android:fontFamily="@font/font_regular"
+                    android:lineSpacingExtra="@dimen/_8sdp"
+                    android:textSize="@dimen/ui_text_normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.drp.shared_ui.widget.xml.PasswordInput
+                    android:id="@+id/activationCodeEt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:hint="@string/password_input_hint_st"
+                    android:inputType="numberPassword"
+                    android:maxLength="6"
+                    app:layout_constraintEnd_toStartOf="@id/retryLoadingBtn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/verificationCodeTv" />
+
+                <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+                    android:id="@+id/retryLoadingBtn"
+                    style="@style/button_blue_timer_style"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:textSize="@dimen/ui_text_normal"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@id/activationCodeEt"
+                    app:layout_constraintEnd_toEndOf="@id/verificationCodeTv"
+                    app:layout_constraintStart_toEndOf="@id/activationCodeEt"
+                    app:layout_constraintTop_toTopOf="@id/activationCodeEt"
+                    app:layout_constraintWidth_percent="0.3" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/timerCountTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:fontFamily="@font/font_regular"
+                    android:gravity="center"
+                    tools:text="25:25"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/ui_text_big"
+                    app:fontFamily="@font/font_bold"
+                    app:layout_constraintBottom_toBottomOf="@id/retryLoadingBtn"
+                    app:layout_constraintEnd_toEndOf="@id/verificationCodeTv"
+                    app:layout_constraintStart_toStartOf="@id/retryLoadingBtn"
+                    app:layout_constraintTop_toTopOf="@id/retryLoadingBtn" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/timerIconImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ui_normal_size"
+                    android:layout_marginEnd="@dimen/ui_normal_size"
+                    app:layout_constraintBottom_toBottomOf="@id/timerCountTv"
+                    app:layout_constraintStart_toEndOf="@id/timerCountTv"
+                    app:layout_constraintTop_toTopOf="@id/timerCountTv"
+                    app:srcCompat="@drawable/ic_clock"
+                    tools:ignore="VectorDrawableCompat" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/permissionLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/content_from_edge"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/retryLoadingBtn"
+                    tools:visibility="visible">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/infoSmsImg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="@color/orange"
+                        app:srcCompat="@drawable/ic_circle_info" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/infoSmsTv"
+                        style="@style/normal_hint_txt"
+                        android:fontFamily="@font/font_regular"
+                        android:textColorLink="@color/colorPrimary"
+                        tools:targetApi="o"
+                        tools:text="@string/activation_otp_info_st" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+                    android:id="@+id/submitBtn"
+                    style="@style/button_blue_style"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginBottom="@dimen/content_from_edge"
+                    android:text="@string/submit_continue_st"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/permissionLayout" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

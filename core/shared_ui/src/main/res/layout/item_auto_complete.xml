@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutSource"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/ui_normal_size"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
+            style="@style/service_title_active"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/font_regular"
+            android:text="@string/app_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvValue"
+            style="@style/service_title_normal"
+            android:gravity="right"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/font_regular"
+            android:text="@string/app_name" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.7dp"
+            android:background="@drawable/micro_dash_line"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginTop="4dp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

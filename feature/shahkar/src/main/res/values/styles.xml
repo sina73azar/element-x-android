@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="button_blue_style" parent="Widget.MaterialComponents.CircularProgressIndicator">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/_40sdp</item>
+        <item name="android:background">@drawable/blue_button</item>
+        <item name="android:textSize">@dimen/ui_text_small</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:fontFamily">@font/font_regular</item>
+        <item name="android:layout_marginRight">@dimen/content_from_edge</item>
+        <item name="android:layout_marginLeft">@dimen/content_from_edge</item>
+        <item name="spinning_bar_width">2dp</item>
+        <item name="spinning_bar_color">@color/white</item>
+        <item name="spinning_bar_padding">6dp</item>
+        <item name="finalCornerAngle">@dimen/ui_radius_button</item>
+        <item name="initialCornerAngle">@dimen/ui_radius_button</item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:fontFamily">@font/font_regular</item>
+        <item name="android:windowBackground">@color/light_gray</item>
+        <item name="android:screenOrientation">portrait</item>
+        <item name="persianMaterialCalendarTheme">@style/AppTheme.PersianCalendar</item>
+        <item name="textInputStyle">
+            @style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense
+        </item>
+
+    </style>
+
+    <style name="normal_edit_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/_44sdp</item>
+        <item name="android:background">@null</item>
+        <item name="android:fontFamily">@font/font_regular</item>
+        <item name="android:textSize">@dimen/ui_text_normal</item>
+        <item name="android:paddingStart">@dimen/ui_big_size</item>
+        <item name="android:paddingEnd">@dimen/ui_big_size</item>
+        <item name="android:layout_marginLeft">@dimen/ui_large_size</item>
+        <item name="android:layout_marginRight">@dimen/ui_large_size</item>
+        <item name="android:layout_marginTop">@dimen/ui_normal_size</item>
+        <item name="android:textDirection">ltr</item>
+        <item name="android:lines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="button_blue_timer_style" parent="Widget.MaterialComponents.CircularProgressIndicator">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/_40sdp</item>
+        <item name="android:background">@drawable/solid_blue</item>
+        <item name="android:textSize">@dimen/ui_text_small</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingLeft">@dimen/ui_normal_size</item>
+        <item name="android:paddingRight">@dimen/ui_normal_size</item>
+        <item name="android:fontFamily">@font/font_regular</item>
+        <item name="android:gravity">center</item>
+        <item name="spinning_bar_width">2dp</item>
+        <item name="spinning_bar_color">@color/white</item>
+        <item name="spinning_bar_padding">6dp</item>
+        <item name="finalCornerAngle">@dimen/ui_normal_size</item>
+        <item name="initialCornerAngle">@dimen/ui_normal_size</item>
+    </style>
+
+    <style name="normal_hint_txt">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/font_regular</item>
+        <item name="android:textSize">@dimen/ui_text_small</item>
+        <item name="android:layout_marginStart">@dimen/_8sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_8sdp</item>
+        <item name="android:justificationMode" tools:targetApi="o">inter_word</item>
+    </style>
+
+    <style name="AppTheme.PersianCalendar" parent="PersianMaterialCalendar.Default.MaterialCalendar">
+        <item name="persianMaterialCalendarStyle">@style/AppTheme.PersianCalendar.Example</item>
+        <item name="android:windowBackground">@drawable/dialog_background</item>
+        <item name="dayTextAppearance">@style/AppTheme.PersianCalendar.DayTextStyle</item>
+        <item name="positiveButtonStyle">@style/PersianMaterialCalendar.Default.DialogTextButton
+        </item>
+        <item name="cancelButtonStyle">@style/PersianMaterialCalendar.Default.DialogTextButton
+        </item>
+        <item name="headerTitleTextStyle">@style/PersianMaterialCalendar.Default.HeaderTitle</item>
+        <item name="headerSelectionTextStyle">
+            @style/PersianMaterialCalendar.Default.HeaderSelection
+        </item>
+        <item name="headerBackgroundColor">@color/colorPrimary</item>
+        <item name="navigationButtonStyle">@style/PersianMaterialCalendar.Default.NavigationStyle
+        </item>
+        <item name="navigationToggleStyle">
+            @style/PersianMaterialCalendar.Default.NavigationToggleStyle
+        </item>
+    </style>
+    <style name="AppTheme.PersianCalendar.Example" parent="PersianMaterialCalendar.Default">
+        <item name="dayStyle">@style/AppTheme.PersianCalendar.Example.Day</item>
+        <item name="dayInvalidStyle">@style/AppTheme.PersianCalendar.Example.Day.Invalid</item>
+        <item name="daySelectedStyle">@style/AppTheme.PersianCalendar.Example.Day.Selected</item>
+        <item name="dayTodayStyle">@style/AppTheme.PersianCalendar.Example.Day.Today</item>
+        <item name="yearStyle">@style/AppTheme.PersianCalendar.Example.Year</item>
+        <item name="yearSelectedStyle">@style/AppTheme.PersianCalendar.Example.Year.Selected</item>
+        <item name="yearTodayStyle">@style/AppTheme.PersianCalendar.Example.Year.Today</item>
+        <item name="rangeFillColor">@color/calendar_selected_range</item>
+    </style>
+
+    <style name="AppTheme.PersianCalendar.Example.Item" parent="PersianMaterialCalendar.Default.Item">
+        <item name="itemFillColor">@android:color/transparent</item>
+        <item name="itemTextColor">@android:color/black</item>
+        <item name="itemStrokeColor">@android:color/transparent</item>
+        <item name="itemStrokeWidth">1dp</item>
+        <item name="itemShape">circle</item>
+        <item name="itemShapeCornerRadius">0</item>
+    </style>
+
+    <style name="AppTheme.PersianCalendar.Example.Day" parent="AppTheme.PersianCalendar.Example.Item">
+        <item name="android:width">@dimen/calendar_day_width</item>
+        <item name="android:height">@dimen/calendar_day_height</item>
+        <item name="android:insetTop">@dimen/calendar_day_vertical_padding</item>
+        <item name="android:insetBottom">@dimen/calendar_day_vertical_padding</item>
+        <item name="android:insetLeft">@dimen/calendar_day_horizontal_padding</item>
+        <item name="android:insetRight">@dimen/calendar_day_horizontal_padding</item>
+    </style>
+
+    <style name="AppTheme.PersianCalendar.Example.Day.Invalid">
+        <item name="itemTextColor">#60000000</item>
+        <item name="itemStrokeWidth">0dp</item>
+        <item name="android:insetTop">@dimen/calendar_day_vertical_padding</item>
+        <item name="android:insetBottom">@dimen/calendar_day_vertical_padding</item>
+        <item name="android:insetLeft">@dimen/calendar_day_horizontal_padding</item>
+        <item name="android:insetRight">@dimen/calendar_day_horizontal_padding</item>
+    </style>
+
+    <style name="AppTheme.PersianCalendar.Example.Day.Selected">
+        <item name="itemFillColor">?attr/colorPrimary</item>
+        <item name="itemTextColor">@android:color/white</item>
+        <item name="itemStrokeWidth">0dp</item>
+        <item name="itemStrokeColor">@android:color/transparent</item>
+        <item name="android:insetTop">@dimen/calendar_day_vertical_padding</item>
+        <item name="android:insetBottom">@dimen/calendar_day_vertical_padding</item>
+        <item name="android:insetLeft">@dimen/calendar_day_horizontal_padding</item>
+        <item name="android:insetRight">@dimen/calendar_day_horizontal_padding</item>
+    </style>
+
+    <style name="AppTheme.PersianCalendar.Example.Day.Today">
+        <item name="itemFillColor">@android:color/transparent</item>
+        <item name="itemTextColor">@android:color/black</item>
+        <item name="itemStrokeColor">@color/black</item>
+        <item name="itemStrokeWidth">1dp</item>
+        <item name="itemShape">circle</item>
+        <item name="itemShapeCornerRadius">0</item>
+    </style>
+
+    <style name="AppTheme.PersianCalendar.Example.Year" parent="AppTheme.PersianCalendar.Example.Item">
+        <item name="itemShape">circle</item>
+        <item name="android:width">@dimen/calendar_year_width</item>
+        <item name="android:height">@dimen/calendar_year_height</item>
+        <item name="android:insetTop">@dimen/calendar_year_vertical_padding</item>
+        <item name="android:insetBottom">@dimen/calendar_year_vertical_padding</item>
+        <item name="android:insetLeft">@dimen/calendar_year_horizontal_padding</item>
+        <item name="android:insetRight">@dimen/calendar_year_horizontal_padding</item>
+    </style>
+
+    <style name="AppTheme.PersianCalendar.Example.Year.Selected" parent="AppTheme.PersianCalendar.Example.Year">
+        <item name="itemFillColor">?attr/colorPrimary</item>
+        <item name="itemTextColor">@android:color/white</item>
+        <item name="itemStrokeColor">@android:color/transparent</item>
+        <item name="itemShape">square</item>
+        <item name="itemShapeCornerRadius">14</item>
+        <item name="itemStrokeWidth">0dp</item>
+    </style>
+
+    <style name="AppTheme.PersianCalendar.Example.Year.Today" parent="AppTheme.PersianCalendar.Example.Year">
+        <item name="itemStrokeColor">#DF000000</item>
+        <item name="itemStrokeWidth">@dimen/_1sdp</item>
+        <item name="itemShape">circle</item>
+        <item name="itemShapeCornerRadius">14</item>
+    </style>
+    <style name="AppTheme.PersianCalendar.DayTextStyle" parent="PersianMaterialCalendar.Default.DayTextAppearance">
+        <item name="textColor">@android:color/black</item>
+        <item name="textSize">@dimen/ui_text_small</item>
+        <item name="typeface">@font/font_regular</item>
+    </style>
+</resources>

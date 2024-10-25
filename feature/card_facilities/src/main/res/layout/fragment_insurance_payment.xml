@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_sheet_bg">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/refah_icon_img"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_margin="@dimen/_8sdp"
+                android:tint="@color/colorPrimaryDark"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_payment_insurance"
+                tools:ignore="VectorDrawableCompat" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitleSheet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ui_normal_size"
+                android:fontFamily="@font/font_regular"
+                android:text="@string/insurance_bill_inquiry_title"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/ui_text_normal"
+                app:layout_constraintBottom_toBottomOf="@id/refah_icon_img"
+                app:layout_constraintStart_toEndOf="@+id/refah_icon_img"
+                app:layout_constraintTop_toTopOf="@id/refah_icon_img" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btnClosePopUp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:tint="@color/gray"
+                app:layout_constraintBottom_toBottomOf="@id/refah_icon_img"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/refah_icon_img"
+                app:srcCompat="@drawable/ic_done"
+                tools:ignore="VectorDrawableCompat" />
+
+            <View
+                android:id="@+id/line"
+                style="@style/line_style"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTitleSheet" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvReceipt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/line"
+                tools:listitem="@layout/item_receipt" />
+
+            <com.drp.shared_ui.widget.xml.PasswordEditText
+                android:id="@+id/layoutPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/rvReceipt" />
+
+            <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+                android:id="@+id/btnAccept"
+                style="@style/button_blue_style"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:text="@string/ok"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnDismiss"
+                app:layout_constraintStart_toStartOf="@id/rvReceipt"
+                app:layout_constraintTop_toBottomOf="@+id/layoutPassword"
+                app:layout_constraintWidth_percent="0.4" />
+
+            <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+                android:id="@+id/btnDismiss"
+                style="@style/button_cancle_style"
+                android:layout_width="0dp"
+                android:text="@string/cancel"
+                app:layout_constraintEnd_toEndOf="@id/rvReceipt"
+                app:layout_constraintStart_toEndOf="@+id/btnAccept"
+                app:layout_constraintTop_toBottomOf="@+id/layoutPassword"
+                app:layout_constraintTop_toTopOf="@id/btnAccept"
+                app:layout_constraintWidth_percent="0.4" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
