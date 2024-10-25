@@ -11,7 +11,7 @@ class XmlLibsConventionPlugin : Plugin<Project> {
                 dependencies {
                     "implementation"(libs.findLibrary("constraintlayout").get())
                     "implementation"(libs.findLibrary("androidx.fragment").get())
-                    "implementation"(libs.findLibrary("android.design").get())
+//                    "implementation"(libs.findLibrary("android.design").get())
                     "implementation"(libs.findLibrary("swiperefreshlayout").get())
                     "implementation"(libs.findLibrary("recyclerview").get())
                     "implementation"(libs.findLibrary("android.arch.lifecycle").get())

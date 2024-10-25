@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.modular.android.network)
     kotlin("plugin.serialization") version "1.9.0"
 
+    alias(libs.plugins.compose.compiler)
 }
 
 android {

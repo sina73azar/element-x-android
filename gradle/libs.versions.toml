@@ -111,7 +111,7 @@ shimmerlayout = "2.1.0"
 android-segmented = "1.0.6"
 target-tooltip = "2.0.4"
 sample-tooltip = "1.0.0-rc.0"
-styleabletoast = "2.1.2"
+styleabletoast = "2.4.0"
 truetime-android = "3.5"
 arch-lifecycle = "1.1.1"
 emulator-detector = "1.4.0"
@@ -127,7 +127,8 @@ glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", versi
 
 android-design = { group = "com.android.support", name = "design", version.ref = "design_version" }
 recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
-pinview = { group = "com.chaos.view", name = "pinview", version.ref = "pinview" }
+#pinview = { group = "com.chaos.view", name = "pinview", version.ref = "pinview" }
+pinview = { group = "io.github.chaosleung", name = "pinview", version.ref = "pinview" }
 indicatorseekbar = { group = "com.github.warkiz.widget", name = "indicatorseekbar", version.ref = "indicatorseekbar" }
 skeleton = { group = "com.ethanhua", name = "skeleton", version.ref = "skeleton" }
 shimmerlayout = { group = "io.supercharge", name = "shimmerlayout", version.ref = "shimmerlayout" }
@@ -135,7 +136,7 @@ android-segmented = { group = "info.hoang8f", name = "android-segmented", versio
 target-tooltip = { group = "com.github.sephiroth74", name = "android-target-tooltip", version.ref = "target-tooltip" }
 sample-tooltip = { group = "com.github.douglasjunior", name = "android-simple-tooltip", version.ref = "sample-tooltip" }
 lottie-android = { group = "com.airbnb.android", name = "lottie", version.ref = "lottieVersion" }
-styleabletoast = { group = "com.muddzdev", name = "styleabletoast", version.ref = "styleabletoast" }
+styleabletoast = { group = "io.github.muddz", name = "styleabletoast", version.ref = "styleabletoast" }
 truetime-android = { group = "com.github.instacart.truetime-android", name = "library", version.ref = "truetime-android" }
 
 androidx-fragment = { group = "androidx.fragment", name = "fragment", version.ref = "fragment" }

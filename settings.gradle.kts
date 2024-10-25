@@ -27,6 +27,7 @@ dependencyResolutionManagement {
             content {
                 includeModule("com.github.sergio-sastre.ComposablePreviewScanner", "android")
                 includeModule("com.github.sergio-sastre.ComposablePreviewScanner", "core")
+                includeGroup("br.com.simplepass")
             }
         }
         // Snapshot versions
@@ -57,6 +58,7 @@ dependencyResolutionManagement {
         maven(url = "https://maven.google.com")
         maven(url = "https://jitpack.io")
         maven(url = "https://pay.cards/maven")
+//        jcenter()
         flatDir {
             dirs("libraries/matrix/libs")
         }

@@ -42,6 +42,12 @@ plugins {
     alias(libs.plugins.modular.android.compose)
 
     alias(libs.plugins.modular.android.hilt)
+
+    alias(libs.plugins.compose.compiler)
+
+//    alias(libs.plugins.modular.android.xml.libs)
+//    id("org.jetbrains.kotlin.plugin.compose")
+//    id("io.element.android-compose-library")
 }
 
 setupKover()
@@ -299,6 +305,10 @@ dependencies {
     implementation(project(":feature:card_facilities"))
     implementation(project(":feature:shahkar"))
     implementation(project(mapOf("path" to ":core:utils")))
+
+
+    implementation(libs.compose.compiler.plugin)
+
 
 }
 

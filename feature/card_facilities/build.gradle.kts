@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.modular.android.xml.libs)
     kotlin("plugin.serialization") version "1.9.0"
 
+    id("io.element.android-compose-library")
 }
 
 android {

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RefahLand</string>
+    <string name="expire_date">تاریخ انقضا:</string>
+    <string name="bill_inquiry_st">استعلام قبض</string>
+    <string name="no_card_st">کارتی یافت نشد</string>
+    <string name="no_bill_st">قبضی یافت نشد</string>
+</resources>

@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
-import com.muddzdev.styleabletoastlibrary.StyleableToast
+import io.github.muddz.styleabletoast.StyleableToast
 
 object ShowMessage {
     fun showErrorMessage(

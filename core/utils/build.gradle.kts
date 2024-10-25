@@ -4,6 +4,7 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.modular.android.library)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.compose.compiler)
 
 }
 val properties = Properties()
