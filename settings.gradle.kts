@@ -15,7 +15,16 @@ pluginManagement {
         google()
         mavenCentral()
         maven(url = "https://maven.google.com")
+        jcenter()
+        maven {
+            url = uri("https://mymavenrepo.com/repo/RNUffGvhFSVhXwT7OtOK/")
+            credentials {
+                username = "myMavenRepo"
+                password = "12345678"
+            }
+        }
     }
+
 }
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -58,7 +67,15 @@ dependencyResolutionManagement {
         maven(url = "https://maven.google.com")
         maven(url = "https://jitpack.io")
         maven(url = "https://pay.cards/maven")
-//        jcenter()
+        maven(url = "https://jcenter.bintray.com/")
+        maven {
+            url = uri("https://mymavenrepo.com/repo/RNUffGvhFSVhXwT7OtOK/")
+            credentials {
+                username = "myMavenRepo"
+                password = "12345678"
+            }
+        }
+        jcenter()
         flatDir {
             dirs("libraries/matrix/libs")
         }
@@ -90,8 +107,8 @@ include(":core:navigation")
 
 
 include(":feature")
-include (":feature:persiancalendar")
-include (":feature:shahkar")
+include(":feature:persiancalendar")
+include(":feature:shahkar")
 
 include(":feature:card_facilities")
 

@@ -308,6 +308,8 @@ dependencies {
 
 
     implementation(libs.compose.compiler.plugin)
+//    implementation("br.com.simplepass:loading-button-android:2.2.0")
+
 
 
 }
