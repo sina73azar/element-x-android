@@ -353,7 +353,7 @@ class CreatePollPresenterTest {
         }.test {
             val initial = awaitItem()
             assertThat(initial.canAddAnswer).isTrue()
-            repeat(17) {
+            repeat(21) {
                 initial.eventSink(CreatePollEvents.AddAnswer)
                 assertThat(awaitItem().canAddAnswer).isTrue()
             }

@@ -59,7 +59,7 @@ fun DynamicSheet(
                 topEnd = dimensionResource(id = R.dimen.medium_padding),
                 topStart = dimensionResource(id = R.dimen.medium_padding)
             ),
-            windowInsets = WindowInsets.ime/*WindowInsets(bottom = 48.dp)*/
+//            windowInsets = WindowInsets.ime/*WindowInsets(bottom = 48.dp)*/
         ) {
             Column(
                 modifier = Modifier

@@ -7,6 +7,7 @@ plugins {
     kotlin("plugin.serialization") version "1.9.0"
 
     id("io.element.android-compose-library")
+    id("com.google.devtools.ksp")
 }
 
 android {

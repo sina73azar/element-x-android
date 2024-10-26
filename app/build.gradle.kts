@@ -33,7 +33,7 @@ plugins {
     id(libs.plugins.firebaseAppDistribution.get().pluginId)
     alias(libs.plugins.knit)
     id("kotlin-parcelize")
-    alias(libs.plugins.licensee)
+//    alias(libs.plugins.licensee)
     alias(libs.plugins.kotlin.serialization)
     // To be able to update the firebase.xml files, uncomment and build the project
     // id("com.google.gms.google-services")
@@ -127,7 +127,7 @@ android {
         getByName("release") {
             resValue("string", "app_name", baseAppName)
             signingConfig = signingConfigs.getByName("debug")
-
+/*
             postprocessing {
                 isRemoveUnusedCode = true
                 isObfuscate = false
@@ -135,8 +135,10 @@ android {
                 isRemoveUnusedResources = true
                 proguardFiles("proguard-rules.pro")
             }
+            */
         }
 
+/*
         register("nightly") {
             val release = getByName("release")
             initWith(release)
@@ -172,14 +174,15 @@ android {
                     "1:912726360885:android:e17435e0beb0303000427c"
                 }
             }
-        }
+        }*/
+
     }
 
     buildFeatures {
         buildConfig = true
     }
-    flavorDimensions += "store"
-    productFlavors {
+//    flavorDimensions += "store"
+/*    productFlavors {
         create("gplay") {
             dimension = "store"
             isDefault = true
@@ -191,7 +194,7 @@ android {
             buildConfigField("String", "SHORT_FLAVOR_DESCRIPTION", "\"F\"")
             buildConfigField("String", "FLAVOR_DESCRIPTION", "\"FDroid\"")
         }
-    }
+    }*/
 }
 
 androidComponents {
@@ -220,7 +223,7 @@ androidComponents {
     }
 
     val reportingExtension: ReportingExtension = project.extensions.getByType(ReportingExtension::class.java)
-    configureLicensesTasks(reportingExtension)
+//    configureLicensesTasks(reportingExtension)
 }
 
 // Knit
@@ -266,7 +269,7 @@ dependencies {
     implementation(projects.services.analytics.compose)
 
     if (ModulesConfig.pushProvidersConfig.includeFirebase) {
-        "gplayImplementation"(projects.libraries.pushproviders.firebase)
+        implementation(projects.libraries.pushproviders.firebase)
     }
     if (ModulesConfig.pushProvidersConfig.includeUnifiedPush) {
         implementation(projects.libraries.pushproviders.unifiedpush)
@@ -322,7 +325,7 @@ tasks.withType<GenerateBuildConfig>().configureEach {
     android.defaultConfig.buildConfigField("String", "GIT_BRANCH_NAME", "\"$gitBranchName\"")
 }
 
-licensee {
+/*licensee {
     allow("Apache-2.0")
     allow("MIT")
     allow("BSD-2-Clause")
@@ -333,7 +336,8 @@ licensee {
     allowUrl("https://asm.ow2.io/license.html")
     allowUrl("https://www.gnu.org/licenses/agpl-3.0.txt")
     ignoreDependencies("com.github.matrix-org", "matrix-analytics-events")
-}
+    allowUrl("https://github.com/journeyapps/zxing-android-embedded")
+}*/
 
 fun Project.configureLicensesTasks(reportingExtension: ReportingExtension) {
     androidComponents {

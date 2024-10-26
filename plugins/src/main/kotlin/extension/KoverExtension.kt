@@ -223,7 +223,7 @@ fun Project.applyKoverPluginToAllSubProjects() = rootProject.subprojects {
             currentProject {
                 for (variant in koverVariants) {
                     createVariant(variant) {
-                        defaultVariants(project)
+//                        defaultVariants(project)
                     }
                 }
             }
