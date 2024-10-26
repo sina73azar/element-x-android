@@ -40,7 +40,6 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.drp.card_facilities.R
 import com.drp.shared_ui.model.ServiceItemModel
 import com.drp.shared_ui.naviagtion.Screens
 import com.drp.refah.card_facilities.widgets.compose.ServiceItemRow
@@ -48,7 +47,7 @@ import com.drp.refah.ui.data.model.SnackBarType
 import com.drp.shared_ui.theme.ApplicationTheme
 import com.drp.shared_ui.widget.CustomTopAppBar
 import com.drp.shared_ui.widget.SnackBarCompose
-import com.drp.shared_ui.R as UiRes
+import io.element.android.x.R
 
 @Composable
 fun SettingScreen(
@@ -63,7 +62,7 @@ fun SettingScreen(
                 id = 1,
                 startIcon = R.drawable.ic_shield,
                 title = stringResource(id = R.string.authentication_st),
-                endIcon = UiRes.drawable.ic_arrow_left,
+                endIcon = R.drawable.ic_arrow_left,
             ) to {
                 navController.navigate(Screens.AuthenticationScreen.route)
             },
@@ -71,7 +70,7 @@ fun SettingScreen(
                 id = 2,
                 startIcon = R.drawable.ic_history,
                 title = stringResource(id = R.string.transaction_history_title),
-                endIcon = UiRes.drawable.ic_arrow_left,
+                endIcon = R.drawable.ic_arrow_left,
             ) to {
                 navController.navigate(Screens.TransactionHistoryScreen.route)
             }
@@ -102,7 +101,7 @@ fun SettingScreen(
         ) {
             LazyColumn(
                 modifier = modifier
-                    .padding(horizontal = dimensionResource(id = UiRes.dimen.medium_padding))
+                    .padding(horizontal = dimensionResource(id = R.dimen.medium_padding))
                     .padding(
                         bottom = 72.dp
                     )
@@ -112,11 +111,11 @@ fun SettingScreen(
                     ServiceItemRow(
                         modifier = Modifier.padding(
                             top = dimensionResource(
-                                id = UiRes.dimen.medium_padding
+                                id = R.dimen.medium_padding
                             )
                         ),
                         serviceItemModel = it.copy(
-                            endIcon = UiRes.drawable.ic_arrow_left,
+                            endIcon = R.drawable.ic_arrow_left,
                             startIconTint = MaterialTheme.colorScheme.primary
                         ),
                         onClick = settingServices[it]!!
@@ -128,10 +127,10 @@ fun SettingScreen(
                     .align(Alignment.BottomCenter)
                     .padding(
                         horizontal = dimensionResource(
-                            id = UiRes.dimen.medium_padding
+                            id = R.dimen.medium_padding
                         )
                     )
-                    .padding(bottom = dimensionResource(id = UiRes.dimen.large_padding))
+                    .padding(bottom = dimensionResource(id = R.dimen.large_padding))
             ) {
                 viewModel?.logout()
                 finishActivity?.invoke()
@@ -155,7 +154,7 @@ private fun ExitRow(modifier: Modifier = Modifier, onClick: () -> Unit) {
             modifier = Modifier,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Spacer(modifier = Modifier.width(dimensionResource(id = UiRes.dimen.app_bar_size)))
+            Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.app_bar_size)))
             Text(
                 modifier = Modifier.weight(1f),
                 text = "خروج",
