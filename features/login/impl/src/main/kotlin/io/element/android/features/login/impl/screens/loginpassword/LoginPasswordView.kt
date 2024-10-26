@@ -206,17 +206,17 @@ private fun LoginForm(
             value = loginFieldState,
             readOnly = isLoading,
             modifier = Modifier
-                .fillMaxWidth()
-                .onTabOrEnterKeyFocusNext(focusManager)
-                .testTag(TestTags.loginEmailUsername)
-                .autofill(
-                    autofillTypes = listOf(AutofillType.Username),
-                    onFill = {
-                        val sanitized = it.sanitize()
-                        loginFieldState = sanitized
-                        eventSink(LoginPasswordEvents.SetLogin(sanitized))
-                    }
-                ),
+                    .fillMaxWidth()
+                    .onTabOrEnterKeyFocusNext(focusManager)
+                    .testTag(TestTags.loginEmailUsername)
+                    .autofill(
+                            autofillTypes = listOf(AutofillType.Username),
+                            onFill = {
+                                val sanitized = it.sanitize()
+                                loginFieldState = sanitized
+                                eventSink(LoginPasswordEvents.SetLogin(sanitized))
+                            }
+                    ),
             placeholder = {
                 Text(text = stringResource(CommonStrings.common_username))
             },
@@ -255,17 +255,17 @@ private fun LoginForm(
             value = passwordFieldState,
             readOnly = isLoading,
             modifier = Modifier
-                .fillMaxWidth()
-                .onTabOrEnterKeyFocusNext(focusManager)
-                .testTag(TestTags.loginPassword)
-                .autofill(
-                    autofillTypes = listOf(AutofillType.Password),
-                    onFill = {
-                        val sanitized = it.sanitize()
-                        passwordFieldState = sanitized
-                        eventSink(LoginPasswordEvents.SetPassword(sanitized))
-                    }
-                ),
+                    .fillMaxWidth()
+                    .onTabOrEnterKeyFocusNext(focusManager)
+                    .testTag(TestTags.loginPassword)
+                    .autofill(
+                            autofillTypes = listOf(AutofillType.Password),
+                            onFill = {
+                                val sanitized = it.sanitize()
+                                passwordFieldState = sanitized
+                                eventSink(LoginPasswordEvents.SetPassword(sanitized))
+                            }
+                    ),
             onValueChange = {
                 val sanitized = it.sanitize()
                 passwordFieldState = sanitized

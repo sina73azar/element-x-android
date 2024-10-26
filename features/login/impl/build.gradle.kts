@@ -60,4 +60,6 @@ dependencies {
     testImplementation(projects.libraries.permissions.test)
     testImplementation(projects.tests.testutils)
     testReleaseImplementation(libs.androidx.compose.ui.test.manifest)
+    /***/
+    implementation(project(":core:data"))
 }
