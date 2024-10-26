@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/content_from_edge">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:tint="@color/colorAccent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/linearIban"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginHorizontal="@dimen/icon_margin"
+        android:background="?selectableItemBackgroundBorderless"
+        app:srcCompat="@drawable/ic_contact_book"
+        tools:ignore="VectorDrawableCompat"
+        tools:visibility="visible" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearIban"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ivContact"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivDestIban"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:adjustViewBounds="true"
+            android:elevation="0dp"
+            android:padding="@dimen/_1sdp"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="@+id/txtValueIl"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="VectorDrawableCompat"
+            tools:visibility="visible" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtValueIl"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/transfer_ach_destination"
+            android:layoutDirection="ltr"
+            app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+            app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+            app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+            app:boxCornerRadiusTopStart="@dimen/_8sdp"
+            app:boxStrokeColor="@color/my_outlined_stroke_color"
+            app:hintTextColor="@color/colorAccentDark"
+            app:layout_constraintBottom_toBottomOf="@id/linearIban"
+            app:layout_constraintEnd_toEndOf="@id/linearIban"
+            app:layout_constraintStart_toStartOf="@id/linearIban"
+            app:layout_constraintTop_toTopOf="@id/linearIban">
+
+            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/txtValue"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_44sdp"
+                android:background="@null"
+                android:fontFamily="@font/font_regular"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:lines="1"
+                android:maxLength="30"
+                android:minHeight="?attr/actionBarSize"
+                android:paddingStart="@dimen/_24sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:singleLine="true"
+                android:textSize="@dimen/ui_text_normal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/iban_txt"
+            style="@style/iban_lable"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/ui_normal_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtValueIl" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

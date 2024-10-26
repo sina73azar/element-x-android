@@ -9,4 +9,74 @@
     <color name="splashscreen_bg_dark">#FF101317</color>
     <!-- Must be equal to LightDesignTokens.colorThemeBg -->
     <color name="splashscreen_bg_light">#FFFFFFFF</color>
+    <color name="colorPrimary">#33479b</color>
+    <color name="colorPrimaryDark">#1F2C63</color>
+    <color name="colorAccent">#33479b</color>
+    <color name="lightBlue">#deeeff</color>
+    <color name="light_gray">#FAF9F9</color>
+    <color name="so_light_gray">#EAE9E9</color>
+    <color name="line_color">#DAD9D9</color>
+    <color name="colorAccentDark">#337ab7</color>
+    <color name="colorSecondary">#02A3A8</color>
+    <color name="button_color">#33479b</color>
+    <color name="snackbar_blue">#03A9F4</color>
+
+    <!-- common colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#3C3F41</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="gray">#757778</color>
+    <color name="gray_opacity_70">#B5757778</color>
+    <color name="green">#339A72</color>
+    <color name="red">#F16666</color>
+    <color name="deep_yellow">#f5d267</color>
+    <color name="orange">#FF6F00</color>
+    <color name="yellow">#EFD396</color>
+    <color name="purple">#C3A6EA</color>
+    <color name="purple_dark">#6A38A8</color>
+    <color name="blue_light">#D1E4F4</color>
+    <color name="rightel_purpel">#8A0F51</color>
+    <color name="fab_gray">#DCDDDF</color>
+    <color name="fab_purple">#c3bedf</color>
+    <color name="omg_purple">#692184</color>
+    <color name="omg_text_unselected">#7B7A80</color>
+    <color name="omg_text_selected">#3A3A3A</color>
+    <color name="omg_background">#f0eff8</color>
+
+    <!-- splash screen -->
+
+
+    <color name="normal_text_color">#555555</color>
+
+    <!-- edit text -->
+    <color name="edit_text_solid">#EDEDED</color>
+    <color name="edit_text_solid_icon">#EEEEEE</color>
+    <color name="edit_text_hint_color">#777777</color>
+    <color name="edit_text_icon_color">#555555</color>
+
+    <!-- text view-->
+    <color name="text_view_title">#84888C</color>
+
+    <!-- Service Segment -->
+    <color name="service_segment_normal">#7D858C</color>
+
+    <!-- account colors -->
+    <color name="ircurrency_color">#D0E1F4</color>
+    <color name="account_balance_title">#868E96</color>
+    <color name="dark_red">#8E2C2C</color>
+    <color name="light_red">#C30E0E</color>
+
+    <!-- receipt colors -->
+    <color name="receipt_failed_value">#E10000</color>
+
+    <color name="operator_title">#141414</color>
+
+    <color name="password_strength_very_weak">#FF2A72</color>
+    <color name="password_strength_weak">#E91E63</color>
+    <color name="password_strength_medium">#FF9800</color>
+    <color name="password_strength_good">#5EDA63</color>
+    <color name="password_strength_strong">#4CAF50</color>
+
+    <color name="gray_ripple_color">#cecece</color>
+
 </resources>

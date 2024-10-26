@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_sheet_bg"
+    android:fillViewport="true">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/refah_icon_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_8sdp"
+            android:tint="@color/colorPrimaryDark"
+
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_info"
+            tools:ignore="VectorDrawableCompat" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitleSheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ui_normal_size"
+            android:fontFamily="@font/font_regular"
+            android:text="@string/receipt_title"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/ui_text_normal"
+            app:layout_constraintBottom_toBottomOf="@id/refah_icon_img"
+            app:layout_constraintStart_toEndOf="@+id/refah_icon_img"
+            app:layout_constraintTop_toTopOf="@id/refah_icon_img" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnClosePopUp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:tint="@color/gray"
+            app:layout_constraintBottom_toBottomOf="@id/refah_icon_img"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/refah_icon_img"
+            app:srcCompat="@drawable/ic_done"
+            tools:ignore="VectorDrawableCompat" />
+
+        <View
+            android:id="@+id/line"
+            style="@style/line_style"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleSheet" />
+
+        <FrameLayout
+            android:id="@+id/receiptRoot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/so_light_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <include
+                layout="@layout/receipt_transaction_layout"
+                android:id="@+id/transactionReceipt"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+
+                android:layout_marginBottom="@dimen/_48sdp"
+                android:layout_height="match_parent"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvReceipt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layoutDirection="rtl"
+                android:visibility="visible"
+                android:layout_marginBottom="@dimen/_40sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/item_receipt" />
+
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <LinearLayout
+        android:id="@+id/share_linear"
+        style="@style/share_item_style"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        tools:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:tint="@color/green"
+            app:srcCompat="@drawable/ic_share"
+            tools:ignore="VectorDrawableCompat" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/ui_normal_size"
+            android:text="@string/receipt_share"
+            android:textColor="@color/green"
+            app:fontFamily="@font/font_bold" />
+    </LinearLayout>
+</FrameLayout>

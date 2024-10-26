@@ -50,6 +50,18 @@ dependencyResolutionManagement {
                 includeModule("com.github.matrix-org", "matrix-analytics-events")
             }
         }
+        maven(url = "https://jitpack.io")
+        maven(url = "https://pay.cards/maven")
+        mavenLocal()
+        maven(url = "https://maven.google.com")
+        jcenter()
+        maven {
+            url = uri("https://mymavenrepo.com/repo/RNUffGvhFSVhXwT7OtOK/")
+            credentials {
+                username = "myMavenRepo"
+                password = "12345678"
+            }
+        }
         flatDir {
             dirs("libraries/matrix/libs")
         }

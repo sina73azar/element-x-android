@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/ui_large_size"
+        android:background="@drawable/card_view_bg"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/ui_large_size"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon"
+                android:layout_width="@dimen/ui_img_standard"
+                android:layout_height="@dimen/ui_img_standard"
+                android:tint="@color/red"
+                app:srcCompat="@drawable/ic_failed"
+                tools:ignore="VectorDrawableCompat" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTitle"
+                android:fontFamily="@font/font_regular"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:text="عنوان" />
+
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDescription"
+            style="@style/normal_title_txt"
+            android:layout_marginTop="@dimen/ui_big_size"
+            android:gravity="start"
+            android:layout_marginRight="8dp"
+            android:text="@string/unregistered_description" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDismiss"
+            style="@style/button_blue_style"
+            android:text="@string/confirmed"
+            android:layout_marginTop="@dimen/ui_large_size"/>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

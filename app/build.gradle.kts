@@ -19,7 +19,9 @@ import extension.allLibrariesImpl
 import extension.allServicesImpl
 import extension.locales
 import extension.setupAnvil
+import java.io.FileInputStream
 import java.util.Locale
+import java.util.Properties
 
 plugins {
     id("io.element.android-compose-application")
@@ -39,7 +41,11 @@ plugins {
 }
 
 //setupKover()
-
+val properties = Properties()
+val propertiesFile = rootProject.file("local.properties")
+if (propertiesFile.canRead()) {
+    properties.load(FileInputStream(propertiesFile))
+}
 android {
     namespace = "io.element.android.x"
 
@@ -77,6 +83,7 @@ android {
 
         defaultConfig {
             resourceConfigurations += locales
+            buildConfigField("String", "encryptRSA", properties.getProperty("rsaEncrption"))
         }
     }
 
@@ -165,6 +172,7 @@ android {
 
     buildFeatures {
         buildConfig = true
+        viewBinding = true
     }/*    flavorDimensions += "store"
     productFlavors {
         create("gplay") {
@@ -302,7 +310,38 @@ dependencies {
     implementation(libs.sqlite)
     implementation(libs.sqlcipher)
     implementation(libs.sqlite.refah)
+
+
+    //network
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+//    implementation(libs.sdp.android)
 //    kapt(libs.room.compiler)
+
+    //xsher
+    implementation(libs.lottie.compose)
+    implementation(libs.ir.debitcard.scanner)
+    implementation(libs.pretty.persian.numbers)
+//    implementation(libs.styleabletoast)
+    implementation ("io.github.muddz:styleabletoast:2.4.0")
+    implementation (libs.accompanist.permissions)
+    implementation ("com.intuit.sdp:sdp-android:1.0.6")
+    implementation (libs.truetime.android)
+
+    implementation("org.iban4j:iban4j:3.2.1")
+    implementation(libs.coil.compose3)
+    implementation(libs.coil.network.okhttp)
+
+    implementation(libs.androidx.camera.core)
+
+
+    implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.barcode.scanning )
+    implementation(libs.text.recognition )
+
 
 }
 
