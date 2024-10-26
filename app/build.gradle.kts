@@ -26,18 +26,22 @@ import java.util.Locale
 
 plugins {
     id("io.element.android-compose-application")
+//    alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.android)
     // When using precompiled plugins, we need to apply the firebase plugin like this
     id(libs.plugins.firebaseAppDistribution.get().pluginId)
     alias(libs.plugins.knit)
     id("kotlin-parcelize")
-    alias(libs.plugins.licensee)
+//    alias(libs.plugins.licensee)
     alias(libs.plugins.kotlin.serialization)
     // To be able to update the firebase.xml files, uncomment and build the project
     // id("com.google.gms.google-services")
+    /** land */
+
+    id("kotlin-kapt")
 }
 
-setupKover()
+//setupKover()
 
 android {
     namespace = "io.element.android.x"
@@ -115,15 +119,15 @@ android {
             resValue("string", "app_name", baseAppName)
             signingConfig = signingConfigs.getByName("debug")
 
-            postprocessing {
+/*            postprocessing {
                 isRemoveUnusedCode = true
                 isObfuscate = false
                 isOptimizeCode = true
                 isRemoveUnusedResources = true
                 proguardFiles("proguard-rules.pro")
-            }
+            }*/
         }
-
+/*
         register("nightly") {
             val release = getByName("release")
             initWith(release)
@@ -159,13 +163,12 @@ android {
                     "1:912726360885:android:e17435e0beb0303000427c"
                 }
             }
-        }
+        }*/
     }
 
     buildFeatures {
         buildConfig = true
-    }
-    flavorDimensions += "store"
+    }/*    flavorDimensions += "store"
     productFlavors {
         create("gplay") {
             dimension = "store"
@@ -178,7 +181,8 @@ android {
             buildConfigField("String", "SHORT_FLAVOR_DESCRIPTION", "\"F\"")
             buildConfigField("String", "FLAVOR_DESCRIPTION", "\"FDroid\"")
         }
-    }
+    }*/
+
 }
 
 androidComponents {
@@ -207,7 +211,7 @@ androidComponents {
     }
 
     val reportingExtension: ReportingExtension = project.extensions.getByType(ReportingExtension::class.java)
-    configureLicensesTasks(reportingExtension)
+//    configureLicensesTasks(reportingExtension)
 }
 
 // Knit
@@ -239,12 +243,12 @@ setupAnvil(
 dependencies {
     allLibrariesImpl()
     allServicesImpl()
-    if (isEnterpriseBuild) {
+/*    if (isEnterpriseBuild) {
         allEnterpriseImpl(project)
         implementation(projects.appicon.enterprise)
-    } else {
+    } else {*/
         implementation(projects.appicon.element)
-    }
+//    }
     allFeaturesImpl(project)
     implementation(projects.features.migration.api)
     implementation(projects.appnav)
@@ -253,7 +257,7 @@ dependencies {
     implementation(projects.services.analytics.compose)
 
     if (ModulesConfig.pushProvidersConfig.includeFirebase) {
-        "gplayImplementation"(projects.libraries.pushproviders.firebase)
+        implementation(projects.libraries.pushproviders.firebase)
     }
     if (ModulesConfig.pushProvidersConfig.includeUnifiedPush) {
         implementation(projects.libraries.pushproviders.unifiedpush)
@@ -284,7 +288,23 @@ dependencies {
     testImplementation(libs.test.turbine)
     testImplementation(projects.libraries.matrix.test)
 
-    koverDependencies()
+//    koverDependencies()
+
+    /** land deps */
+
+    //hilt
+//    implementation(libs.bundles.hilt)
+//    kapt(libs.hilt.compiler)
+//    implementation(libs.hilt.navigation.compose)
+//    implementation(libs.hilt.navigation.fragment)
+
+    //room
+    implementation(libs.bundles.room)
+    implementation(libs.sqlite)
+    implementation(libs.sqlcipher)
+    implementation(libs.sqlite.refah)
+//    kapt(libs.room.compiler)
+
 }
 
 tasks.withType<GenerateBuildConfig>().configureEach {
@@ -294,6 +314,7 @@ tasks.withType<GenerateBuildConfig>().configureEach {
     android.defaultConfig.buildConfigField("String", "GIT_REVISION", "\"$gitRevision\"")
     android.defaultConfig.buildConfigField("String", "GIT_BRANCH_NAME", "\"$gitBranchName\"")
 }
+/*
 
 licensee {
     allow("Apache-2.0")
@@ -307,6 +328,7 @@ licensee {
     allowUrl("https://www.gnu.org/licenses/agpl-3.0.txt")
     ignoreDependencies("com.github.matrix-org", "matrix-analytics-events")
 }
+*/
 
 fun Project.configureLicensesTasks(reportingExtension: ReportingExtension) {
     androidComponents {

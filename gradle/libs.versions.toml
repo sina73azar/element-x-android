@@ -59,6 +59,18 @@ autoservice = "1.1.1"
 androidx-test-ext-junit = "1.2.1"
 kover = "0.8.3"
 
+
+
+hilt = "2.48.1"
+
+hiltExt = "1.1.0"
+
+
+room = "2.6.1"
+
+sqlcipher="4.4.3"
+sqlite="2.2.0"
+
 [libraries]
 # Project
 android_gradle_plugin = { module = "com.android.tools.build:gradle", version.ref = "android_gradle_plugin" }
@@ -217,7 +229,24 @@ google_autoservice_annotations = { module = "com.google.auto.service:auto-servic
 android_composeCompiler = { module = "androidx.compose.compiler:compiler", version.ref = "composecompiler" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 
+
+#hilt
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+hilt-navigation-compose= {group="androidx.hilt",name="hilt-navigation-compose", version.ref="hiltExt"}
+hilt-navigation-fragment= {group="androidx.hilt",name="hilt-navigation-fragment", version.ref="hiltExt"}
+
+
+#room
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+sqlite_refah = { group = "androidx.sqlite", name = "sqlite", version.ref = "sqlite" }
+
+
 [bundles]
+hilt=["hilt-android","hilt-navigation-compose","hilt-navigation-fragment"]
+room=["room-ktx","room-runtime"]
 
 [plugins]
 android_application = { id = "com.android.application", version.ref = "android_gradle_plugin" }

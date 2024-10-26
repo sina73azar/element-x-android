@@ -83,12 +83,12 @@ object AppModule {
         isEnterpriseBuild = enterpriseService.isEnterpriseBuild,
         // TODO EAx Config.LOW_PRIVACY_LOG_ENABLE,
         lowPrivacyLoggingEnabled = false,
-        versionName = BuildConfig.VERSION_NAME,
+        versionName = ""/*BuildConfig.VERSION_NAME*/,
         versionCode = context.getVersionCodeFromManifest(),
-        gitRevision = BuildConfig.GIT_REVISION,
-        gitBranchName = BuildConfig.GIT_BRANCH_NAME,
-        flavorDescription = BuildConfig.FLAVOR_DESCRIPTION,
-        flavorShortDescription = BuildConfig.SHORT_FLAVOR_DESCRIPTION,
+        gitRevision = ""/*BuildConfig.GIT_REVISION*/,
+        gitBranchName = ""/*BuildConfig.GIT_BRANCH_NAME*/,
+        flavorDescription = ""/*BuildConfig.FLAVOR_DESCRIPTION*/,
+        flavorShortDescription = /*BuildConfig.SHORT_FLAVOR_DESCRIPTION*/"",
     )
 
     @Provides

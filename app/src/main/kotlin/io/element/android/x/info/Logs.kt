@@ -23,7 +23,7 @@ fun logApplicationInfo(context: Context) {
         append(") - ")
         append(BuildConfig.BUILD_TYPE)
         append(" / ")
-        append(BuildConfig.FLAVOR)
+        append(""/*BuildConfig.FLAVOR*/)
     }
     // TODO Get SDK version somehow
     val sdkVersion = "SDK VERSION (TODO)"
@@ -32,7 +32,7 @@ fun logApplicationInfo(context: Context) {
     Timber.d("----------------------------------------------------------------")
     Timber.d("----------------------------------------------------------------")
     Timber.d(" Application version: $appVersion")
-    Timber.d(" Git SHA: ${BuildConfig.GIT_REVISION}")
+    Timber.d(" Git SHA: ${""/*BuildConfig.GIT_REVISION*/}")
     Timber.d(" SDK version: $sdkVersion")
     Timber.d(" Local time: $date")
     Timber.d("----------------------------------------------------------------")
