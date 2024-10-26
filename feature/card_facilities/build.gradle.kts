@@ -1,4 +1,5 @@
 plugins {
+    id("com.google.devtools.ksp")
     alias(libs.plugins.modular.android.library)
     alias(libs.plugins.modular.android.compose)
     alias(libs.plugins.modular.android.hilt)
@@ -7,7 +8,6 @@ plugins {
     kotlin("plugin.serialization") version "1.9.0"
 
     id("io.element.android-compose-library")
-    id("com.google.devtools.ksp")
 }
 
 android {
