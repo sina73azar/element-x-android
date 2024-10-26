@@ -49,7 +49,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 }
                 dependencies {
                     "implementation"(libs.findLibrary("appcompat").get())
-                    "implementation"(libs.findLibrary("androidx.core.ktx").get())
+                    "implementation"(libs.findLibrary("androidx.corektx").get())
                     "implementation"(libs.findLibrary("material").get())
                     "implementation"(libs.findLibrary("kotlinx.serialization").get())
                     "implementation"(libs.findLibrary("kotlin.stdlib").get())

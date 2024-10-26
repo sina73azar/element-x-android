@@ -24,7 +24,7 @@ dependencies {
     //Hilt
     implementation(libs.bundles.hilt)
     kapt(libs.hilt.compiler)
-    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.corektx)
     implementation(libs.timber)
     implementation(libs.appcompat)
     implementation(libs.material)
