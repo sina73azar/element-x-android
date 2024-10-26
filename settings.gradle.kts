@@ -96,7 +96,7 @@ include(":tests:testutils")
 include(":anvilannotations")
 include(":anvilcodegen")
 
-include(":samples:minimal")
+//include(":samples:minimal")
 
 
 include(":core")
@@ -107,7 +107,7 @@ include(":core:navigation")
 
 
 include(":feature")
-include(":feature:persiancalendar")
+//include(":feature:persiancalendar")
 include(":feature:shahkar")
 
 include(":feature:card_facilities")

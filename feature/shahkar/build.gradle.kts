@@ -35,5 +35,5 @@ dependencies {
     implementation(project(mapOf("path" to ":core:data")))
     implementation(project(mapOf("path" to ":core:utils")))
     implementation(libs.kotlinx.serialization)
-    implementation(project(":feature:persiancalendar"))
+//    implementation(project(":feature:persiancalendar"))
 }

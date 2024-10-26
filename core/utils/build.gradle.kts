@@ -3,7 +3,7 @@ import java.util.Properties
 
 plugins {
     alias(libs.plugins.modular.android.library)
-    alias(libs.plugins.hilt)
+    alias(libs.plugins.modular.android.hilt)
     alias(libs.plugins.compose.compiler)
 
 }
@@ -20,10 +20,10 @@ android {
 }
 
 dependencies {
-    implementation(project(mapOf("path" to ":feature:persiancalendar")))
+//    implementation(project(mapOf("path" to ":feature:persiancalendar")))
     //Hilt
-    implementation(libs.bundles.hilt)
-    kapt(libs.hilt.compiler)
+//    implementation(libs.bundles.hilt)
+//    kapt(libs.hilt.compiler)
     implementation(libs.androidx.corektx)
     implementation(libs.timber)
     implementation(libs.appcompat)
