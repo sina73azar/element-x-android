@@ -27,7 +27,7 @@ ext {
 
 android {
     namespace = "com.xdev.arch.persiancalendar"
-    compileSdkVersion 34
+    compileSdk 34
 
     defaultConfig {
         minSdkVersion 21
