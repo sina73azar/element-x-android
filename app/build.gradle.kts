@@ -14,14 +14,11 @@ import extension.AssetCopyTask
 import extension.ComponentMergingStrategy
 import extension.GitBranchNameValueSource
 import extension.GitRevisionValueSource
-import extension.allEnterpriseImpl
 import extension.allFeaturesImpl
 import extension.allLibrariesImpl
 import extension.allServicesImpl
-import extension.koverDependencies
 import extension.locales
 import extension.setupAnvil
-import extension.setupKover
 import java.util.Locale
 
 plugins {
@@ -119,51 +116,51 @@ android {
             resValue("string", "app_name", baseAppName)
             signingConfig = signingConfigs.getByName("debug")
 
-/*            postprocessing {
-                isRemoveUnusedCode = true
-                isObfuscate = false
-                isOptimizeCode = true
-                isRemoveUnusedResources = true
-                proguardFiles("proguard-rules.pro")
-            }*/
+            /*            postprocessing {
+                            isRemoveUnusedCode = true
+                            isObfuscate = false
+                            isOptimizeCode = true
+                            isRemoveUnusedResources = true
+                            proguardFiles("proguard-rules.pro")
+                        }*/
         }
-/*
-        register("nightly") {
-            val release = getByName("release")
-            initWith(release)
-            applicationIdSuffix = ".nightly"
-            versionNameSuffix = "-nightly"
-            resValue("string", "app_name", "$baseAppName nightly")
-            matchingFallbacks += listOf("release")
-            signingConfig = signingConfigs.getByName("nightly")
+        /*
+                register("nightly") {
+                    val release = getByName("release")
+                    initWith(release)
+                    applicationIdSuffix = ".nightly"
+                    versionNameSuffix = "-nightly"
+                    resValue("string", "app_name", "$baseAppName nightly")
+                    matchingFallbacks += listOf("release")
+                    signingConfig = signingConfigs.getByName("nightly")
 
-            postprocessing {
-                initWith(release.postprocessing)
-            }
+                    postprocessing {
+                        initWith(release.postprocessing)
+                    }
 
-            firebaseAppDistribution {
-                artifactType = "APK"
-                // We upload the universal APK to fix this error:
-                // "App Distribution found more than 1 output file for this variant.
-                // Please contact firebase-support@google.com for help using APK splits with App Distribution."
-                artifactPath = "$rootDir/app/build/outputs/apk/gplay/nightly/app-gplay-universal-nightly.apk"
-                // artifactType = "AAB"
-                // artifactPath = "$rootDir/app/build/outputs/bundle/nightly/app-nightly.aab"
-                releaseNotesFile = "tools/release/ReleaseNotesNightly.md"
-                groups = if (isEnterpriseBuild) {
-                    "enterprise-testers"
-                } else {
-                    "external-testers"
-                }
-                // This should not be required, but if I do not add the appId, I get this error:
-                // "App Distribution halted because it had a problem uploading the APK: [404] Requested entity was not found."
-                appId = if (isEnterpriseBuild) {
-                    "1:912726360885:android:3f7e1fe644d99d5a00427c"
-                } else {
-                    "1:912726360885:android:e17435e0beb0303000427c"
-                }
-            }
-        }*/
+                    firebaseAppDistribution {
+                        artifactType = "APK"
+                        // We upload the universal APK to fix this error:
+                        // "App Distribution found more than 1 output file for this variant.
+                        // Please contact firebase-support@google.com for help using APK splits with App Distribution."
+                        artifactPath = "$rootDir/app/build/outputs/apk/gplay/nightly/app-gplay-universal-nightly.apk"
+                        // artifactType = "AAB"
+                        // artifactPath = "$rootDir/app/build/outputs/bundle/nightly/app-nightly.aab"
+                        releaseNotesFile = "tools/release/ReleaseNotesNightly.md"
+                        groups = if (isEnterpriseBuild) {
+                            "enterprise-testers"
+                        } else {
+                            "external-testers"
+                        }
+                        // This should not be required, but if I do not add the appId, I get this error:
+                        // "App Distribution halted because it had a problem uploading the APK: [404] Requested entity was not found."
+                        appId = if (isEnterpriseBuild) {
+                            "1:912726360885:android:3f7e1fe644d99d5a00427c"
+                        } else {
+                            "1:912726360885:android:e17435e0beb0303000427c"
+                        }
+                    }
+                }*/
     }
 
     buildFeatures {
@@ -243,11 +240,11 @@ setupAnvil(
 dependencies {
     allLibrariesImpl()
     allServicesImpl()
-/*    if (isEnterpriseBuild) {
-        allEnterpriseImpl(project)
-        implementation(projects.appicon.enterprise)
-    } else {*/
-        implementation(projects.appicon.element)
+    /*    if (isEnterpriseBuild) {
+            allEnterpriseImpl(project)
+            implementation(projects.appicon.enterprise)
+        } else {*/
+    implementation(projects.appicon.element)
 //    }
     allFeaturesImpl(project)
     implementation(projects.features.migration.api)
@@ -293,10 +290,12 @@ dependencies {
     /** land deps */
 
     //hilt
-//    implementation(libs.bundles.hilt)
+    implementation(libs.bundles.hilt) {
+        exclude("com.google.dagger:hilt-android")
+    }
 //    kapt(libs.hilt.compiler)
-//    implementation(libs.hilt.navigation.compose)
-//    implementation(libs.hilt.navigation.fragment)
+    implementation(libs.hilt.navigation.compose)
+    implementation(libs.hilt.navigation.fragment)
 
     //room
     implementation(libs.bundles.room)
