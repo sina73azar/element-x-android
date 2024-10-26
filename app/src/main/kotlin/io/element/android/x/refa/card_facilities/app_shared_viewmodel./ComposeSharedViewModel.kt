@@ -58,13 +58,14 @@ abstract class ComposeSharedViewModel(
 
     fun sendSharedViewModelEvent(event: SharedViewModelEvents) {
         when (event) {
-            SharedViewModelEvents.GetCards -> getCardsList()
+            is SharedViewModelEvents.GetCards -> getCardsList()
             is SharedViewModelEvents.RemoveCard -> removeCard(event.cardId)
             is SharedViewModelEvents.AddCard -> updateCard(event.card)
             is SharedViewModelEvents.SetToDefaultCard -> setToDefaultCard(event.cardId)
             is SharedViewModelEvents.ShowError -> showError(event.message)
             is SharedViewModelEvents.EditCard -> updateCard(event.card)
 
+            else -> {}
         }
     }
 }
