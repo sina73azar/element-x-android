@@ -259,6 +259,7 @@ class InstallmentViewModel @Inject constructor(
             is InstallmentEvents.DumpAmountValidationMessage -> dumpAmountValidationMessage()
             is InstallmentEvents.SetFacilityNumber -> setFacilityNumber(event.facilityNumber)
             is InstallmentEvents.SetAmount -> setAmount(event.amount)
+            else -> {}
         }
     }
 }

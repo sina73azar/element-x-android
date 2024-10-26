@@ -143,6 +143,7 @@ class BalanceScreenViewModel @Inject constructor(
             is BalanceScreenEvents.DismissFailureDialog -> dismissFailureDialog()
 
             is BalanceScreenEvents.BackToDefault -> backToDefault()
+            else -> {}
         }
     }
 }
