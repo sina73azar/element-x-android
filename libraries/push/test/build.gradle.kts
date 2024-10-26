@@ -20,7 +20,7 @@ dependencies {
     implementation(projects.libraries.matrixui)
     implementation(projects.libraries.pushproviders.api)
     implementation(projects.tests.testutils)
-    implementation(libs.androidx.core)
+//    implementation(libs.androidx.core)
     implementation(libs.coil.compose)
     implementation(libs.coil.test)
     implementation(libs.test.robolectric)

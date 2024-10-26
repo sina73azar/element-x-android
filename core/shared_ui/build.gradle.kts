@@ -22,7 +22,7 @@ dependencies {
     api ("com.github.samanzamani:PersianDate:1.7.1")
     implementation(libs.accompanist.permissions)
     implementation(libs.androidx.biometric)
-    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.corektx)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.ir.debitcard.scanner)

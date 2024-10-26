@@ -274,7 +274,7 @@ dependencies {
 
     implementation(libs.appyx.core)
     implementation(libs.androidx.splash)
-    implementation(libs.androidx.core)
+//    implementation(libs.androidx.core)
     implementation(libs.androidx.corektx)
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.lifecycle.process)
