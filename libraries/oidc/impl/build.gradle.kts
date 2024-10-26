@@ -36,7 +36,7 @@ dependencies {
     implementation(libs.androidx.browser)
     implementation(platform(libs.network.retrofit.bom))
     implementation(libs.network.retrofit)
-    implementation(libs.serialization.json)
+    implementation(libs.kotlinx.serialization)
     api(projects.libraries.oidc.api)
 
     testImplementation(libs.test.junit)

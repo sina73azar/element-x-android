@@ -29,7 +29,7 @@ dependencies {
     implementation(libs.text.recognition)
     implementation(libs.gson)
     implementation(libs.ir.debitcard.scanner)
-    testImplementation(libs.junit)
+    testImplementation(libs.test.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
 }

@@ -288,7 +288,7 @@ dependencies {
 
     implementation(platform(libs.network.okhttp.bom))
     implementation(libs.network.okhttp.logging)
-    implementation(libs.serialization.json)
+    implementation(libs.kotlinx.serialization)
 
     implementation(libs.matrix.emojibase.bindings)
 

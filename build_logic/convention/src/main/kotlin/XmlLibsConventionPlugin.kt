@@ -9,17 +9,17 @@ class XmlLibsConventionPlugin : Plugin<Project> {
         with(target) {
             extensions.configure(LibraryExtension::class.java) {
                 dependencies {
-                    "implementation"(libs.findLibrary("constraintlayout").get())
+                    "implementation"(libs.findLibrary("androidx.constraintlayout").get())
                     "implementation"(libs.findLibrary("androidx.fragment").get())
 //                    "implementation"(libs.findLibrary("android.design").get())
                     "implementation"(libs.findLibrary("swiperefreshlayout").get())
-                    "implementation"(libs.findLibrary("recyclerview").get())
+                    "implementation"(libs.findLibrary("androidx.recyclerview").get())
                     "implementation"(libs.findLibrary("android.arch.lifecycle").get())
                     "implementation"(libs.findLibrary("pinview").get())
                     "implementation"(libs.findLibrary("indicatorseekbar").get())
-                    "implementation"(libs.findLibrary("skeleton").get())
+//                    "implementation"(libs.findLibrary("skeleton").get())
                     "implementation"(libs.findLibrary("shimmerlayout").get())
-                    "implementation"(libs.findLibrary("loading.button.android").get())
+//                    "implementation"(libs.findLibrary("loading.button.android").get())
                     "implementation"(libs.findLibrary("android.segmented").get())
                     "implementation"(libs.findLibrary("android.spinkit").get())
                     "implementation"(libs.findLibrary("sdp.android").get())

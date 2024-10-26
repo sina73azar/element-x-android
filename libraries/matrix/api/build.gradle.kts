@@ -29,7 +29,7 @@ dependencies {
     implementation(projects.libraries.androidutils)
     implementation(projects.libraries.core)
     implementation(projects.services.analytics.api)
-    implementation(libs.serialization.json)
+    implementation(libs.kotlinx.serialization)
     api(projects.libraries.sessionStorage.api)
     implementation(libs.coroutines.core)
     api(projects.libraries.architecture)

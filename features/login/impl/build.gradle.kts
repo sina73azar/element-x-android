@@ -44,7 +44,7 @@ dependencies {
     implementation(platform(libs.network.retrofit.bom))
     implementation(libs.androidx.webkit)
     implementation(libs.network.retrofit)
-    implementation(libs.serialization.json)
+    implementation(libs.kotlinx.serialization)
     api(projects.features.login.api)
 
     testImplementation(libs.test.junit)

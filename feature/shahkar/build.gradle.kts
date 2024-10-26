@@ -26,11 +26,11 @@ android {
 }
 
 dependencies {
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+//    testImplementation(libs.test.junit)
+//    androidTestImplementation(libs.androidx.test.ext.junit)
+//    androidTestImplementation(libs.espresso.core)
     implementation(libs.loading.button.android)
-    implementation(libs.constraintlayout)
+    implementation(libs.androidx.constraintlayout)
     implementation(project(mapOf("path" to ":core:shared_ui")))
     implementation(project(mapOf("path" to ":core:data")))
     implementation(project(mapOf("path" to ":core:utils")))

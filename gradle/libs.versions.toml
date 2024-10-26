@@ -126,7 +126,6 @@ glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "gl
 glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide" }
 
 android-design = { group = "com.android.support", name = "design", version.ref = "design_version" }
-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 #pinview = { group = "com.chaos.view", name = "pinview", version.ref = "pinview" }
 pinview = { group = "io.github.chaosleung", name = "pinview", version.ref = "pinview" }
 indicatorseekbar = { group = "com.github.warkiz.widget", name = "indicatorseekbar", version.ref = "indicatorseekbar" }
@@ -147,14 +146,12 @@ interpolator = { group = "androidx.interpolator", name = "interpolator", version
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 
 lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottieVersion" }
-constraintlayout-compose = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version = "1.0.1" }
 androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-ui-tooling-preview-android = { group = "androidx.compose.ui", name = "ui-tooling-preview-android", version.ref = "uiToolingPreviewAndroid" }
 androidx-compose-compose-material = { group = "androidx.compose.material", name = "material" }
 androidx-compose-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
-junit = { group = "junit", name = "junit", version.ref = "junit-junit" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
 android_gradle_plugin = { module = "com.android.tools.build:gradle", version.ref = "android_gradle_plugin" }
@@ -178,7 +175,7 @@ text-recognition = { module = "com.google.mlkit:text-recognition", version.ref =
 zxing-embedded = { module = "com.journeyapps:zxing-android-embedded", version.ref = "zxingAndroidEmbedded" }
 zxing-core = { module = "com.google.zxing:core", version.ref = "coreLand" }
 # AndroidX
-androidx_core = { module = "androidx.core:core", version.ref = "core" }
+#androidx_core = { module = "androidx.core:core", version.ref = "core" }
 androidx_corektx = { module = "androidx.core:core-ktx", version.ref = "core" }
 androidx_annotationjvm = "androidx.annotation:annotation-jvm:1.9.0"
 androidx_datastore_preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
@@ -227,7 +224,6 @@ coroutines_test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", ve
 
 # Accompanist
 accompanist_permission = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
-accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
 
 
 # Libraries
@@ -265,12 +261,10 @@ coil_gif = { module = "io.coil-kt:coil-gif", version.ref = "coil" }
 coil_test = { module = "io.coil-kt:coil-test", version.ref = "coil" }
 compound = { module = "io.element.android:compound-android", version = "0.1.1" }
 datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
-serialization_json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization_json" }
 kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization_json" }
 sdp-android = { group = "com.intuit.sdp", name = "sdp-android", version.ref = "sdp-android" }
 pretty-persian-numbers = { group = "com.github.yamin8000", name = "PrettyPersianNumbers", version.ref = "pretty-persian-numbers" }
 loading-button-android = { group = "br.com.simplepass", name = "loading-button-android", version.ref = "loading_button_android" }
-security-crypto = { group = "androidx.security", name = "security-crypto", version.ref = "security-crypto" }
 kotlinx_collections_immutable = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.7"
 showkase = { module = "com.airbnb.android:showkase", version.ref = "showkase" }
 showkase_processor = { module = "com.airbnb.android:showkase-processor", version.ref = "showkase" }
@@ -329,7 +323,6 @@ androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraint_version" }
 ir_debitcard_scanner = { group = "com.github.arefbhrn", name = "IRDebitCardScanner", version.ref = "ir_debitcard_scanner" }
 converter-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
@@ -363,11 +356,9 @@ androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", vers
 android_application = { id = "com.android.application", version.ref = "android_gradle_plugin" }
 android_library = { id = "com.android.library", version.ref = "android_gradle_plugin" }
 kotlin_android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 jetbrains-compose = { id = "org.jetbrains.compose", version.ref = "org-jetbrains-compose" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin_jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 room = { id = "androidx.room", version.ref = "room" }
 
 kotlin_serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

@@ -38,7 +38,7 @@ dependencies {
     implementation(platform(libs.network.retrofit.bom))
     implementation(libs.network.retrofit)
 
-    implementation(libs.serialization.json)
+    implementation(libs.kotlinx.serialization)
 
     // UnifiedPush library
     api(libs.unifiedpush)

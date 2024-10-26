@@ -14,10 +14,10 @@ android {
 }
 
 dependencies {
-    implementation(libs.security.crypto)
+    implementation(libs.androidx.security.crypto )
     implementation(project(":core:shared_ui"))
     implementation(project(":core:utils"))
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+//    testImplementation(libs.test.junit)
+//    androidTestImplementation(libs.androidx.test.ext.junit)
+//    androidTestImplementation(libs.espresso.core)
 }

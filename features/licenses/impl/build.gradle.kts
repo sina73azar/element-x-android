@@ -20,7 +20,7 @@ android {
 setupAnvil()
 
 dependencies {
-    implementation(libs.serialization.json)
+    implementation(libs.kotlinx.serialization)
     implementation(projects.libraries.architecture)
     implementation(projects.libraries.designsystem)
     implementation(projects.libraries.core)

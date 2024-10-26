@@ -44,7 +44,7 @@ dependencies {
     implementation(libs.androidx.webkit)
     implementation(libs.coil.compose)
     implementation(libs.network.retrofit)
-    implementation(libs.serialization.json)
+    implementation(libs.kotlinx.serialization)
     api(projects.features.call.api)
 
     testImplementation(libs.coroutines.test)

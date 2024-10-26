@@ -9,7 +9,6 @@ import org.gradle.kotlin.dsl.dependencies
 class ComposeConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-
                 dependencies {
                     "implementation"(libs.findLibrary("androidx.activity.compose").get())
                     "implementation"(platform(libs.findLibrary("androidx.compose.bom").get()))
@@ -20,7 +19,7 @@ class ComposeConventionPlugin : Plugin<Project> {
                     "implementation"(libs.findLibrary("androidx.ui.tooling.preview.android").get())
                     "implementation"(libs.findLibrary("androidx.compose.foundation").get())
                     "implementation"(libs.findLibrary("androidx.compose.ui.graphics").get())
-                    "implementation"(libs.findLibrary("constraintlayout.compose").get())
+                    "implementation"(libs.findLibrary("androidx.constraintlayout.compose").get())
                     "implementation"(libs.findLibrary("androidx.lifecycle.runtime.compose").get())
                     "implementation"(libs.findLibrary("lottie.compose").get())
 //                }
