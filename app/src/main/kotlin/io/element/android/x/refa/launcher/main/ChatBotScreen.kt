@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.drp.refahland.navigation.MainScreens
+import com.drp.shared_ui.naviagtion.Screens
 import com.drp.shared_ui.theme.ApplicationTheme
 import com.drp.shared_ui.widget.CustomTopAppBar
 import com.drp.shared_ui.widget.WebViewScreen
@@ -43,8 +43,8 @@ fun ChatBotScreen(
     var canGoBack by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
-                .fillMaxSize()
-                .padding(bottom = 80.dp)
+            .fillMaxSize()
+            .padding(bottom = 80.dp)
     ) {
         CustomTopAppBar(
             headerTxt = stringResource(id = R.string.chatbot_st),
@@ -52,8 +52,8 @@ fun ChatBotScreen(
         )
         WebViewScreen(
             modifier = Modifier
-                    .fillMaxSize()
-                    .background(Color.White),
+                .fillMaxSize()
+                .background(Color.White),
             url = "https://chatbot.daneshrefah.ir/UI/RefaLand",
             webView = webView,
             changeGoBack = { canGoBack = it },
@@ -67,7 +67,7 @@ fun ChatBotScreen(
         else {*/
         viewModel?.setSelectedBottomBarId(3)
         navController.popBackStack(
-            route = MainScreens.HomeScreen.route,
+            route = Screens.HomeScreen.route,
             inclusive = false
         )
 //        }

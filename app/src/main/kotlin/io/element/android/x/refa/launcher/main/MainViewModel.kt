@@ -48,7 +48,7 @@ class MainViewModel (
         getTransactionsBySourceCardNo(/*_uiState.value.searchQuery*/"")
         getBillContacts()
         getWalletIdForQrCodeGeneration()
-//        getWalletBalance()
+        getWalletBalance()
     }
 
     fun setSelectedBottomBarId(id: Int) {

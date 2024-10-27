@@ -366,6 +366,15 @@ private fun GetSmsVerification(
                                         }
                                     }
                                 }
+                                if (nextLine!!.contains("کد")) {
+                                    nextLine.substringAfter("کد").filter { it.isDigit() }.let {
+                                        if (it.length <= maxLength) {
+                                            dumpErrorMessage()
+                                            onValueChange(it)
+                                            return
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

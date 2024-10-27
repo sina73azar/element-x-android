@@ -28,4 +28,11 @@ sealed class Screens(val route: String) {
     data object IbanConvertorScreen: Screens(route = IbanConvertorScreen::class.java.name)
     data object VehicleViolationScreen: Screens(route = VehicleViolationScreen::class.java.name)
     data object MotorViolationScreen: Screens(route = MotorViolationScreen::class.java.name)
+
+    data object HomeScreen : Screens(route = HomeScreen::class.java.name)
+    data object BillScreen : Screens(route = BillScreen::class.java.name)
+    data object CardScreen : Screens(route = CardScreen::class.java.name)
+    data object MessengerScreen : Screens(route = MessengerScreen::class.java.name)
+
+    data object ChatBotScreen : Screens(route = ChatBotScreen::class.java.name)
 }

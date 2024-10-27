@@ -141,7 +141,7 @@ class ShahkarViewModel(
                             showError(UiText.DynamicString(response.getErrorMessage()))
                         if (response.isSuccess()) {
                             val data = response.getSuccessData().result
-                            SharedData.userName = data.pImUserName
+                            SharedData.userName = data.pImUserId
                             SharedData.pass = data.pImPassword
                             cardFacilitiesUserRepository.saveShahkarUserData(
                                 ShahkarUserData(

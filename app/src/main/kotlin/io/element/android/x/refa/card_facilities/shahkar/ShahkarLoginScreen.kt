@@ -7,6 +7,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -22,6 +23,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
@@ -36,7 +38,6 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import io.element.android.x.refa.card_facilities.shahkar.otp.ShahkarOtpBottomSheet
 import com.drp.refah.ui.data.model.SnackBarType
 import com.drp.shared_ui.naviagtion.Screens
 import com.drp.shared_ui.theme.ApplicationTheme
@@ -46,6 +47,7 @@ import com.drp.shared_ui.widget.NetworkErrorDialogContent
 import com.drp.shared_ui.widget.PhoneAutoEditText
 import com.drp.shared_ui.widget.SnackBarCompose
 import io.element.android.x.R
+import io.element.android.x.refa.card_facilities.shahkar.otp.ShahkarOtpBottomSheet
 import kotlinx.coroutines.flow.collectLatest
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -113,7 +115,6 @@ fun ShahkarLoginScreen(
         launcher.launch(Manifest.permission.RECEIVE_SMS)
     }*/
 
-
     /** handling error messages */
     LaunchedEffect(key1 = true) {
         viewModel?.errors?.collectLatest {
@@ -142,11 +143,11 @@ fun ShahkarLoginScreen(
                 snackBarType = currentSnackType
             )
         }) { paddingValues ->
-        Column(modifier = modifier.padding(top = paddingValues.calculateTopPadding())) {
+        Column(modifier = modifier.padding(top = paddingValues.calculateTopPadding()).background(Color.White)) {
             Image(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp),
+                        .fillMaxWidth()
+                        .height(200.dp),
                 painter = painterResource(id = R.drawable.full_logo),
                 contentDescription = null
             )
@@ -178,11 +179,11 @@ fun ShahkarLoginScreen(
             )
             LoadingButton(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        top = 24.dp,
-                        bottom = dimensionResource(id = R.dimen.large_padding)
-                    ),
+                        .fillMaxWidth()
+                        .padding(
+                                top = 24.dp,
+                                bottom = dimensionResource(id = R.dimen.large_padding)
+                        ),
                 loading = uiState.inquiry.isLoading(),
                 paddingHorizontal = dimensionResource(id = R.dimen.large_padding),
                 onClick = {
@@ -204,7 +205,11 @@ fun ShahkarLoginScreen(
                             )
                         },
                         navigateToHome = {
-                            navController.navigate(route = Screens.TopUpScreen.route)
+                            navController.navigate(route = Screens.HomeScreen.route){
+                                popUpTo(route = Screens.ShahkarLoginScreen.route){
+                                    inclusive = true
+                                }
+                            }
                         },
                         dismiss = {
                             viewModel?.backToDefault()

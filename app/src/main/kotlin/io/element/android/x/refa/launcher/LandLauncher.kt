@@ -21,19 +21,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.drp.refah.ui.data.model.SnackBarType
 import com.drp.refahland.navigation.AppBottomBar
-import com.drp.refahland.navigation.MainScreens
-import io.element.android.x.refa.launcher.navigation.Navigation
 import com.drp.refahland.ui.main.MainViewModel
-import com.drp.refahland.ui.main.MainViewModelFactory
+import com.drp.shared_ui.naviagtion.Screens
 import com.drp.shared_ui.theme.ApplicationTheme
 import com.drp.shared_ui.widget.SnackBarCompose
-import io.element.android.wysiwyg.internal.view.getViewModelStoreOwner
 import io.element.android.x.ElementXApplication
+import io.element.android.x.refa.launcher.navigation.Navigation
 import kotlinx.coroutines.Dispatchers
 
 class LandLauncher : AppCompatActivity() {
@@ -56,7 +53,7 @@ class LandLauncher : AppCompatActivity() {
                 val snackBarHostState: SnackbarHostState = remember {
                     SnackbarHostState()
                 }
-                val viewModel = remember{
+                val viewModel = remember {
                     MainViewModel(
                         dispatcher = Dispatchers.IO,
                         cardFacilitiesRepository = depProvider.cardFacilityRepository,
@@ -73,23 +70,23 @@ class LandLauncher : AppCompatActivity() {
                         currentBackStackEntry?.destination?.route ?: "Home"
                     }
                 }
-          /*      val mainViewModelFactory = MainViewModelFactory(
-                    dispatcher = Dispatchers.IO,
-                    cardFacilitiesRepository = depProvider.cardFacilityRepository,
-                    cardFacilitiesTransactionRepository = depProvider.cardFacilitiesTransactionRepository,
-                    cardFacilitiesUserRepository = depProvider.cardFacilitiesUserRepository
-                )
-                val viewModel: MainViewModel = ViewModelProvider(owner = this@LandLauncher, mainViewModelFactory)[MainViewModel::class.java]
-*/
+                /* val mainViewModelFactory = MainViewModelFactory(
+                     dispatcher = Dispatchers.IO,
+                     cardFacilitiesRepository = depProvider.cardFacilityRepository,
+                     cardFacilitiesTransactionRepository = depProvider.cardFacilitiesTransactionRepository,
+                     cardFacilitiesUserRepository = depProvider.cardFacilitiesUserRepository
+                 )
+                 val viewModel: MainViewModel = ViewModelProvider(owner = this@LandLauncher, mainViewModelFactory)[MainViewModel::class.java]
+                 */
                 var showBottomBar by rememberSaveable {
                     mutableStateOf(false)
                 }
                 showBottomBar = when (currentRoute) {
-                    MainScreens.HomeScreen.route,
-                    MainScreens.BillScreen.route,
-                    MainScreens.CardScreen.route,
-                    MainScreens.ChatBotScreen.route,
-                        /*MainScreens.MessengerScreen.route*/
+                    Screens.HomeScreen.route,
+                    Screens.BillScreen.route,
+                    Screens.CardScreen.route,
+                    Screens.ChatBotScreen.route,
+                        /*Screens.MessengerScreen.route*/
                     -> {
                         true
                     }
@@ -98,29 +95,29 @@ class LandLauncher : AppCompatActivity() {
                         false
                     }
                 }
-                if (navigationVisibility)
-                    Scaffold(
-                        snackbarHost = {
-                            SnackBarCompose(
-                                snackbarHostState = snackBarHostState,
-                                snackBarType = curSnackType
+//                if (navigationVisibility)
+                Scaffold(
+                    snackbarHost = {
+                        SnackBarCompose(
+                            snackbarHostState = snackBarHostState,
+                            snackBarType = curSnackType
+                        )
+                    },
+                    bottomBar = {
+                        if (showBottomBar)
+                            AppBottomBar(
+                                navController = navHostController,
+                                viewModel = viewModel
                             )
-                        },
-                        bottomBar = {
-                            if (showBottomBar)
-                                AppBottomBar(
-                                    navController = navHostController,
-                                    viewModel = viewModel
-                                )
-                        }
-                    ) {
-                        it
-                        Navigation(
-                            navController = navHostController,
-                            mainViewModel = viewModel,
-                        ) { finish() }
-
                     }
+                ) {
+                    it
+                    Navigation(
+                        navController = navHostController,
+                        mainViewModel = viewModel,
+                    ) { finish() }
+
+                }
             }
         }
     }

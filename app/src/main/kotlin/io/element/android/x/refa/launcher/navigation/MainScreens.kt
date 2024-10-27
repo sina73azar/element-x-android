@@ -7,6 +7,7 @@
 
 package com.drp.refahland.navigation
 
+/*
 sealed class MainScreens(val route: String) {
     data object HomeScreen : MainScreens(route = HomeScreen::class.java.name)
     data object BillScreen : MainScreens(route = BillScreen::class.java.name)
@@ -15,3 +16,4 @@ sealed class MainScreens(val route: String) {
 
     data object ChatBotScreen : MainScreens(route = ChatBotScreen::class.java.name)
 }
+*/

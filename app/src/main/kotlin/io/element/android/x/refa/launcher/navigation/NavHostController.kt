@@ -46,6 +46,8 @@ import com.drp.card_facilities.presentation.motor_violation.MotorViolationScreen
 import com.drp.card_facilities.presentation.motor_violation.MotorViolationViewModel
 import com.drp.card_facilities.presentation.qrcode.AnalyzerType
 import com.drp.card_facilities.presentation.qrcode.CameraScreen
+import com.drp.card_facilities.presentation.shahkar.ShahkarLoginScreen
+import com.drp.card_facilities.presentation.shahkar.ShahkarViewModel
 import com.drp.card_facilities.presentation.topup.compose.TopUpViewModel
 import com.drp.card_facilities.presentation.topup.compose.inquiry.TopUpInquiryScreen
 import com.drp.card_facilities.presentation.tracking_post.TrackingPostScreen
@@ -61,7 +63,6 @@ import com.drp.card_facilities.presentation.web_page.HomeItemWebUrlType
 import com.drp.card_facilities.presentation.web_page.WebPageScreen
 import com.drp.data.enums.BillType
 import com.drp.data.model.last_ten_statement.BankStatement
-import com.drp.refahland.navigation.MainScreens
 import com.drp.refahland.ui.main.CardScreen
 import com.drp.refahland.ui.main.ChatBotScreen
 import com.drp.refahland.ui.main.HomeScreen
@@ -87,28 +88,39 @@ fun Navigation(
     val depProvider = DependencyProvider(context.applicationContext)
 
     val startDest =
-        if (mainViewModel.getShahkarUserData().walletId != null) MainScreens.HomeScreen.route else Screens.ShahkarLoginScreen.route
+        if (mainViewModel.getShahkarUserData().walletId != null) Screens.HomeScreen.route else Screens.ShahkarLoginScreen.route
     NavHost(navController = navController, startDestination = startDest) {
 
+        composable(route = Screens.ShahkarLoginScreen.route) {
+            val viewModel = remember {
+                ShahkarViewModel(
+                    depProvider.dispatcher,
+                    depProvider.cardFacilitiesUserRepository,
+                )
+            }
+            ShahkarLoginScreen(navController = navController, viewModel = viewModel)
+        }
         /** Home Screens */
 
-        composable(route = MainScreens.HomeScreen.route) {
+
+
+        composable(route = Screens.HomeScreen.route) {
             HomeScreen(navController = navController, viewModel = mainViewModel)
         }
 
-        composable(route = MainScreens.BillScreen.route) {
+        composable(route = Screens.BillScreen.route) {
             BillScreen(navController = navController, viewModel = mainViewModel)
         }
 
-        composable(route = MainScreens.CardScreen.route) {
+        composable(route = Screens.CardScreen.route) {
             CardScreen(navController = navController, viewModel = mainViewModel)
         }
 
-        composable(route = MainScreens.MessengerScreen.route) {
+        composable(route = Screens.MessengerScreen.route) {
             MessengerScreen(navController = navController, viewModel = mainViewModel)
         }
 
-        composable(route = MainScreens.ChatBotScreen.route) {
+        composable(route = Screens.ChatBotScreen.route) {
             ChatBotScreen(navController = navController, viewModel = mainViewModel)
         }
 

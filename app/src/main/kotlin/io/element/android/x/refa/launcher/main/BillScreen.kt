@@ -60,7 +60,6 @@ import com.drp.data.enums.BillType
 import com.drp.data.enums.ContactType
 import com.drp.refah.card_facilities.utility.BillUtils
 import com.drp.refah.ui.data.model.CustomToggleModel
-import com.drp.refahland.navigation.MainScreens
 import com.drp.refahland.ui.main.MainScreenState
 import com.drp.refahland.ui.main.MainViewModel
 import com.drp.shared_ui.naviagtion.Screens
@@ -95,7 +94,7 @@ fun BillScreen(
     BackHandler {
         viewModel?.setSelectedBottomBarId(3)
         navController.popBackStack(
-            route = MainScreens.HomeScreen.route,
+            route = Screens.HomeScreen.route,
             inclusive = false
         )
     }
@@ -145,8 +144,8 @@ fun BillScreen(
                     .align(Alignment.BottomStart)
                     .padding(
                         bottom = 96.dp, start = dimensionResource(
-                            id = R.dimen.large_padding
-                        )
+                        id = R.dimen.large_padding
+                    )
                     ),
                 onClick = {
                     addBillBottomSheetVisibility = true
@@ -192,8 +191,6 @@ fun BillScreen(
         billContactList = if (uiState.billContacts.isSuccess()) uiState.billContacts.getSuccessData() else emptyList(),
         dismiss = { addBillBottomSheetVisibility = false }
     )
-
-
 }
 
 @Composable
@@ -337,7 +334,6 @@ private fun BillOptionsBottomSheet(
                             }
 
                             else -> {
-
                             }
                         }
                     }) {

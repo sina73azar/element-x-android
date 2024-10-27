@@ -7,6 +7,8 @@
 
 package io.element.android.features.login.impl.screens.loginpassword
 
+import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -58,6 +60,7 @@ import io.element.android.libraries.testtags.TestTags
 import io.element.android.libraries.testtags.testTag
 import io.element.android.libraries.ui.strings.CommonStrings
 
+@SuppressLint("LogNotTimber")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginPasswordView(
@@ -82,6 +85,7 @@ fun LoginPasswordView(
     val eventSink = state.eventSink
 
     LaunchedEffect(Unit) {
+        Log.d("SharedData", "LoginPasswordView: userName ${SharedData.userName}  pass: ${SharedData.pass}")
         val sanitized = SharedData.userName ?: "".sanitize()
         eventSink(LoginPasswordEvents.SetLogin(sanitized))
 
@@ -205,17 +209,17 @@ private fun LoginForm(
             value = loginFieldState,
             readOnly = isLoading,
             modifier = Modifier
-                    .fillMaxWidth()
-                    .onTabOrEnterKeyFocusNext(focusManager)
-                    .testTag(TestTags.loginEmailUsername)
-                    .autofill(
-                            autofillTypes = listOf(AutofillType.Username),
-                            onFill = {
-                                val sanitized = it.sanitize()
-                                loginFieldState = sanitized
-                                eventSink(LoginPasswordEvents.SetLogin(sanitized))
-                            }
-                    ),
+                .fillMaxWidth()
+                .onTabOrEnterKeyFocusNext(focusManager)
+                .testTag(TestTags.loginEmailUsername)
+                .autofill(
+                    autofillTypes = listOf(AutofillType.Username),
+                    onFill = {
+                        val sanitized = it.sanitize()
+                        loginFieldState = sanitized
+                        eventSink(LoginPasswordEvents.SetLogin(sanitized))
+                    }
+                ),
             placeholder = {
                 Text(text = stringResource(CommonStrings.common_username))
             },

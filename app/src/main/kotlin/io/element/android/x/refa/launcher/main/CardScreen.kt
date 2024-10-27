@@ -58,7 +58,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.drp.card_facilities.presentation.app_shared_viewmodel.SharedViewModelEvents
-import com.drp.refahland.navigation.MainScreens
 import com.drp.shared_ui.model.CardShotItemInfo
 import com.drp.shared_ui.naviagtion.Screens
 import com.drp.shared_ui.theme.ApplicationTheme
@@ -84,7 +83,7 @@ fun CardScreen(
     BackHandler {
         viewModel?.setSelectedBottomBarId(3)
         navController.popBackStack(
-            route = MainScreens.HomeScreen.route,
+            route = Screens.HomeScreen.route,
             inclusive = false
         )
     }

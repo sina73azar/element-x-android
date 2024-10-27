@@ -42,6 +42,7 @@ import androidx.navigation.NavHostController
 import com.drp.refahland.ui.main.BottomBarItemData
 import com.drp.refahland.ui.main.MainScreenState
 import com.drp.refahland.ui.main.MainViewModel
+import com.drp.shared_ui.naviagtion.Screens
 import io.element.android.x.R
 
 @Composable
@@ -55,8 +56,8 @@ fun AppBottomBar(navController: NavHostController, viewModel: MainViewModel? = n
             selectedIcon = R.drawable.ic_bill_list_filled,
             unselectedIcon = R.drawable.ic_bill_list_outlined,
             onClick = {
-                navController.navigate(route = MainScreens.BillScreen.route) {
-                    popUpTo(route = MainScreens.HomeScreen.route) {
+                navController.navigate(route = Screens.BillScreen.route) {
+                    popUpTo(route = Screens.HomeScreen.route) {
                         inclusive = false
                     }
                 }
@@ -68,8 +69,8 @@ fun AppBottomBar(navController: NavHostController, viewModel: MainViewModel? = n
             selectedIcon = R.drawable.ic_card_list_filled,
             unselectedIcon = R.drawable.ic_card_list_outlined,
             onClick = {
-                navController.navigate(route = MainScreens.CardScreen.route) {
-                    popUpTo(route = MainScreens.HomeScreen.route) {
+                navController.navigate(route = Screens.CardScreen.route) {
+                    popUpTo(route = Screens.HomeScreen.route) {
                         inclusive = false
                     }
                 }
@@ -82,7 +83,7 @@ fun AppBottomBar(navController: NavHostController, viewModel: MainViewModel? = n
             unselectedIcon = R.drawable.ic_home_outlined,
             onClick = {
                 navController.popBackStack(
-                    route = MainScreens.HomeScreen.route,
+                    route = Screens.HomeScreen.route,
                     inclusive = false
                 )
             }
@@ -103,8 +104,8 @@ fun AppBottomBar(navController: NavHostController, viewModel: MainViewModel? = n
             selectedIcon = R.drawable.ic_chatbot_filled,
             unselectedIcon = R.drawable.ic_chatbot_outlined,
             onClick = {
-                navController.navigate(route = MainScreens.ChatBotScreen.route) {
-                    popUpTo(route = MainScreens.HomeScreen.route) {
+                navController.navigate(route = Screens.ChatBotScreen.route) {
+                    popUpTo(route = Screens.HomeScreen.route) {
                         inclusive = false
                     }
                 }
@@ -116,23 +117,23 @@ fun AppBottomBar(navController: NavHostController, viewModel: MainViewModel? = n
             /** background color */
             Column(
                 modifier = Modifier
-                        .fillMaxSize()
-                        .background(Color.White)
+                    .fillMaxSize()
+                    .background(Color.White)
             ) {
                 Box(
                     modifier = Modifier
-                            .fillMaxWidth()
-                            .weight(0.8f)
+                        .fillMaxWidth()
+                        .weight(0.8f)
                 )
                 Box(
                     modifier = Modifier
-                            .fillMaxWidth()
-                            .weight(2f)
-                            .background(
-                                    color = MaterialTheme.colorScheme.tertiary.copy(
-                                            alpha = 0.1f
-                                    )
+                        .fillMaxWidth()
+                        .weight(2f)
+                        .background(
+                            color = MaterialTheme.colorScheme.tertiary.copy(
+                                alpha = 0.1f
                             )
+                        )
                 )
             }
 
@@ -165,12 +166,12 @@ fun AppBottomBar(navController: NavHostController, viewModel: MainViewModel? = n
                     else
                         Card(
                             modifier = Modifier
-                                    .padding(
-                                            horizontal = dimensionResource(
-                                                    id = R.dimen.medium_padding
-                                            )
+                                .padding(
+                                    horizontal = dimensionResource(
+                                        id = R.dimen.medium_padding
                                     )
-                                    .size(64.dp),
+                                )
+                                .size(64.dp),
                             shape = RoundedCornerShape(percent = 50),
                             elevation = CardDefaults.elevatedCardElevation(
                                 defaultElevation = dimensionResource(
@@ -185,11 +186,11 @@ fun AppBottomBar(navController: NavHostController, viewModel: MainViewModel? = n
                         ) {
                             Column(
                                 modifier = Modifier
-                                        .fillMaxSize()
-                                        .clickable {
-                                            viewModel?.setSelectedBottomBarId(bottomBarItem.id)
-                                            bottomBarItem.onClick()
-                                        },
+                                    .fillMaxSize()
+                                    .clickable {
+                                        viewModel?.setSelectedBottomBarId(bottomBarItem.id)
+                                        bottomBarItem.onClick()
+                                    },
                                 verticalArrangement = Arrangement.Center,
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {

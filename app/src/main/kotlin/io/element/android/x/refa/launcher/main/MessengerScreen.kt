@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.drp.refahland.navigation.MainScreens
+import com.drp.shared_ui.naviagtion.Screens
 import com.drp.shared_ui.theme.ApplicationTheme
 import com.drp.shared_ui.widget.WebViewScreen
 
@@ -40,8 +40,8 @@ fun MessengerScreen(
     var canGoBack by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(bottom = 80.dp)
+                .fillMaxSize()
+                .padding(bottom = 80.dp)
     ) {
         /*CustomTopAppBar(
             headerTxt = stringResource(id = R.string.messenger_st),
@@ -49,8 +49,8 @@ fun MessengerScreen(
         )*/
         WebViewScreen(
             modifier = Modifier
-                .fillMaxSize()
-                .background(Color.White),
+                    .fillMaxSize()
+                    .background(Color.White),
             url = "https://im.daneshrefah.ir/",
             webView = webView,
             changeGoBack = { canGoBack = it },
@@ -58,15 +58,15 @@ fun MessengerScreen(
         )
 
     }
-    BackHandler{/*(enabled = canGoBack) {
+    BackHandler {/*(enabled = canGoBack) {
         if (webView?.canGoBack() == true)
             webView?.goBack()
         else {*/
-            viewModel?.setSelectedBottomBarId(3)
-            navController.popBackStack(
-                route = MainScreens.HomeScreen.route,
-                inclusive = false
-            )
+        viewModel?.setSelectedBottomBarId(3)
+        navController.popBackStack(
+            route = Screens.HomeScreen.route,
+            inclusive = false
+        )
 //        }
     }
 }

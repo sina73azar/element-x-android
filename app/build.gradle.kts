@@ -25,7 +25,7 @@ import java.util.Properties
 
 plugins {
     id("io.element.android-compose-application")
-//    alias(libs.plugins.ksp)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.android)
     // When using precompiled plugins, we need to apply the firebase plugin like this
     id(libs.plugins.firebaseAppDistribution.get().pluginId)
@@ -37,7 +37,7 @@ plugins {
     // id("com.google.gms.google-services")
     /** land */
 
-    id("kotlin-kapt")
+//    id("kotlin-kapt")
 }
 
 //setupKover()
@@ -309,6 +309,8 @@ dependencies {
 
     //room
     implementation(libs.bundles.room)
+    ksp("androidx.room:room-compiler:2.6.1")
+
     implementation(libs.sqlite)
     implementation(libs.sqlcipher)
     implementation(libs.sqlite.refah)

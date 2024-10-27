@@ -9,7 +9,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:fontFamily">@font/font_regular</item>
-        <item name="android:windowBackground">@color/light_gray</item>
+        <item name="android:windowBackground">@color/white</item>
         <item name="android:screenOrientation">portrait</item>
         <item name="textInputStyle">
             @style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense
