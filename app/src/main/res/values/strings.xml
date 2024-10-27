@@ -20,6 +20,7 @@
     <string name="login_code_submitted">کد تایید برای شماره موبایل</string>
     <string name="sent">ارسال گردید</string>
     <string name="otp_register_failure_st">مشتری گرامی لطفا پیامک فعالسازی را صحیح وارد نمایید.</string>
+
     <!--  dialog  -->
     <string name="network_dialog_title_st">خطای ارتباطی</string>
     <string name="network_dialog_description_st">مشتری گرامی، ارتباط شما با سامانه رفالند برقرار نمی‌باشد. لطفا تنظیمات اینترنتی دستگاه خود را بررسی کنید.</string>
