@@ -19,16 +19,18 @@ import io.element.android.x.info.logApplicationInfo
 import io.element.android.x.initializer.CrashInitializer
 import io.element.android.x.initializer.TracingInitializer
 import io.element.android.x.refa.SmsReceiver
+import io.element.android.x.refa.di.DependencyProvider
 
-@HiltAndroidApp
 class ElementXApplication : Application(), DaggerComponentOwner {
     override val daggerComponent: AppComponent = DaggerAppComponent.factory().create(this)
 
+    lateinit var dependencyProvider: DependencyProvider
     private val smsReceiver = SmsReceiver()
     override fun onCreate() {
         super.onCreate()
         val intentFilter = IntentFilter("android.provider.Telephony.SMS_RECEIVED")
         registerReceiver(smsReceiver, intentFilter)
+        dependencyProvider = DependencyProvider(applicationContext)
         AppInitializer.getInstance(this).apply {
             initializeComponent(CrashInitializer::class.java)
             initializeComponent(TracingInitializer::class.java)

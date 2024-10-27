@@ -27,154 +27,38 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-@Module
-@InstallIn(SingletonComponent::class)
-object DependencyModule {
+class DependencyProvider(applicationContext: Context) {
+    val baseUrl: String = "https://refaland-gateway.daneshrefah.ir/"
 
-    @Provides
-    fun provideBaseUrl(): String = "https://refaland-gateway.daneshrefah.ir/"
-
-    @Singleton
-    @Provides
-    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
-
-        val httpLoggingInterceptor = HttpLoggingInterceptor()
-        return httpLoggingInterceptor.apply {
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+    val httpLoggingInterceptor: HttpLoggingInterceptor by lazy {
+        HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
         }
     }
 
-    @Provides
-    fun provideOkHttp(
-        logging: HttpLoggingInterceptor,
-        @ApplicationContext context: Context,
-        oAuthInterceptor: Interceptor
-    ): OkHttpClient {
-        val okHttpClient = OkHttpClient.Builder()
-        okHttpClient.connectTimeout(15, TimeUnit.SECONDS)
-        okHttpClient.readTimeout(15, TimeUnit.SECONDS)
-        okHttpClient.writeTimeout(15, TimeUnit.SECONDS)
-        okHttpClient.retryOnConnectionFailure(true)
-        okHttpClient.addNetworkInterceptor(logging)
-        okHttpClient.addInterceptor(oAuthInterceptor)
-        return okHttpClient.build()
+    val okHttpClient: OkHttpClient by lazy {
+        OkHttpClient.Builder()
+            .connectTimeout(15, TimeUnit.SECONDS)
+            .readTimeout(15, TimeUnit.SECONDS)
+            .writeTimeout(15, TimeUnit.SECONDS)
+            .retryOnConnectionFailure(true)
+            .addNetworkInterceptor(httpLoggingInterceptor)
+            // Add your OAuth interceptor or other interceptors if needed
+            .build()
     }
 
-    /*    @Singleton
-        @Provides
-        fun provideOAuthInterceptor(
-            @ApplicationContext context: Context,
-            dynamicPreferences: DynamicPreferences
-        ): Interceptor {
-            return OAuthInterceptor(context, dynamicPreferences)
-        }*/
-
-    @Provides
-    @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient, baseUrl: String): Retrofit =
+    val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
-    /*
-        @Provides
-        @Singleton
-        fun provideApi(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
-    */
-
-    /*
-        @Provides
-        @Singleton
-        fun dynamicApiCall(apiService: ApiService): DynamicApiCall = DynamicApiCallImpl(apiService)
-    */
-
-    /*
-
-        @Provides
-        @Singleton
-        fun provideAppDatabase(@ApplicationContext context: Context): AppDataBase {
-            return Room.databaseBuilder(
-                context,
-                AppDataBase::class.java,
-                Constant.DATABASE_NAME
-            )
-                .build()
-        }
-    */
-
-    @Provides
-    @Singleton
-    fun provideDbImplementation(dataBaseRequestImpl: DataBaseRequestImpl): DataBaseRequest =
-        dataBaseRequestImpl
-
-    /*
-        @Provides
-        @Singleton
-        fun provideCardFacilityRepository(
-            cardFacilitiesRepositoryImpl: CardFacilitiesRepositoryImpl
-        ): CardFacilitiesRepository = cardFacilitiesRepositoryImpl
-
-        @Provides
-        @Singleton
-        fun provideCardFacilitiesTransactionRepository(
-            cardFacilitiesTransactionRepositoryImpl: CardFacilitiesTransactionRepositoryImpl
-        ): CardFacilitiesTransactionRepository = cardFacilitiesTransactionRepositoryImpl
-
-        @Provides
-        @Singleton
-        fun provideUserRepository(
-            cardFacilitiesUserRepositoryImpl: CardFacilitiesUserRepositoryImpl
-        ): CardFacilitiesUserRepository =
-            cardFacilitiesUserRepositoryImpl
-
-        @Provides
-        @Singleton
-        fun provideCardFacilitiesBillRepository(
-            cardFacilitiesBillRepositoryImpl: CardFacilitiesBillRepositoryImpl
-        ): CardFacilitiesBillRepository = cardFacilitiesBillRepositoryImpl
-
-        @Provides
-        @Singleton
-        fun provideCardFacilitiesLoanRepository(
-            cardFacilitiesRepositoryImpl: CardFacilitiesLoanRepositoryImpl
-        ): CardFacilitiesLoanRepository = cardFacilitiesRepositoryImpl
-
-        @Provides
-        @Singleton
-        fun provideLoginRepository(
-            shahkarLoginRepositoryImpl: ShahkarLoginRepositoryImpl
-        ): ShahkarLoginRepository = shahkarLoginRepositoryImpl
-    */
-
-    @Provides
-    @Singleton
-    fun provideSharedPreference(@ApplicationContext context: Context): SharedPreferences {
-        return context.getSharedPreferences(PREF_KEY_TOKEN, Context.MODE_PRIVATE) /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !BuildConfig.DEBUG) {
-            val masterKey = MasterKey.Builder(context, MasterKey.DEFAULT_MASTER_KEY_ALIAS)
-                .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
-                .build()
-            EncryptedSharedPreferences.create(
-                context,
-                PREF_KEY_TOKEN,
-                masterKey,
-                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-            )
-        } else {*/
-
-//        }
     }
 
-    /*
-        @Provides
-        @Singleton
-        fun provideDynamicPreferences(sharedPreferences: SharedPreferences): DynamicPreferences =
-            DynamicPreferencesImpl(sharedPreferences)
-    */
+    val sharedPreferences: SharedPreferences by lazy {
+        applicationContext.getSharedPreferences(PREF_KEY_TOKEN, Context.MODE_PRIVATE)
+    }
 
-    @Provides
-    @Singleton
-    fun provideDispatcher(): CoroutineDispatcher = Dispatchers.IO
+    val dispatcher: CoroutineDispatcher = Dispatchers.IO
+
 }
