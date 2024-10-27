@@ -125,12 +125,20 @@ class TopUpViewModel(
                     _uiState.value.copy(wowAmountError = true)
                 return false
             }
-        } else
-            if (_uiState.value.amount < 1) {
-                _uiState.value =
-                    _uiState.value.copy(amountValidationMessage = UiText.StringResource(R.string.data_validation_amount))
-                return false
-            }
+        } else {
+            if (uiState.value.selectedMobileOperatorTab == MobileOperatorTab.MTN || uiState.value.selectedMobileOperatorTab == MobileOperatorTab.RIGHTEL)
+                if (_uiState.value.amount < 20000) {
+                    _uiState.value =
+                        _uiState.value.copy(amountValidationMessage = UiText.StringResource(R.string.mtn_rightel_min_charge_error_st))
+                    return false
+                }
+            if (uiState.value.selectedMobileOperatorTab == MobileOperatorTab.MCI)
+                if (_uiState.value.amount < 50000) {
+                    _uiState.value =
+                        _uiState.value.copy(amountValidationMessage = UiText.StringResource(R.string.mci_min_charge_error_st))
+                    return false
+                }
+        }
 
         if (_uiState.value.cardOrWalletToggle?.id == 1)
             if (!validateSourceCardOtherFields()) {

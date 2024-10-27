@@ -23,10 +23,10 @@ fun CameraScreen(
 ) {
     val localContext = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
-/*    val cameraProviderFuture = remember {
+    val cameraProviderFuture = remember {
         ProcessCameraProvider.getInstance(localContext)
-    }*/
-/*    AndroidView(
+    }
+    AndroidView(
         modifier = Modifier.fillMaxSize(),
         factory = { context ->
             val previewView = PreviewView(context)
@@ -65,5 +65,5 @@ fun CameraScreen(
             }, ContextCompat.getMainExecutor(context))
             previewView
         }
-    )*/
+    )
 }

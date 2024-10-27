@@ -9,6 +9,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -143,7 +144,7 @@ fun ShahkarLoginScreen(
                 snackBarType = currentSnackType
             )
         }) { paddingValues ->
-        Column(modifier = modifier.padding(top = paddingValues.calculateTopPadding()).background(Color.White)) {
+        Column(modifier = modifier.fillMaxSize().padding(top = paddingValues.calculateTopPadding()).background(Color.White)) {
             Image(
                 modifier = Modifier
                         .fillMaxWidth()

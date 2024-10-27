@@ -2,11 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layoutDirection="rtl">
     <include
+        android:layoutDirection="rtl"
         layout="@layout/toolbar_layout"
         android:id="@+id/toolbar"/>
     <androidx.appcompat.widget.SearchView
+        android:layoutDirection="rtl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
@@ -20,6 +23,7 @@
         app:iconifiedByDefault="false"
         android:background="@drawable/search_bg"/>
     <androidx.recyclerview.widget.RecyclerView
+        android:layoutDirection="rtl"
         android:id="@+id/rvContact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

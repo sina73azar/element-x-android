@@ -83,7 +83,7 @@ android {
 
         defaultConfig {
             resourceConfigurations += locales
-            buildConfigField("String", "encryptRSA", properties.getProperty("rsaEncrption"))
+//            buildConfigField("String", "encryptRSA", properties.getProperty("rsaEncrption"))
         }
     }
 
@@ -339,14 +339,14 @@ dependencies {
     implementation(libs.androidx.camera.core)
 
 
-    implementation(libs.androidx.camera.core)
+//    implementation(libs.androidx.camera.core)
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)
     implementation(libs.androidx.camera.camera2)
     implementation(libs.barcode.scanning )
     implementation(libs.text.recognition )
     implementation(libs.zxing.embedded )
-
+    implementation("com.google.guava:guava:31.0.1-android")
 
 }
 
