@@ -195,7 +195,7 @@ private fun DefaultRoomListTopBar(
 //                        Box(modifier = Modifier.height(1.dp))
                     },
                     navigationIcon = {
-                      /*  NavigationIcon(
+      /*                  NavigationIcon(
                             avatarData = avatarData,
                             showAvatarIndicator = showAvatarIndicator,
                             onClick = onOpenSettings,
