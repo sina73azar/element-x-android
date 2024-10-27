@@ -21,14 +21,14 @@ import com.drp.data.network.toRequestState
 import com.drp.data.repository.CardFacilitiesRepository
 import com.drp.data.repository.CardFacilitiesTransactionRepository
 import com.drp.data.repository.CardFacilitiesUserRepository
+import io.element.android.appconfig.SharedData
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class MainViewModel (
+class MainViewModel(
     private val dispatcher: CoroutineDispatcher,
     private val cardFacilitiesRepository: CardFacilitiesRepository,
     private val cardFacilitiesTransactionRepository: CardFacilitiesTransactionRepository,
@@ -49,6 +49,11 @@ class MainViewModel (
         getBillContacts()
         getWalletIdForQrCodeGeneration()
         getWalletBalance()
+        getShahkarUserData().apply {
+
+            SharedData.userName = this.pImUserId
+            SharedData.pass = this.pImPassword
+        }
     }
 
     fun setSelectedBottomBarId(id: Int) {
@@ -132,10 +137,9 @@ class MainViewModel (
             )
         }
     }
+
     fun getShahkarUserData(): ShahkarUserData = cardFacilitiesUserRepository.getShahkarUserData()
-
 }
-
 
 class MainViewModelFactory(
     private val dispatcher: CoroutineDispatcher,
