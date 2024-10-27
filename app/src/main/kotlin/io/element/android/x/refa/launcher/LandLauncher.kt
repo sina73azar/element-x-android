@@ -27,7 +27,7 @@ import androidx.navigation.compose.rememberNavController
 import com.drp.refah.ui.data.model.SnackBarType
 import com.drp.refahland.navigation.AppBottomBar
 import com.drp.refahland.navigation.MainScreens
-import com.drp.refahland.navigation.Navigation
+import io.element.android.x.refa.launcher.navigation.Navigation
 import com.drp.refahland.ui.main.MainViewModel
 import com.drp.refahland.ui.main.MainViewModelFactory
 import com.drp.shared_ui.theme.ApplicationTheme

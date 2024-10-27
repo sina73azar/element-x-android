@@ -83,7 +83,7 @@ android {
 
         defaultConfig {
             resourceConfigurations += locales
-            buildConfigField("String", "encryptRSA", properties.getProperty("rsaEncrption"))
+//            buildConfigField("String", "encryptRSA", properties.getProperty("rsaEncrption"))
         }
     }
 
@@ -292,6 +292,7 @@ dependencies {
     testImplementation(libs.test.truth)
     testImplementation(libs.test.turbine)
     testImplementation(projects.libraries.matrix.test)
+    implementation ("androidx.navigation:navigation-compose:2.8.3")
 
 //    koverDependencies()
 

@@ -12,7 +12,6 @@ import com.drp.data.network.RequestState
 import com.drp.data.network.toRequestState
 import com.drp.data.repository.CardFacilitiesRepository
 import com.drp.data.repository.CardFacilitiesUserRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import io.element.android.x.R
 import io.element.android.x.refa.enums.UiText
 import kotlinx.coroutines.CoroutineDispatcher
@@ -22,8 +21,8 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
-class BalanceScreenViewModel @Inject constructor(
+
+class BalanceScreenViewModel(
     private val dispatcher: CoroutineDispatcher,
     private val cardFacilitiesUserRepository: CardFacilitiesUserRepository,
     private val cardFacilitiesRepository: CardFacilitiesRepository
