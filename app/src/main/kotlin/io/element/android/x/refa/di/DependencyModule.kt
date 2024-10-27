@@ -9,23 +9,31 @@ package io.element.android.x.refa.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.room.Room
+import com.drp.data.database.AppDataBase
+import com.drp.data.database.Constant
 import com.drp.data.database.impl.DataBaseRequest
 import com.drp.data.database.impl.DataBaseRequestImpl
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import io.element.android.libraries.di.ApplicationContext
+import com.drp.data.network.ApiService
+import com.drp.data.network.api_call.DynamicApiCall
+import com.drp.data.network.api_call.DynamicApiCallImpl
+import com.drp.data.repository.CardFacilitiesLoanRepositoryImpl
+import com.drp.data.repository.CardFacilitiesRepository
+import com.drp.data.repository.CardFacilitiesRepositoryImpl
+import com.drp.data.repository.CardFacilitiesTransactionRepository
+import com.drp.data.repository.CardFacilitiesTransactionRepositoryImpl
+import com.drp.data.repository.CardFacilitiesUserRepository
+import com.drp.data.repository.CardFacilitiesUserRepositoryImpl
+import com.drp.data.sharepref.DynamicPreferences
+import com.drp.data.sharepref.DynamicPreferencesImpl
 import io.element.android.x.di.PREF_KEY_TOKEN
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
 
 class DependencyProvider(applicationContext: Context) {
     val baseUrl: String = "https://refaland-gateway.daneshrefah.ir/"
@@ -59,6 +67,47 @@ class DependencyProvider(applicationContext: Context) {
         applicationContext.getSharedPreferences(PREF_KEY_TOKEN, Context.MODE_PRIVATE)
     }
 
-    val dispatcher: CoroutineDispatcher = Dispatchers.IO
+    val dynamicPreferences: DynamicPreferences by lazy {
+        DynamicPreferencesImpl(sharedPreferences)
+    }
 
+    val apiService: ApiService by lazy {
+        retrofit.create(ApiService::class.java)
+    }
+    val dynamicApiCall: DynamicApiCall by lazy {
+        DynamicApiCallImpl(apiService)
+    }
+
+
+    val appDatabase: AppDataBase by lazy {
+        Room.databaseBuilder(
+            applicationContext,
+            AppDataBase::class.java,
+            Constant.DATABASE_NAME
+        ).build()
+    }
+    val dbImplementation: DataBaseRequest by lazy {
+        DataBaseRequestImpl(appDatabase)
+    }
+    val cardFacilityRepository: CardFacilitiesRepository by lazy {
+        CardFacilitiesRepositoryImpl(dynamicApiCall,dbImplementation,dynamicPreferences)
+    }
+
+    val cardFacilitiesTransactionRepository: CardFacilitiesTransactionRepository by lazy {
+        CardFacilitiesTransactionRepositoryImpl(dynamicApiCall,dbImplementation)
+    }
+
+    val userRepository: CardFacilitiesUserRepository by lazy {
+        CardFacilitiesUserRepositoryImpl(dynamicApiCall,dynamicPreferences,dbImplementation)
+    }
+
+/*    val cardFacilitiesBillRepository: CardFacilitiesBillRepository by lazy {
+        CardFacilitiesBillRepositoryImpl()
+    }*/
+
+/*    val cardFacilitiesLoanRepository: CardFacilitiesLoanRepository by lazy {
+        CardFacilitiesLoanRepositoryImpl()
+    }*/
+
+    val dispatcher: CoroutineDispatcher = Dispatchers.IO
 }

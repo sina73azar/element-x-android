@@ -1,6 +1,5 @@
 package com.drp.card_facilities.presentation.bill.inquiry.separated
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.drp.card_facilities.presentation.app_shared_viewmodel.ComposeSharedViewModel
 import com.drp.card_facilities.presentation.app_shared_viewmodel.SharedViewModelEvents
@@ -30,7 +29,6 @@ import com.drp.refah.ui.data.model.CustomToggleModel
 import com.drp.shared_ui.model.receipt.ReceiptItem
 import com.drp.utils.isValidMobileNo
 import com.instacart.library.truetime.TrueTime
-import dagger.hilt.android.lifecycle.HiltViewModel
 import io.element.android.x.R
 import io.element.android.x.refa.enums.UiText
 import kotlinx.coroutines.CoroutineDispatcher
@@ -40,10 +38,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.Calendar
-import javax.inject.Inject
 
-@HiltViewModel
-class SeparatedBillViewModel @Inject constructor(
+class SeparatedBillViewModel(
     private val cardFacilitiesBillRepository: CardFacilitiesBillRepository,
     private val cardFacilitiesUserRepository: CardFacilitiesUserRepository,
     private val cardFacilitiesRepository: CardFacilitiesRepository,
