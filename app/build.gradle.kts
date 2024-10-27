@@ -300,10 +300,11 @@ dependencies {
     //hilt
 /*    implementation(libs.bundles.hilt) {
         exclude("com.google.dagger:hilt-android")
-    }
+    }*/
 //    kapt(libs.hilt.compiler)
-    implementation(libs.hilt.navigation.compose)
-    implementation(libs.hilt.navigation.fragment)*/
+//    implementation(libs.hilt.navigation.compose)
+//    implementation(libs.hilt.navigation.fragment)
+    implementation(libs.navigation.compose)
 
     //room
     implementation(libs.bundles.room)

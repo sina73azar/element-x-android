@@ -1,5 +1,7 @@
 package io.element.android.x.refa.card_facilities.wallet_add
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.drp.card_facilities.presentation.app_shared_viewmodel.ComposeSharedViewModel
 import com.drp.card_facilities.presentation.app_shared_viewmodel.SharedViewModelEvents
@@ -14,9 +16,8 @@ import com.drp.card_facilities.presentation.wallet_add.WalletAddScreenState
 import com.drp.data.network.RequestState
 import com.drp.data.network.toRequestState
 import com.drp.data.repository.CardFacilitiesRepository
-import com.drp.data.repository.CardFacilitiesTransactionRepository
 import com.drp.data.repository.CardFacilitiesUserRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.drp.refahland.ui.main.MainViewModel
 import io.element.android.x.R
 import io.element.android.x.refa.enums.UiText
 import kotlinx.coroutines.CoroutineDispatcher
@@ -24,14 +25,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class WalletAddViewModel @Inject constructor(
+class WalletAddViewModel(
     private val dispatcher: CoroutineDispatcher,
     private val cardFacilitiesRepository: CardFacilitiesRepository,
     private val cardFacilitiesUserRepository: CardFacilitiesUserRepository,
-    private val cardFacilitiesTransactionRepository: CardFacilitiesTransactionRepository
 ) : ComposeSharedViewModel(cardFacilitiesRepository, dispatcher),
     SourceCardHandler, WalletHandler {
     private val _uiState = MutableStateFlow(WalletAddScreenState())
@@ -177,7 +175,6 @@ class WalletAddViewModel @Inject constructor(
             is WalletAddScreenEvents.BackToDefault -> backToDefault()
         }
     }
-
 }
 
 sealed class WalletAddScreenEvents {
@@ -190,4 +187,22 @@ sealed class WalletAddScreenEvents {
     data object DismissOtpBottomSheet : WalletAddScreenEvents()
     data object DismissFailureDialog : WalletAddScreenEvents()
     data object BackToDefault : WalletAddScreenEvents()
+}
+
+class WalletAddFactory(
+    private val dispatcher: CoroutineDispatcher,
+    private val cardFacilitiesRepository: CardFacilitiesRepository,
+    private val cardFacilitiesUserRepository: CardFacilitiesUserRepository,
+) : ViewModelProvider.Factory {
+
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(WalletAddViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return WalletAddViewModel(
+                dispatcher,
+                cardFacilitiesRepository, cardFacilitiesUserRepository
+            ) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
 }

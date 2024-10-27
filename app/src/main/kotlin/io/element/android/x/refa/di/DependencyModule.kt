@@ -17,6 +17,9 @@ import com.drp.data.database.impl.DataBaseRequestImpl
 import com.drp.data.network.ApiService
 import com.drp.data.network.api_call.DynamicApiCall
 import com.drp.data.network.api_call.DynamicApiCallImpl
+import com.drp.data.repository.CardFacilitiesBillRepository
+import com.drp.data.repository.CardFacilitiesBillRepositoryImpl
+import com.drp.data.repository.CardFacilitiesLoanRepository
 import com.drp.data.repository.CardFacilitiesLoanRepositoryImpl
 import com.drp.data.repository.CardFacilitiesRepository
 import com.drp.data.repository.CardFacilitiesRepositoryImpl
@@ -67,47 +70,46 @@ class DependencyProvider(applicationContext: Context) {
         applicationContext.getSharedPreferences(PREF_KEY_TOKEN, Context.MODE_PRIVATE)
     }
 
-    val dynamicPreferences: DynamicPreferences by lazy {
+    private val dynamicPreferences: DynamicPreferences by lazy {
         DynamicPreferencesImpl(sharedPreferences)
     }
 
-    val apiService: ApiService by lazy {
+    private val apiService: ApiService by lazy {
         retrofit.create(ApiService::class.java)
     }
     val dynamicApiCall: DynamicApiCall by lazy {
         DynamicApiCallImpl(apiService)
     }
 
-
-    val appDatabase: AppDataBase by lazy {
+    private val appDatabase: AppDataBase by lazy {
         Room.databaseBuilder(
             applicationContext,
             AppDataBase::class.java,
             Constant.DATABASE_NAME
         ).build()
     }
-    val dbImplementation: DataBaseRequest by lazy {
+    private val dbImplementation: DataBaseRequest by lazy {
         DataBaseRequestImpl(appDatabase)
     }
     val cardFacilityRepository: CardFacilitiesRepository by lazy {
-        CardFacilitiesRepositoryImpl(dynamicApiCall,dbImplementation,dynamicPreferences)
+        CardFacilitiesRepositoryImpl(dynamicApiCall, dbImplementation, dynamicPreferences)
     }
 
     val cardFacilitiesTransactionRepository: CardFacilitiesTransactionRepository by lazy {
-        CardFacilitiesTransactionRepositoryImpl(dynamicApiCall,dbImplementation)
+        CardFacilitiesTransactionRepositoryImpl(dynamicApiCall, dbImplementation)
     }
 
     val userRepository: CardFacilitiesUserRepository by lazy {
-        CardFacilitiesUserRepositoryImpl(dynamicApiCall,dynamicPreferences,dbImplementation)
+        CardFacilitiesUserRepositoryImpl(dynamicApiCall, dynamicPreferences, dbImplementation)
     }
 
-/*    val cardFacilitiesBillRepository: CardFacilitiesBillRepository by lazy {
-        CardFacilitiesBillRepositoryImpl()
-    }*/
+    val cardFacilitiesBillRepository: CardFacilitiesBillRepository by lazy {
+        CardFacilitiesBillRepositoryImpl(dynamicApiCall, dbImplementation)
+    }
 
-/*    val cardFacilitiesLoanRepository: CardFacilitiesLoanRepository by lazy {
-        CardFacilitiesLoanRepositoryImpl()
-    }*/
+    val cardFacilitiesLoanRepository: CardFacilitiesLoanRepository by lazy {
+        CardFacilitiesLoanRepositoryImpl(dynamicApiCall, dbImplementation)
+    }
 
     val dispatcher: CoroutineDispatcher = Dispatchers.IO
 }

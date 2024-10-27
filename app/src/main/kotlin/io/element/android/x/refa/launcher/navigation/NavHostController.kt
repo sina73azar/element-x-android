@@ -13,7 +13,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -22,6 +23,8 @@ import androidx.navigation.navArgument
 import com.drp.card_facilities.presentation.app_source_card_handler.InternetPackageTypeScreenModel
 import com.drp.card_facilities.presentation.balance.BalanceScreen
 import com.drp.card_facilities.presentation.bill.inquiry.separated.SeparatedBillInquiryScreen
+import com.drp.card_facilities.presentation.bill.inquiry.separated.SeparatedBillViewModel
+import com.drp.card_facilities.presentation.bill.inquiry.separated.SeparatedBillViewModelFactory
 import com.drp.card_facilities.presentation.bill.inquiry.unified.BillInquiryScreen
 import com.drp.card_facilities.presentation.card_to_card.compose.inquiry.CardToCardInquiryScreen
 import com.drp.card_facilities.presentation.history.HistoryScreen
@@ -54,6 +57,9 @@ import com.drp.refahland.ui.main.MainViewModel
 import com.drp.refahland.ui.main.MessengerScreen
 import com.drp.shared_ui.model.CardShotItemInfo
 import com.drp.shared_ui.naviagtion.Screens
+import io.element.android.x.ElementXApplication
+import io.element.android.x.refa.card_facilities.wallet_add.WalletAddFactory
+import io.element.android.x.refa.di.DependencyProvider
 import kotlinx.serialization.json.Json
 import ui.main.BillScreen
 
@@ -61,12 +67,17 @@ import ui.main.BillScreen
 fun Navigation(
     navController: NavHostController,
     mainViewModel: MainViewModel,
+    viewModelStoreOwner:ViewModelStoreOwner,
     finishActivity: () -> Unit
 ) {
+
+    lateinit var separatedBillViewModel: SeparatedBillViewModel
     var scannedWalletId by remember {
         mutableStateOf("")
     }
     val context = LocalContext.current
+    val application = context.applicationContext as ElementXApplication
+    val depProvider = application.dependencyProvider
     val startDest =
         if (mainViewModel.getShahkarUserData().walletId != null) MainScreens.HomeScreen.route else Screens.ShahkarLoginScreen.route
     NavHost(navController = navController, startDestination = startDest) {
@@ -96,6 +107,7 @@ fun Navigation(
         /** Wallet Screens */
 
         composable(route = Screens.WalletAddScreen.route) {
+            val viewModel = WalletAddFactory()
             WalletAddScreen(navController = navController, viewModel = hiltViewModel())
         }
 
@@ -215,6 +227,18 @@ fun Navigation(
                 }
             )
         ) { navBackStackEntry ->
+
+
+            val factory = SeparatedBillViewModelFactory(
+                depProvider.cardFacilitiesBillRepository,
+                depProvider.userRepository,
+                depProvider.cardFacilityRepository,
+                depProvider.cardFacilitiesTransactionRepository,
+                depProvider.dispatcher
+            )
+
+            separatedBillViewModel = ViewModelProvider(this, factory).get(SeparatedBillViewModel::class.java)
+
             val billType = navBackStackEntry.arguments?.getString("billType")?.let {
                 BillType.valueOf(it)
             }

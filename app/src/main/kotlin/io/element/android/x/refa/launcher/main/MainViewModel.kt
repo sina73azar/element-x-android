@@ -7,6 +7,8 @@
 
 package com.drp.refahland.ui.main
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.drp.card_facilities.presentation.app_shared_viewmodel.ComposeSharedViewModel
 import com.drp.card_facilities.presentation.app_shared_viewmodel.SharedViewModelEvents
@@ -19,7 +21,6 @@ import com.drp.data.network.toRequestState
 import com.drp.data.repository.CardFacilitiesRepository
 import com.drp.data.repository.CardFacilitiesTransactionRepository
 import com.drp.data.repository.CardFacilitiesUserRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -27,8 +28,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
-class MainViewModel @Inject constructor(
+class MainViewModel (
     private val dispatcher: CoroutineDispatcher,
     private val cardFacilitiesRepository: CardFacilitiesRepository,
     private val cardFacilitiesTransactionRepository: CardFacilitiesTransactionRepository,
@@ -134,4 +134,26 @@ class MainViewModel @Inject constructor(
     }
     fun getShahkarUserData(): ShahkarUserData = cardFacilitiesUserRepository.getShahkarUserData()
 
+}
+
+
+class MainViewModelFactory(
+    private val dispatcher: CoroutineDispatcher,
+    private val cardFacilitiesRepository: CardFacilitiesRepository,
+    private val cardFacilitiesTransactionRepository: CardFacilitiesTransactionRepository,
+    private val cardFacilitiesUserRepository: CardFacilitiesUserRepository
+) : ViewModelProvider.Factory {
+
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return MainViewModel(
+                dispatcher,
+                cardFacilitiesRepository,
+                cardFacilitiesTransactionRepository,
+                cardFacilitiesUserRepository
+            ) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
 }

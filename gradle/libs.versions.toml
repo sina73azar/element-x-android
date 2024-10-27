@@ -278,6 +278,9 @@ hilt-navigation-compose= {group="androidx.hilt",name="hilt-navigation-compose", 
 hilt-navigation-fragment= {group="androidx.hilt",name="hilt-navigation-fragment", version.ref="hiltExt"}
 
 
+navigation-compose= {group="androidx.navigation",name="navigation-compose"}
+
+
 #room
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }

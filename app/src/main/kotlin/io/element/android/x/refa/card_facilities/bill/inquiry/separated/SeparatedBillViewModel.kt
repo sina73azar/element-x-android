@@ -1,5 +1,7 @@
 package com.drp.card_facilities.presentation.bill.inquiry.separated
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.drp.card_facilities.presentation.app_shared_viewmodel.ComposeSharedViewModel
 import com.drp.card_facilities.presentation.app_shared_viewmodel.SharedViewModelEvents
@@ -651,4 +653,28 @@ sealed class SeparatedBillEvents {
     data class SetBillId(val billId: String, val billType: BillType) : SeparatedBillEvents()
     data class SetFixedPhoneNumber(val fixedPhoneNumber: String) : SeparatedBillEvents()
     data class SetMobileNumber(val mobileNumber: String) : SeparatedBillEvents()
+}
+
+
+class SeparatedBillViewModelFactory(
+    private val billRepository: CardFacilitiesBillRepository,
+    private val userRepository: CardFacilitiesUserRepository,
+    private val cardFacilityRepository: CardFacilitiesRepository,
+    private val transactionRepository: CardFacilitiesTransactionRepository,
+    private val dispatcher: CoroutineDispatcher
+) : ViewModelProvider.Factory {
+
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(SeparatedBillViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return SeparatedBillViewModel(
+                billRepository,
+                userRepository,
+                cardFacilityRepository,
+                transactionRepository,
+                dispatcher
+            ) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
 }
