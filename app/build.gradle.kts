@@ -298,12 +298,12 @@ dependencies {
     /** land deps */
 
     //hilt
-    implementation(libs.bundles.hilt) {
+/*    implementation(libs.bundles.hilt) {
         exclude("com.google.dagger:hilt-android")
     }
 //    kapt(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
-    implementation(libs.hilt.navigation.fragment)
+    implementation(libs.hilt.navigation.fragment)*/
 
     //room
     implementation(libs.bundles.room)
