@@ -50,6 +50,10 @@ class MainActivity : NodeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val locale = Locale("fa")
         Locale.setDefault(locale)
+        val config = resources.configuration
+        config.setLocale(locale)
+        createConfigurationContext(config)
+        resources.updateConfiguration(config, resources.displayMetrics)
 /*        setLocale(this, "fr")*/
         Timber.tag(loggerTag.value).w("onCreate, with savedInstanceState: ${savedInstanceState != null}")
         installSplashScreen()

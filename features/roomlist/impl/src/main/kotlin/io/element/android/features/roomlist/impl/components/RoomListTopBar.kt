@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -190,14 +191,15 @@ private fun DefaultRoomListTopBar(
                         scrolledContainerColor = Color.Transparent,
                     ),
                     title = {
-                        Text(text = stringResource(id = R.string.screen_roomlist_main_space_title))
+                        /*Text(text = stringResource(id = R.string.screen_roomlist_main_space_title))*/
+//                        Box(modifier = Modifier.height(1.dp))
                     },
                     navigationIcon = {
-                        NavigationIcon(
+                      /*  NavigationIcon(
                             avatarData = avatarData,
                             showAvatarIndicator = showAvatarIndicator,
                             onClick = onOpenSettings,
-                        )
+                        )*/
                     },
                     actions = {
                         if (displayMenuItems) {
@@ -209,7 +211,7 @@ private fun DefaultRoomListTopBar(
                                     contentDescription = stringResource(CommonStrings.action_search),
                                 )
                             }
-                            if (RoomListConfig.HAS_DROP_DOWN_MENU) {
+                           /* if (RoomListConfig.HAS_DROP_DOWN_MENU) {
                                 var showMenu by remember { mutableStateOf(false) }
                                 IconButton(
                                     onClick = { showMenu = !showMenu }
@@ -256,7 +258,7 @@ private fun DefaultRoomListTopBar(
                                         )
                                     }
                                 }
-                            }
+                            }*/
                         }
                     },
                     scrollBehavior = scrollBehavior,
