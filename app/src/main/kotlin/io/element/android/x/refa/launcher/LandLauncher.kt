@@ -47,22 +47,7 @@ class LandLauncher : AppCompatActivity() {
                 mutableStateOf(false)
             }
             val context = LocalContext.current
-            /*        OpenShahkarLogin.openShahkarLogin(context,
-                        object : OpenShahkarLogin.ExposeShahkarLoginState {
-                            override fun onLoading() {
-                            }
 
-                            override fun onSuccess(shahkarUserData: ShahkarUserData) {
-                                navigationVisibility = true
-                                viewModel.getWalletBalance()
-                            }
-
-                            override fun onError(message: String) {
-                            }
-
-                            override fun onFail() {
-                            }
-                        })*/
             ApplicationTheme {
                 val navHostController = rememberNavController()
                 val snackBarHostState: SnackbarHostState = remember {
