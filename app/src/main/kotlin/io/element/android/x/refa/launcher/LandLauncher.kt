@@ -95,7 +95,6 @@ class LandLauncher : AppCompatActivity() {
                         false
                     }
                 }
-//                if (navigationVisibility)
                 Scaffold(
                     snackbarHost = {
                         SnackBarCompose(

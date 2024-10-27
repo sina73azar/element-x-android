@@ -34,8 +34,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.request.ImageRequest
 import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import com.drp.shared_ui.theme.ApplicationTheme
 import io.element.android.x.R
 
@@ -55,14 +56,14 @@ fun IbanConvertorResultDialog(
     val successCopyStr = stringResource(id = R.string.success_copy)
     Column(
         modifier = modifier
-                .fillMaxWidth()
-                .background(
-                        color = Color.White,
-                        shape = RoundedCornerShape(dimensionResource(id = R.dimen.large_corner))
-                )
-                .padding(horizontal = dimensionResource(id = R.dimen.medium_padding))
-                .padding(bottom = dimensionResource(id = R.dimen.extra_large_padding))
-                .padding(top = dimensionResource(id = R.dimen.small_padding)),
+            .fillMaxWidth()
+            .background(
+                color = Color.White,
+                shape = RoundedCornerShape(dimensionResource(id = R.dimen.large_corner))
+            )
+            .padding(horizontal = dimensionResource(id = R.dimen.medium_padding))
+            .padding(bottom = dimensionResource(id = R.dimen.extra_large_padding))
+            .padding(top = dimensionResource(id = R.dimen.small_padding)),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row(
@@ -88,14 +89,14 @@ fun IbanConvertorResultDialog(
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
-                            .padding(top = dimensionResource(id = R.dimen.large_padding))
-                            .size(36.dp)
+                        .padding(top = dimensionResource(id = R.dimen.large_padding))
+                        .size(36.dp)
                 )
             } ?: run {
                 Icon(
                     modifier = Modifier
-                            .padding(top = dimensionResource(id = R.dimen.medium_padding))
-                            .size(48.dp),
+                        .padding(top = dimensionResource(id = R.dimen.medium_padding))
+                        .size(48.dp),
                     painter = painterResource(id = R.drawable.ic_iban_convertor),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary
@@ -106,13 +107,13 @@ fun IbanConvertorResultDialog(
         bankShowName?.let { bsn ->
             Text(
                 modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(
-                                top = dimensionResource(id = R.dimen.medium_padding),
-                        )
-                        .padding(
-                                horizontal = dimensionResource(id = R.dimen.small_padding)
-                        ),
+                    .fillMaxWidth()
+                    .padding(
+                        top = dimensionResource(id = R.dimen.medium_padding),
+                    )
+                    .padding(
+                        horizontal = dimensionResource(id = R.dimen.small_padding)
+                    ),
                 text = bsn,
                 style = MaterialTheme.typography.bodyMedium.copy(textAlign = TextAlign.Center),
                 maxLines = 1,
@@ -122,13 +123,13 @@ fun IbanConvertorResultDialog(
         }
         Row(
             modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(
-                            top = dimensionResource(id = R.dimen.medium_padding),
-                    )
-                    .padding(
-                            horizontal = dimensionResource(id = R.dimen.small_padding)
-                    ),
+                .fillMaxWidth()
+                .padding(
+                    top = dimensionResource(id = R.dimen.medium_padding),
+                )
+                .padding(
+                    horizontal = dimensionResource(id = R.dimen.small_padding)
+                ),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {

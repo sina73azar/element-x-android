@@ -61,7 +61,7 @@ android {
 
         // Keep abiFilter for the universalApk
         ndk {
-            abiFilters += listOf("armeabi-v7a", "x86", "arm64-v8a", "x86_64")
+            abiFilters += listOf(/*"armeabi-v7a", "x86",*/ "arm64-v8a"/*, "x86_64"*/)
         }
 
         // Ref: https://developer.android.com/studio/build/configure-apk-splits.html#configure-abi-split
@@ -75,7 +75,7 @@ android {
                 // Resets the list of ABIs that Gradle should create APKs for to none.
                 reset()
                 // Specifies a list of ABIs that Gradle should create APKs for.
-                include("armeabi-v7a", "x86", "arm64-v8a", "x86_64")
+                include(/*"armeabi-v7a", "x86",*/ "arm64-v8a"/*, "x86_64"*/)
                 // Generate a universal APK that includes all ABIs, so user who installs from CI tool can use this one by default.
                 isUniversalApk = true
             }
@@ -114,14 +114,18 @@ android {
 
     buildTypes {
         getByName("debug") {
-            resValue("string", "app_name", "$baseAppName dbg")
+            resValue("string", "app_name", /*"$baseAppName dbg"*/baseAppName)
             applicationIdSuffix = ".debug"
             signingConfig = signingConfigs.getByName("debug")
         }
 
         getByName("release") {
             resValue("string", "app_name", baseAppName)
-            signingConfig = signingConfigs.getByName("debug")
+            isShrinkResources = true
+            isZipAlignEnabled = true
+            isMinifyEnabled = true
+
+//            signingConfig = signingConfigs.getByName("debug")
 
             /*            postprocessing {
                             isRemoveUnusedCode = true

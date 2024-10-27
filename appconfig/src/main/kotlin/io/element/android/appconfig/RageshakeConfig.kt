@@ -18,7 +18,7 @@ object RageshakeConfig {
      * Identifier for the application (eg 'riot-web').
      * Should correspond to a mapping configured in the configuration file for github issue reporting to work.
      */
-    const val BUG_REPORT_APP_NAME = "element-x-android"
+    const val BUG_REPORT_APP_NAME = "Refaland"
 
     /**
      * The maximum size of the upload request. Default value is just below CloudFlare's max request size.
