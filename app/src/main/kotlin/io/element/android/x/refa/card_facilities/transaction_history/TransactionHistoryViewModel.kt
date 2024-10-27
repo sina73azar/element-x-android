@@ -59,4 +59,5 @@ sealed class TransactionHistoryEvents {
     data class SetSearchQuery(val query: String) : TransactionHistoryEvents()
 
     data class DeleteTransaction(val timeStamp: Long) : TransactionHistoryEvents()
+
 }

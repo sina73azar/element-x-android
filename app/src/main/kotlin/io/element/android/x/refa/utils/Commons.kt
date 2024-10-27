@@ -295,12 +295,12 @@ fun getPublic(keyString: String?): PublicKey? {
     return fact.generatePublic(spec)
 }
 
-@Throws(java.lang.Exception::class)
+/*@Throws(java.lang.Exception::class)
 fun encryptWithRsa(publicKey: PublicKey?, text: ByteArray?): ByteArray? {
     val rsa = Cipher.getInstance(BuildConfig.encryptRSA)
     rsa.init(Cipher.ENCRYPT_MODE, publicKey)
     return rsa.doFinal(text)
-}
+}*/
 
 fun organizeDate(date: String): String {
     return date.substring(0, 4).plus("/").plus(date.substring(4, 6)).plus("/")

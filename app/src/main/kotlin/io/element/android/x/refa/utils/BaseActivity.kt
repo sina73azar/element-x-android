@@ -44,9 +44,9 @@ open class BaseActivity<VB : ViewBinding>(val inflater: ActivityInflater<VB>) : 
         var finishPicker: Boolean = false
     }
 
-    override fun attachBaseContext(newBase: Context?) {
+    /*override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(ChangeLanguage.wrap(newBase, Locale("fa")))
-    }
+    }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +59,7 @@ open class BaseActivity<VB : ViewBinding>(val inflater: ActivityInflater<VB>) : 
                 if (requestCode != -1)
                     activityResult(requestCode, result)
             }
-        ChangeLanguage.wrap(applicationContext, Locale("fa"))
+//        ChangeLanguage.wrap(applicationContext, Locale("fa"))
 //        viewModel.getFontScale()?.let {
 //            adjustFontScale(it as Float - 0.2f)
 //        }

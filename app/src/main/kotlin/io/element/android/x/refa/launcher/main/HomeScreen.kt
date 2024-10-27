@@ -40,6 +40,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -77,6 +78,10 @@ data class BottomBarItemData(
 fun HomeScreen(navController: NavController, viewModel: MainViewModel? = null) {
     val uiState = viewModel?.uiState?.collectAsStateWithLifecycle()?.value ?: MainScreenState()
     val context = LocalContext.current
+    LaunchedEffect(key1 = Unit) {
+        if (uiState.balanceVisibility && !uiState.walletBalanceState.isSuccess())
+            viewModel?.getWalletBalance()
+    }
     val contentItems = listOf(
         ItemData(
             id = 1,

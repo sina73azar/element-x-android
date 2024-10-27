@@ -95,7 +95,8 @@ fun SearchGridSheetItem(
     ) {
         Text(
             text = model.value,
-            style = MaterialTheme.typography.bodyMedium.copy(textAlign = TextAlign.Center)
+            style = MaterialTheme.typography.bodyMedium.copy(textAlign = TextAlign.Center),
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
         )
     }
 
