@@ -9,6 +9,9 @@ package io.element.android.libraries.designsystem.theme.components
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.TopAppBarColors
@@ -18,6 +21,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.min
 import io.element.android.compound.theme.ElementTheme
 import io.element.android.compound.tokens.generated.CompoundIcons
 import io.element.android.libraries.designsystem.components.button.BackButton
@@ -37,7 +42,7 @@ fun MediumTopAppBar(
 ) {
     androidx.compose.material3.MediumTopAppBar(
         title = title,
-        modifier = modifier,
+        modifier = modifier.height(60.dp),
         navigationIcon = navigationIcon,
         actions = {
             CompositionLocalProvider(LocalContentColor provides ElementTheme.colors.textActionPrimary) {
@@ -55,7 +60,7 @@ fun MediumTopAppBar(
 @Composable
 internal fun MediumTopAppBarPreview() = ElementThemedPreview {
     MediumTopAppBar(
-        title = { Text(text = "Title") },
+        title = { /*Text(text = "Title")*/ },
         navigationIcon = { BackButton(onClick = {}) },
         actions = {
             TextButton(text = "Action", onClick = {})
