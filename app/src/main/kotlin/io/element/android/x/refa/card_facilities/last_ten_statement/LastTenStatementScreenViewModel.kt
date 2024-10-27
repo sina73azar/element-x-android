@@ -1,20 +1,18 @@
 package com.drp.card_facilities.presentation.last_ten_statement
 
 import androidx.lifecycle.viewModelScope
-import com.drp.refah.card_facilities.data.model.Trk2EquivData
 import com.drp.card_facilities.presentation.app_shared_viewmodel.ComposeSharedViewModel
 import com.drp.card_facilities.presentation.app_shared_viewmodel.SharedViewModelEvents
 import com.drp.card_facilities.presentation.app_shared_viewmodel.SharedViewModelUiState
 import com.drp.card_facilities.presentation.app_source_card_handler.SourceCardEvents
 import com.drp.card_facilities.presentation.app_source_card_handler.SourceCardHandler
 import com.drp.card_facilities.presentation.app_source_card_handler.SourceCardUiState
+import com.drp.data.enums.CardOtpRequestType
 import com.drp.data.network.RequestState
 import com.drp.data.network.toRequestState
 import com.drp.data.repository.CardFacilitiesRepository
 import com.drp.data.repository.CardFacilitiesUserRepository
-import com.drp.data.enums.CardOtpRequestType
-
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.drp.refah.card_facilities.data.model.Trk2EquivData
 import io.element.android.x.R
 import io.element.android.x.refa.enums.UiText
 import kotlinx.coroutines.CoroutineDispatcher
@@ -22,10 +20,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class LastTenStatementScreenViewModel @Inject constructor(
+class LastTenStatementScreenViewModel(
     private val dispatcher: CoroutineDispatcher,
     private val cardFacilitiesUserRepository: CardFacilitiesUserRepository,
     private val cardFacilitiesRepository: CardFacilitiesRepository

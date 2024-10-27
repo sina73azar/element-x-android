@@ -14,7 +14,6 @@ import com.drp.shared_ui.enums.BanksForConvertToIban
 import com.drp.shared_ui.enums.IbanConvertType
 import com.drp.utils.extractDigits
 import com.drp.utils.isValidCardPan
-import dagger.hilt.android.lifecycle.HiltViewModel
 import io.element.android.x.R
 import io.element.android.x.refa.enums.UiText
 import kotlinx.coroutines.CoroutineDispatcher
@@ -25,10 +24,8 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import org.iban4j.IbanUtil
-import javax.inject.Inject
 
-@HiltViewModel
-class IbanConvertorViewModel @Inject constructor(
+class IbanConvertorViewModel(
     private val dispatcher: CoroutineDispatcher,
     private val cardFacilitiesUserRepository: CardFacilitiesUserRepository,
     private val cardFacilitiesRepository: CardFacilitiesRepository

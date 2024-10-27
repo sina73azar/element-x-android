@@ -1,6 +1,5 @@
 package com.drp.card_facilities.presentation.topup.compose
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.drp.card_facilities.presentation.app_shared_viewmodel.ComposeSharedViewModel
 import com.drp.card_facilities.presentation.app_shared_viewmodel.SharedViewModelEvents
@@ -26,7 +25,6 @@ import com.drp.refah.ui.data.model.CustomToggleModel
 import com.drp.shared_ui.model.receipt.ReceiptItem
 import com.drp.utils.isValidMobileNo
 import com.instacart.library.truetime.TrueTime
-import dagger.hilt.android.lifecycle.HiltViewModel
 import io.element.android.x.R
 import io.element.android.x.refa.card_facilities.topup.compose.TopUpScreenState
 import io.element.android.x.refa.enums.UiText
@@ -37,10 +35,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.Calendar
-import javax.inject.Inject
 
-@HiltViewModel
-class TopUpViewModel @Inject constructor(
+class TopUpViewModel(
     private val dispatcher: CoroutineDispatcher,
     private val cardFacilitiesRepository: CardFacilitiesRepository,
     private val cardFacilitiesUserRepository: CardFacilitiesUserRepository,
@@ -206,7 +202,7 @@ class TopUpViewModel @Inject constructor(
                 pin = uiState.value.walletUiState.walletOtpCode,
                 selectedCard = if (_uiState.value.cardOrWalletToggle?.id == 1) uiState.value.sourceCardUiState.selectedCard else null,
                 expireYear = if (_uiState.value.cardOrWalletToggle?.id == 1) uiState.value.sourceCardUiState.year else null,
-                expireMonth =  if (_uiState.value.cardOrWalletToggle?.id == 1) uiState.value.sourceCardUiState.month else null
+                expireMonth = if (_uiState.value.cardOrWalletToggle?.id == 1) uiState.value.sourceCardUiState.month else null
             ).collectLatest {
                 it.toRequestState().let { response ->
                     if (response.isError())

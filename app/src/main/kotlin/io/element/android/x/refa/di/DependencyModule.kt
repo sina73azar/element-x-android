@@ -15,6 +15,7 @@ import com.drp.data.database.Constant
 import com.drp.data.database.impl.DataBaseRequest
 import com.drp.data.database.impl.DataBaseRequestImpl
 import com.drp.data.network.ApiService
+import com.drp.data.network.OAuthInterceptor
 import com.drp.data.network.api_call.DynamicApiCall
 import com.drp.data.network.api_call.DynamicApiCallImpl
 import com.drp.data.repository.CardFacilitiesBillRepository
@@ -54,10 +55,13 @@ class DependencyProvider(applicationContext: Context) {
             .writeTimeout(15, TimeUnit.SECONDS)
             .retryOnConnectionFailure(true)
             .addNetworkInterceptor(httpLoggingInterceptor)
+            .addInterceptor(interceptor)
             // Add your OAuth interceptor or other interceptors if needed
             .build()
     }
-
+    val interceptor: OAuthInterceptor by lazy {
+        OAuthInterceptor(applicationContext, dynamicPreferences)
+    }
     val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .client(okHttpClient)
@@ -99,7 +103,7 @@ class DependencyProvider(applicationContext: Context) {
         CardFacilitiesTransactionRepositoryImpl(dynamicApiCall, dbImplementation)
     }
 
-    val userRepository: CardFacilitiesUserRepository by lazy {
+    val cardFacilitiesUserRepository: CardFacilitiesUserRepository by lazy {
         CardFacilitiesUserRepositoryImpl(dynamicApiCall, dynamicPreferences, dbImplementation)
     }
 

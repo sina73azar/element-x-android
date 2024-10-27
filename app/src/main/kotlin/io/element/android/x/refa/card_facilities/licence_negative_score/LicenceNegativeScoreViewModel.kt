@@ -11,7 +11,6 @@ import com.drp.data.repository.CardFacilitiesRepository
 import com.drp.data.repository.CardFacilitiesUserRepository
 import com.drp.utils.isValidMobileNo
 import com.drp.utils.isValidNationalCode
-import dagger.hilt.android.lifecycle.HiltViewModel
 import io.element.android.x.R
 import io.element.android.x.refa.enums.UiText
 import kotlinx.coroutines.CoroutineDispatcher
@@ -21,10 +20,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class LicenceNegativeScoreViewModel @Inject constructor(
+class LicenceNegativeScoreViewModel(
     private val dispatcher: CoroutineDispatcher,
     private val cardFacilitiesUserRepository: CardFacilitiesUserRepository,
     private val cardFacilitiesRepository: CardFacilitiesRepository
@@ -144,7 +141,6 @@ class LicenceNegativeScoreViewModel @Inject constructor(
         _uiState.value = _uiState.value.copy(mobilePhoneContactSpinner = emptyList())
     }
 
-
     fun dismissFailureDialog() {
         if (_uiState.value.inquiry.isFail())
             _uiState.value = _uiState.value.copy(inquiry = RequestState.Idle)
@@ -155,6 +151,4 @@ class LicenceNegativeScoreViewModel @Inject constructor(
             errorChannel.send(message)
         }
     }
-
-
 }

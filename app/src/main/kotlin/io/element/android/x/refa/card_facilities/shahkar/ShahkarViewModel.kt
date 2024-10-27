@@ -12,7 +12,6 @@ import com.drp.data.repository.CardFacilitiesUserRepository
 import com.drp.refah.ui.data.model.SMSState
 import com.drp.utils.isValidMobileNo
 import com.drp.utils.isValidNationalCode
-import dagger.hilt.android.lifecycle.HiltViewModel
 import io.element.android.appconfig.SharedData
 import io.element.android.x.R
 import io.element.android.x.refa.enums.UiText
@@ -23,10 +22,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class ShahkarViewModel @Inject constructor(
+class ShahkarViewModel(
     private val dispatcher: CoroutineDispatcher,
     private val cardFacilitiesUserRepository: CardFacilitiesUserRepository
 ) : ViewModel() {

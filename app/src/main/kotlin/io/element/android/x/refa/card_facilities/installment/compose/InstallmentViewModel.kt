@@ -23,7 +23,6 @@ import com.drp.refah.card_facilities.data.model.Trk2EquivData
 import com.drp.refah.card_facilities.utility.Commons
 import com.drp.shared_ui.model.receipt.ReceiptItem
 import com.instacart.library.truetime.TrueTime
-import dagger.hilt.android.lifecycle.HiltViewModel
 import io.element.android.x.R
 import io.element.android.x.refa.enums.UiText
 import kotlinx.coroutines.CoroutineDispatcher
@@ -33,10 +32,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.Calendar
-import javax.inject.Inject
 
-@HiltViewModel
-class InstallmentViewModel @Inject constructor(
+class InstallmentViewModel(
     private val cardFacilitiesRepository: CardFacilitiesRepository,
     private val cardFacilitiesUserRepository: CardFacilitiesUserRepository,
     private val cardFacilitiesLoanRepository: CardFacilitiesLoanRepository,

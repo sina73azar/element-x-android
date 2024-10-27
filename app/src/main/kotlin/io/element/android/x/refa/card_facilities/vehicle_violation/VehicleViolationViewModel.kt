@@ -11,7 +11,6 @@ import com.drp.data.repository.CardFacilitiesRepository
 import com.drp.data.repository.CardFacilitiesUserRepository
 import com.drp.utils.isValidMobileNo
 import com.drp.utils.isValidNationalCode
-import dagger.hilt.android.lifecycle.HiltViewModel
 import io.element.android.x.R
 import io.element.android.x.refa.enums.UiText
 import kotlinx.coroutines.CoroutineDispatcher
@@ -21,10 +20,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class VehicleViolationViewModel @Inject constructor(
+class VehicleViolationViewModel(
     private val dispatcher: CoroutineDispatcher,
     private val cardFacilitiesRepository: CardFacilitiesRepository,
     private val cardFacilitiesUserRepository: CardFacilitiesUserRepository

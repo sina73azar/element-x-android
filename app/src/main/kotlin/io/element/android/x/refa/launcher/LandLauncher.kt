@@ -32,6 +32,7 @@ import com.drp.refahland.ui.main.MainViewModel
 import com.drp.refahland.ui.main.MainViewModelFactory
 import com.drp.shared_ui.theme.ApplicationTheme
 import com.drp.shared_ui.widget.SnackBarCompose
+import io.element.android.wysiwyg.internal.view.getViewModelStoreOwner
 import io.element.android.x.ElementXApplication
 import kotlinx.coroutines.Dispatchers
 
@@ -50,9 +51,18 @@ class LandLauncher : AppCompatActivity() {
             val context = LocalContext.current
 
             ApplicationTheme {
+
                 val navHostController = rememberNavController()
                 val snackBarHostState: SnackbarHostState = remember {
                     SnackbarHostState()
+                }
+                val viewModel = remember{
+                    MainViewModel(
+                        dispatcher = Dispatchers.IO,
+                        cardFacilitiesRepository = depProvider.cardFacilityRepository,
+                        cardFacilitiesTransactionRepository = depProvider.cardFacilitiesTransactionRepository,
+                        cardFacilitiesUserRepository = depProvider.cardFacilitiesUserRepository
+                    )
                 }
                 val curSnackType by remember {
                     mutableStateOf(SnackBarType.FAIL)
@@ -63,14 +73,14 @@ class LandLauncher : AppCompatActivity() {
                         currentBackStackEntry?.destination?.route ?: "Home"
                     }
                 }
-                val mainViewModelFactory = MainViewModelFactory(
+          /*      val mainViewModelFactory = MainViewModelFactory(
                     dispatcher = Dispatchers.IO,
                     cardFacilitiesRepository = depProvider.cardFacilityRepository,
                     cardFacilitiesTransactionRepository = depProvider.cardFacilitiesTransactionRepository,
-                    cardFacilitiesUserRepository = depProvider.userRepository
+                    cardFacilitiesUserRepository = depProvider.cardFacilitiesUserRepository
                 )
-                val viewModel: MainViewModel = ViewModelProvider(this, mainViewModelFactory)[MainViewModel::class.java]
-
+                val viewModel: MainViewModel = ViewModelProvider(owner = this@LandLauncher, mainViewModelFactory)[MainViewModel::class.java]
+*/
                 var showBottomBar by rememberSaveable {
                     mutableStateOf(false)
                 }
@@ -108,7 +118,6 @@ class LandLauncher : AppCompatActivity() {
                         Navigation(
                             navController = navHostController,
                             mainViewModel = viewModel,
-                            viewModelStoreOwner = this
                         ) { finish() }
 
                     }

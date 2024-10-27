@@ -18,7 +18,6 @@ import com.drp.data.repository.CardFacilitiesUserRepository
 import com.drp.refah.card_facilities.utility.enums.MobileOperatorTab
 import com.drp.refah.ui.data.model.CustomToggleModel
 import com.drp.utils.isValidMobileNo
-import dagger.hilt.android.lifecycle.HiltViewModel
 import io.element.android.x.R
 import io.element.android.x.refa.enums.UiText
 import kotlinx.coroutines.CoroutineDispatcher
@@ -26,10 +25,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class InternetPackageInquiryViewModel @Inject constructor(
+class InternetPackageInquiryViewModel(
     private val dispatcher: CoroutineDispatcher,
     private val cardFacilitiesRepository: CardFacilitiesRepository,
     private val cardFacilitiesUserRepository: CardFacilitiesUserRepository,
@@ -256,5 +253,4 @@ sealed class InternetPackageInquiryEvents {
 
     /** screen parameters setters */
     data class SetMobileNumber(val mobileNumber: String) : InternetPackageInquiryEvents()
-
 }

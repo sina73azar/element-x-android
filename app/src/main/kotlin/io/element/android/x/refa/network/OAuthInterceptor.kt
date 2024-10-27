@@ -3,7 +3,6 @@ package com.drp.data.network
 import android.content.Context
 import com.drp.data.model.ShahkarUserData
 import com.drp.data.sharepref.DynamicPreferences
-import dagger.hilt.android.qualifiers.ApplicationContext
 import io.element.android.x.refa.Constants
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -12,7 +11,7 @@ import okhttp3.Request
 import okhttp3.Response
 
 class OAuthInterceptor(
-    @ApplicationContext val context: Context,
+    val context: Context,
     private val dynamicPreferences: DynamicPreferences
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {

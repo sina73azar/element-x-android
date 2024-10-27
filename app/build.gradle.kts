@@ -83,7 +83,7 @@ android {
 
         defaultConfig {
             resourceConfigurations += locales
-//            buildConfigField("String", "encryptRSA", properties.getProperty("rsaEncrption"))
+            buildConfigField("String", "encryptRSA", properties.getProperty("rsaEncrption"))
         }
     }
 

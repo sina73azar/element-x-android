@@ -21,7 +21,6 @@ import com.drp.refah.card_facilities.data.model.bill.inquiry.BillPaymentInfo
 import com.drp.refah.ui.data.model.CustomToggleModel
 import com.drp.shared_ui.model.receipt.ReceiptItem
 import com.instacart.library.truetime.TrueTime
-import dagger.hilt.android.lifecycle.HiltViewModel
 import io.element.android.x.R
 import io.element.android.x.refa.enums.UiText
 import kotlinx.coroutines.CoroutineDispatcher
@@ -30,10 +29,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.Calendar
-import javax.inject.Inject
 
-@HiltViewModel
-class InsuranceViewModel @Inject constructor(
+class InsuranceViewModel(
     private val cardFacilitiesRepository: CardFacilitiesRepository,
     private val cardFacilitiesUserRepository: CardFacilitiesUserRepository,
     private val cardFacilitiesBillRepository: CardFacilitiesBillRepository,

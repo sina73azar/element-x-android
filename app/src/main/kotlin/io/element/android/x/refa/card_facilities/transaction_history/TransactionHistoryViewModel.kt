@@ -4,15 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.drp.data.network.RequestState
 import com.drp.data.repository.CardFacilitiesTransactionRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class TransactionHistoryViewModel @Inject constructor(
+class TransactionHistoryViewModel(
     private val cardFacilitiesTransactionRepository: CardFacilitiesTransactionRepository,
     private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
@@ -62,5 +59,4 @@ sealed class TransactionHistoryEvents {
     data class SetSearchQuery(val query: String) : TransactionHistoryEvents()
 
     data class DeleteTransaction(val timeStamp: Long) : TransactionHistoryEvents()
-
 }

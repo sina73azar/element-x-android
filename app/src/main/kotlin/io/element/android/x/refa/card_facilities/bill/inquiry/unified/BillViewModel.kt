@@ -24,7 +24,6 @@ import com.drp.refah.card_facilities.utility.BillUtils
 import com.drp.refah.ui.data.model.CustomToggleModel
 import com.drp.shared_ui.model.receipt.ReceiptItem
 import com.instacart.library.truetime.TrueTime
-import dagger.hilt.android.lifecycle.HiltViewModel
 import io.element.android.x.R
 import io.element.android.x.refa.enums.BillTabs
 import io.element.android.x.refa.enums.UiText
@@ -35,10 +34,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.Calendar
-import javax.inject.Inject
 
-@HiltViewModel
-class BillViewModel @Inject constructor(
+class BillViewModel(
     private val cardFacilitiesBillRepository: CardFacilitiesBillRepository,
     private val dispatcher: CoroutineDispatcher,
     private val cardFacilitiesRepository: CardFacilitiesRepository,
@@ -286,7 +283,6 @@ class BillViewModel @Inject constructor(
             else -> {}
         }
     }
-
 }
 
 sealed class BillEvents {

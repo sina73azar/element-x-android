@@ -15,7 +15,6 @@ import com.drp.data.repository.CardFacilitiesUserRepository
 import com.drp.refah.ui.data.model.CustomToggleModel
 import com.drp.utils.extractDigits
 import com.drp.utils.isValidCardPan
-import dagger.hilt.android.lifecycle.HiltViewModel
 import io.element.android.x.R
 import io.element.android.x.refa.enums.UiText
 import kotlinx.coroutines.CoroutineDispatcher
@@ -27,10 +26,8 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import org.iban4j.IbanUtil
-import javax.inject.Inject
 
-@HiltViewModel
-class WalletMinusViewModel @Inject constructor(
+class WalletMinusViewModel(
     private val dispatcher: CoroutineDispatcher,
     private val cardFacilitiesRepository: CardFacilitiesRepository,
     private val cardFacilitiesUserRepository: CardFacilitiesUserRepository

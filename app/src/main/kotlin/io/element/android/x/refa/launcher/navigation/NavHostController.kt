@@ -120,7 +120,6 @@ fun Navigation(
                     depProvider.dispatcher,
                     depProvider.cardFacilityRepository,
                     depProvider.cardFacilitiesUserRepository,
-                    depProvider.cardFacilitiesTransactionRepository
                 )
             }
             WalletAddScreen(navController = navController, viewModel = walletAddViewModel)

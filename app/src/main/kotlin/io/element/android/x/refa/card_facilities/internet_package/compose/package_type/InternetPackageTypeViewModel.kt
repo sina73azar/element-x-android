@@ -1,6 +1,5 @@
 package com.drp.card_facilities.presentation.internet_package.compose.package_type
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.drp.card_facilities.presentation.app_shared_viewmodel.ComposeSharedViewModel
 import com.drp.card_facilities.presentation.app_shared_viewmodel.SharedViewModelEvents
@@ -25,7 +24,6 @@ import com.drp.data.repository.CardFacilitiesUserRepository
 import com.drp.refah.card_facilities.data.model.internet_package.inquiry.PackageFilterType
 import com.drp.shared_ui.model.receipt.ReceiptItem
 import com.instacart.library.truetime.TrueTime
-import dagger.hilt.android.lifecycle.HiltViewModel
 import io.element.android.x.refa.enums.UiText
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.coroutineScope
@@ -34,10 +32,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.Calendar
-import javax.inject.Inject
 
-@HiltViewModel
-class InternetPackageTypeViewModel @Inject constructor(
+class InternetPackageTypeViewModel(
     private val cardFacilitiesRepository: CardFacilitiesRepository,
     private val cardFacilitiesUserRepository: CardFacilitiesUserRepository,
     private val transactionRepository: CardFacilitiesTransactionRepository,
@@ -130,10 +126,9 @@ class InternetPackageTypeViewModel @Inject constructor(
     ) {
 //        packageTypes.ad
         packageTypes.add(
-                PackageFilterType(
-                    title = durationUnit,
-                    packages = packagesList.filter { it.duration == durationUnit } as ArrayList<PackageItem>))
-
+            PackageFilterType(
+                title = durationUnit,
+                packages = packagesList.filter { it.duration == durationUnit } as ArrayList<PackageItem>))
     }
 
     private fun payment() {
