@@ -232,6 +232,7 @@ class WalletMinusViewModel @Inject constructor(
             is WalletMinusScreenEvents.DismissFailureDialog -> dismissFailureDialog()
             is WalletMinusScreenEvents.BackToDefault -> backToDefault()
             is WalletMinusScreenEvents.ShowError -> showError(event.message)
+            else -> {}
         }
     }
 }

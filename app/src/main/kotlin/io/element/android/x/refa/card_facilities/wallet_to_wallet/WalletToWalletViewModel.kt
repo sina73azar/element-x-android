@@ -138,6 +138,7 @@ class WalletToWalletViewModel @Inject constructor(
             is WalletToWalletScreenEvents.DismissOtpBottomSheet -> changeOtpBottomSheetState(false)
             is WalletToWalletScreenEvents.DismissFailureDialog -> dismissFailureDialog()
             is WalletToWalletScreenEvents.BackToDefault -> backToDefault()
+            else -> {}
         }
     }
 }

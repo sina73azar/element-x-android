@@ -87,7 +87,9 @@ fun PhoneAutoEditText(
     readOnly: Boolean = false,
     simIconClick: (() -> String?)? = null,
     contactSheetList: List<SearchSheetItemModel>? = null,
+    keyboardType: KeyboardType = KeyboardType.Text,
     phoneContactIntent: Intent = Intent(),
+    contactIconVisibility: Boolean = true,
     snackbarHostState: SnackbarHostState? = null,
     errorMessage: String = "",
     dumpErrorMessage: () -> Unit = {}
@@ -136,28 +138,28 @@ fun PhoneAutoEditText(
 
     Row(
         modifier = modifier
-                .fillMaxWidth()
-                .wrapContentHeight(unbounded = true)
-                .background(MaterialTheme.colorScheme.onPrimary)
-                .padding(
-                        top = 0.dp,
-                        start = dimensionResource(id = R.dimen.large_padding),
-                        end = dimensionResource(id = R.dimen.large_padding),
-                        bottom = 0.dp
-                ),
+            .fillMaxWidth()
+            .wrapContentHeight(unbounded = true)
+            .background(MaterialTheme.colorScheme.onPrimary)
+            .padding(
+                top = 0.dp,
+                start = dimensionResource(id = R.dimen.large_padding),
+                end = dimensionResource(id = R.dimen.large_padding),
+                bottom = 0.dp
+            ),
         verticalAlignment = Alignment.CenterVertically
     ) {
         //Start root
         Box(
             modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(if (simIconClick != null && contactSheetList != null) 0.8f else 1f),
+                .fillMaxWidth()
+                .weight(if (simIconClick != null && contactSheetList != null) 0.8f else 1f),
         ) {
 
             ExposedDropdownMenuBox(
                 modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 4.dp, end = 4.dp),
+                    .fillMaxWidth()
+                    .padding(start = 4.dp, end = 4.dp),
                 expanded = spinnerListContact.isNotEmpty(),
                 onExpandedChange = {
                     onDismissSpinner?.invoke()
@@ -165,8 +167,8 @@ fun PhoneAutoEditText(
             ) {
                 OutlinedTextField(
                     modifier = Modifier
-                            .fillMaxWidth()
-                            .menuAnchor(),
+                        .fillMaxWidth()
+                        .menuAnchor(),
                     value = value,
 
                     onValueChange = { value ->
@@ -225,7 +227,7 @@ fun PhoneAutoEditText(
                     ),
                     shape = RoundedCornerShape(8.dp),
                     keyboardOptions = KeyboardOptions.Default.copy(
-                        keyboardType = KeyboardType.Text,
+                        keyboardType = keyboardType,
                         imeAction = ImeAction.Next,
                     ),
                     keyboardActions = KeyboardActions(
@@ -283,24 +285,25 @@ fun PhoneAutoEditText(
                             }
 
 //                            if (contactSheetList != null) {
-                            IconButton(
-                                onClick = {
-                                    if (contactSheetList?.isNotEmpty() == true) {
-                                        selectionContactSheetVisibility = true
-                                    } else {
-                                        launcher.launch(phoneContactIntent)
+                            if (contactIconVisibility)
+                                IconButton(
+                                    onClick = {
+                                        if (contactSheetList?.isNotEmpty() == true) {
+                                            selectionContactSheetVisibility = true
+                                        } else {
+                                            launcher.launch(phoneContactIntent)
+                                        }
                                     }
-                                }
-                            ) {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ic_contact_book),
-                                    contentDescription = "Contact Icon",
-                                    tint = colorResource(
-                                        id = R.color.colorAccent
+                                ) {
+                                    Icon(
+                                        painter = painterResource(id = R.drawable.ic_contact_book),
+                                        contentDescription = "Contact Icon",
+                                        tint = colorResource(
+                                            id = R.color.colorAccent
+                                        )
                                     )
-                                )
 //                                }
-                            }
+                                }
                         }
                     },
                     singleLine = true,
@@ -323,11 +326,11 @@ fun PhoneAutoEditText(
                             onDismissSpinner?.invoke()
                         },
                         modifier = Modifier
-                                .fillMaxWidth()
-                                .exposedDropdownSize(true)
-                                .background(
-                                        MaterialTheme.colorScheme.onPrimary
-                                ),
+                            .fillMaxWidth()
+                            .exposedDropdownSize(true)
+                            .background(
+                                MaterialTheme.colorScheme.onPrimary
+                            ),
 
                         ) {
                         spinnerListContact.forEach {
@@ -356,11 +359,13 @@ fun PhoneAutoEditText(
 
                     }
 
+
             }
 
         }
 
     }
+
 
     /* Contact Sheet */
 
@@ -397,15 +402,15 @@ fun PhoneAutoEditText(
             Column {
                 Row(
                     modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable {
-                                if (index == 0) {
-                                    launcher.launch(phoneContactIntent)
-                                } else {
-                                    localContactSheetVisibility = true
-                                }
-                                selectionContactSheetVisibility = false
-                            },
+                        .fillMaxWidth()
+                        .clickable {
+                            if (index == 0) {
+                                launcher.launch(phoneContactIntent)
+                            } else {
+                                localContactSheetVisibility = true
+                            }
+                            selectionContactSheetVisibility = false
+                        },
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
@@ -451,6 +456,8 @@ class PhoneVisualTransformation : VisualTransformation {
                     }
                 else
                     offset
+
+
             }
 
             override fun transformedToOriginal(offset: Int): Int {

@@ -16,7 +16,10 @@
     <string name="external_transfer">انتقال وجه بین بانکی</string>
     <string name="internal_transfer">انتقال وجه داخلی</string>
     <string name="date_title">تاریخ</string>
-
+    <string name="login_to_account_st">ورود به حساب کاربری</string>
+    <string name="login_code_submitted">کد تایید برای شماره موبایل</string>
+    <string name="sent">ارسال گردید</string>
+    <string name="otp_register_failure_st">مشتری گرامی لطفا پیامک فعالسازی را صحیح وارد نمایید.</string>
     <!--  dialog  -->
     <string name="network_dialog_title_st">خطای ارتباطی</string>
     <string name="network_dialog_description_st">مشتری گرامی، ارتباط شما با سامانه رفالند برقرار نمی‌باشد. لطفا تنظیمات اینترنتی دستگاه خود را بررسی کنید.</string>
@@ -30,6 +33,7 @@
     <string name="inquiry_rtgs_title"> ساتنا</string>
     <string name="inquiry_pol_title"> پل</string>
     <string name="inquiry_hub_title">هاب فناوران</string>
+    <string name="login_st">ورود</string>
 
     <!--    widgets-->
     <string name="irr_currency">ریال</string>

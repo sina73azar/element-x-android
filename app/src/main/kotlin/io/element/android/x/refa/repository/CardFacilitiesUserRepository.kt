@@ -6,6 +6,10 @@ import com.drp.data.enums.CardOtpRequestType
 import com.drp.data.enums.ContactType
 import com.drp.data.model.ShahkarUserData
 import com.drp.data.model.internet_package.inquiry.PackageItem
+import com.drp.data.model.shahkar.inquiry.ShahkarInquiryRequest
+import com.drp.data.model.shahkar.inquiry.ShahkarInquiryResult
+import com.drp.data.model.shahkar.validate.ShahkarValidateRequest
+import com.drp.data.model.shahkar.validate.ShahkarValidateResult
 import com.drp.data.model.wallet_add.WalletResponse
 import com.drp.data.network.CustomResponse
 import com.drp.refah.card_facilities.data.model.bill.inquiry.BillPaymentInfo
@@ -136,4 +140,7 @@ interface CardFacilitiesUserRepository {
     fun searchContacts(searchedText: String): Flow<List<ContactEntity>>
     fun searchContacts(searchedText: String, contactType: ContactType): Flow<List<ContactEntity>>
 
+    fun shahkarInquiry(request: ShahkarInquiryRequest): Flow<CustomResponse<ShahkarInquiryResult>>
+    fun authValidate(request: ShahkarValidateRequest): Flow<CustomResponse<ShahkarValidateResult>>
+    fun saveShahkarUserData(shahkarUserData: ShahkarUserData)
 }

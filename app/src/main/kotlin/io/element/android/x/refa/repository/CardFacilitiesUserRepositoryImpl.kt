@@ -11,6 +11,10 @@ import com.drp.data.model.balance.BalanceOtpRequest
 import com.drp.data.model.bill.SeparatedBillPaymentWithWalletRequest
 import com.drp.data.model.internet_package.inquiry.PackageItem
 import com.drp.data.model.internet_package.payment.InternetPackagePaymentWithWalletRequest
+import com.drp.data.model.shahkar.inquiry.ShahkarInquiryRequest
+import com.drp.data.model.shahkar.inquiry.ShahkarInquiryResult
+import com.drp.data.model.shahkar.validate.ShahkarValidateRequest
+import com.drp.data.model.shahkar.validate.ShahkarValidateResult
 import com.drp.data.model.topup.payment.PaymentTopUpWithWalletRequest
 import com.drp.data.model.wallet_add.AddToWalletRequest
 import com.drp.data.model.wallet_add.WalletResponse
@@ -22,6 +26,8 @@ import com.drp.data.network.EndPoints.DYN_PIN_END_POINT
 import com.drp.data.network.EndPoints.GET_WALLET_BALANCE_END_POINT
 import com.drp.data.network.EndPoints.MINUS_FROM_WALLET_OTP_END_POINT
 import com.drp.data.network.EndPoints.PAYMENT_WALLET_OTP_END_POINT
+import com.drp.data.network.EndPoints.SHAHKAR_INQUIRY_ENDPOINT
+import com.drp.data.network.EndPoints.SHAHKAR_VALIDATE_ENDPOINT
 import com.drp.data.network.api_call.DynamicApiCall
 import com.drp.data.repository.CardFacilitiesRepositoryImpl.Companion.SHAHKAR_USER_DATA
 import com.drp.data.sharepref.DynamicPreferences
@@ -84,7 +90,24 @@ class CardFacilitiesUserRepositoryImpl @Inject constructor(
             kClass = Any::class.java
         )
     }
-
+    override fun saveShahkarUserData(shahkarUserData: ShahkarUserData) {
+        val shahkarUserDataJson = Json.encodeToString(shahkarUserData)
+        dynamicPreferences.saveData(SHAHKAR_USER_DATA, shahkarUserDataJson)
+    }
+    override fun authValidate(request: ShahkarValidateRequest): Flow<CustomResponse<ShahkarValidateResult>> {
+        return dynamicApiCall.dynamicPostCall(
+            url = SHAHKAR_VALIDATE_ENDPOINT,
+            request = request,
+            kClass = ShahkarValidateResult::class.java
+        )
+    }
+    override fun shahkarInquiry(request: ShahkarInquiryRequest): Flow<CustomResponse<ShahkarInquiryResult>> {
+        return dynamicApiCall.dynamicPostCall(
+            url = SHAHKAR_INQUIRY_ENDPOINT,
+            request = request,
+            kClass = ShahkarInquiryResult::class.java
+        )
+    }
 //    override fun cardPasswordInquiry(
 //        selectedCard: CardShotItemInfo?,
 //        amount: Long,

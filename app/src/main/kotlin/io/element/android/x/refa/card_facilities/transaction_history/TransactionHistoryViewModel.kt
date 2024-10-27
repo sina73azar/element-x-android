@@ -53,6 +53,7 @@ class TransactionHistoryViewModel @Inject constructor(
             is TransactionHistoryEvents.SetSearchQuery -> setSearchQuery(event.query)
 
             is TransactionHistoryEvents.DeleteTransaction -> deleteTransaction(event.timeStamp)
+            else -> {}
         }
     }
 }

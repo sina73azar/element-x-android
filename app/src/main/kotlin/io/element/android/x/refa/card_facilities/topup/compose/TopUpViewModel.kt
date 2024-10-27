@@ -441,6 +441,7 @@ class TopUpViewModel @Inject constructor(
             is TopUpEvents.SetAmount -> setAmount(event.amount)
 
             is TopUpEvents.SetWowAmount -> setWowAmount(event.amount)
+            else -> {}
         }
     }
 }
