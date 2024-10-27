@@ -10,6 +10,21 @@
     <!-- To be able to install APK from the application -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission
+        android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
+    <uses-feature android:name="android.hardware.telephony" />
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <!--  Do not enable enableOnBackInvokedCallback until https://issuetracker.google.com/issues/271303558 is fixed -->
     <application
         android:name=".ElementXApplication"
@@ -35,11 +50,6 @@
                 android:value='androidx.startup' />
         </provider>
 
-        <activity
-            android:name=".presentation.phone_contact.SuperAppPhoneContactActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".MainActivity"
@@ -50,77 +60,82 @@
             android:windowSoftInputMode="adjustResize">
 
             <!-- Handle deep-link for notification ./tools/adb/deeplink.sh -->
-<!--            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="open"
-                    android:scheme="elementx" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+            <!--            <intent-filter>
+                            <action android:name="android.intent.action.VIEW" />
+                            <category android:name="android.intent.category.DEFAULT" />
+                            <data
+                                android:host="open"
+                                android:scheme="elementx" />
+                        </intent-filter>
+                        <intent-filter>
+                            <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                            <category android:name="android.intent.category.DEFAULT" />
+                            <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="io.element" />
-            </intent-filter>
-            &lt;!&ndash;
-              Element web links
-            &ndash;&gt;
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
+                            <data android:scheme="io.element" />
+                        </intent-filter>
+                        &lt;!&ndash;
+                          Element web links
+                        &ndash;&gt;
+                        <intent-filter android:autoVerify="true">
+                            <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                            <category android:name="android.intent.category.DEFAULT" />
+                            <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="https" />
-                &lt;!&ndash; Note: we can't use "*.element.io" here because it'll intercept the "mas.element.io" domain too. &ndash;&gt;
-                &lt;!&ndash; Matching asset file: https://app.element.io/.well-known/assetlinks.json &ndash;&gt;
-                <data android:host="app.element.io" />
-                &lt;!&ndash; Matching asset file: https://develop.element.io/.well-known/assetlinks.json &ndash;&gt;
-                <data android:host="develop.element.io" />
-                &lt;!&ndash; Matching asset file: https://staging.element.io/.well-known/assetlinks.json &ndash;&gt;
-                <data android:host="staging.element.io" />
-            </intent-filter>
-            &lt;!&ndash;
-              matrix.to links
-              Note: On Android 12 and higher clicking a web link (that is not an Android App Link) always shows content in a web browser
-              https://developer.android.com/training/app-links#web-links
-            &ndash;&gt;
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+                            <data android:scheme="https" />
+                            &lt;!&ndash; Note: we can't use "*.element.io" here because it'll intercept the "mas.element.io" domain too. &ndash;&gt;
+                            &lt;!&ndash; Matching asset file: https://app.element.io/.well-known/assetlinks.json &ndash;&gt;
+                            <data android:host="app.element.io" />
+                            &lt;!&ndash; Matching asset file: https://develop.element.io/.well-known/assetlinks.json &ndash;&gt;
+                            <data android:host="develop.element.io" />
+                            &lt;!&ndash; Matching asset file: https://staging.element.io/.well-known/assetlinks.json &ndash;&gt;
+                            <data android:host="staging.element.io" />
+                        </intent-filter>
+                        &lt;!&ndash;
+                          matrix.to links
+                          Note: On Android 12 and higher clicking a web link (that is not an Android App Link) always shows content in a web browser
+                          https://developer.android.com/training/app-links#web-links
+                        &ndash;&gt;
+                        <intent-filter>
+                            <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                            <category android:name="android.intent.category.DEFAULT" />
+                            <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="https" />
-                <data android:host="matrix.to" />
-            </intent-filter>
-            &lt;!&ndash;
-              links from matrix.to website
-            &ndash;&gt;
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+                            <data android:scheme="https" />
+                            <data android:host="matrix.to" />
+                        </intent-filter>
+                        &lt;!&ndash;
+                          links from matrix.to website
+                        &ndash;&gt;
+                        <intent-filter>
+                            <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                            <category android:name="android.intent.category.DEFAULT" />
+                            <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="element" />
-                <data android:host="user" />
-                <data android:host="room" />
-            </intent-filter>-->
+                            <data android:scheme="element" />
+                            <data android:host="user" />
+                            <data android:host="room" />
+                        </intent-filter>-->
         </activity>
 
         <activity
-            android:name="io.element.android.x.LandActivity"
+            android:name=".refa.launcher.LandLauncher"
             android:exported="true"
-            android:theme="@style/Theme.ElementX">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <!-- Using an activity-alias for incoming share intent, in order
         to be able to disable the feature programmatically -->
         <activity-alias
@@ -154,6 +169,12 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_providers" />
         </provider>
+
+        <activity
+            android:name=".refa.card_facilities.phone_contact.SuperAppPhoneContactActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
 
     </application>
 

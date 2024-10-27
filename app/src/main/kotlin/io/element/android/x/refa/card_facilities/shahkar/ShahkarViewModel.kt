@@ -13,6 +13,7 @@ import com.drp.refah.ui.data.model.SMSState
 import com.drp.utils.isValidMobileNo
 import com.drp.utils.isValidNationalCode
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.element.android.appconfig.SharedData
 import io.element.android.x.R
 import io.element.android.x.refa.enums.UiText
 import kotlinx.coroutines.CoroutineDispatcher
@@ -127,9 +128,9 @@ class ShahkarViewModel @Inject constructor(
         if (!isValidSMSToken(uiState.value.otpCode) || uiState.value.pRqId.isNullOrEmpty()) {
             _uiState.value =
                 _uiState.value.copy(
-                    otpCodeValidationMessage = UiText.StringResource(
+                    otpCodeValidationMessage = UiText.DynamicString("مشتری گرامی لطفا پیامک فعالسازی را صحیح وارد نمایید.")/*StringResource(
                         R.string.otp_register_failure_st
-                    )
+                    )*/
                 )
             return
         }
@@ -143,6 +144,8 @@ class ShahkarViewModel @Inject constructor(
                             showError(UiText.DynamicString(response.getErrorMessage()))
                         if (response.isSuccess()) {
                             val data = response.getSuccessData().result
+                            SharedData.userName = data.pImUserName
+                            SharedData.pass = data.pImPassword
                             cardFacilitiesUserRepository.saveShahkarUserData(
                                 ShahkarUserData(
                                     nationalCode = uiState.value.nationalId,

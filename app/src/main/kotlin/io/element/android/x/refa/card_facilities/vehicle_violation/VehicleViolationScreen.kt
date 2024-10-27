@@ -31,7 +31,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.drp.card_facilities.presentation.phone_contact.SuperAppPhoneContactActivity
 import com.drp.card_facilities.presentation.vehicle_violation.result.VehicleViolationResultDialog
 import com.drp.refah.ui.data.model.SnackBarType
 import com.drp.shared_ui.theme.ApplicationTheme
@@ -43,6 +42,7 @@ import com.drp.shared_ui.widget.NetworkErrorDialogContent
 import com.drp.shared_ui.widget.PhoneAutoEditText
 import com.drp.shared_ui.widget.SnackBarCompose
 import io.element.android.x.R
+import io.element.android.x.refa.card_facilities.phone_contact.SuperAppPhoneContactActivity
 import kotlinx.coroutines.flow.collectLatest
 
 @OptIn(ExperimentalMaterial3Api::class)

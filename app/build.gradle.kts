@@ -341,6 +341,7 @@ dependencies {
     implementation(libs.androidx.camera.camera2)
     implementation(libs.barcode.scanning )
     implementation(libs.text.recognition )
+    implementation(libs.zxing.embedded )
 
 
 }

@@ -3,6 +3,13 @@
     <string name="password_input_hint_st">رمز عبور</string>
     <string name="search_services_st">جستجوی سرویس ها</string>
 
+
+    <string name="app_name">RefahLand</string>
+    <string name="expire_date">تاریخ انقضا:</string>
+    <string name="bill_inquiry_st">استعلام قبض</string>
+    <string name="no_card_st">کارتی یافت نشد</string>
+    <string name="no_bill_st">قبضی یافت نشد</string>
+
     <!--    region services-->
     <string name="Kahroba_title_st">کهریا</string>
     <string name="rial_digital_title_st">ارز دیحیتال</string>

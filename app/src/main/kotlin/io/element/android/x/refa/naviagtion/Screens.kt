@@ -2,6 +2,7 @@ package com.drp.shared_ui.naviagtion
 
 sealed class Screens(val route: String) {
     data object LandingPageScreen : Screens(route = LandingPageScreen::class.java.name)
+    data object ShahkarLoginScreen : Screens(route = ShahkarLoginScreen::class.java.name)
     data object BillInquiryScreen : Screens(route = BillInquiryScreen::class.java.name)
     data object SeparatedBillInquiryScreen : Screens(route = SeparatedBillInquiryScreen::class.java.name)
     data object SettingScreen : Screens(route = SettingScreen::class.java.name)

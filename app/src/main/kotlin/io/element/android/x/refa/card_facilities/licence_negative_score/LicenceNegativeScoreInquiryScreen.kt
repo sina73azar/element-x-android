@@ -32,7 +32,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.drp.card_facilities.presentation.licence_negative_score.result.LicenceNegativeScoreResultDialog
-import com.drp.card_facilities.presentation.phone_contact.SuperAppPhoneContactActivity
+import io.element.android.x.refa.card_facilities.phone_contact.SuperAppPhoneContactActivity
 import com.drp.refah.ui.data.model.SnackBarType
 import com.drp.shared_ui.theme.ApplicationTheme
 import com.drp.shared_ui.widget.BankEditTextExposed

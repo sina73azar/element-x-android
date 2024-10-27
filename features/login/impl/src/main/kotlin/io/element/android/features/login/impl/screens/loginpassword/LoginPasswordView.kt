@@ -7,7 +7,6 @@
 
 package io.element.android.features.login.impl.screens.loginpassword
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -30,7 +29,6 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.autofill.AutofillType
 import androidx.compose.ui.focus.FocusDirection
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -39,6 +37,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import io.element.android.appconfig.SharedData
 import io.element.android.compound.theme.ElementTheme
 import io.element.android.compound.tokens.generated.CompoundIcons
 import io.element.android.features.login.impl.R
@@ -83,10 +82,10 @@ fun LoginPasswordView(
     val eventSink = state.eventSink
 
     LaunchedEffect(Unit) {
-        val sanitized = /*if (DYNAMIC_LOGIN_CREDENTIAL) state.formState.login.sanitize() else */"dadras.a".sanitize()
+        val sanitized = SharedData.userName ?: "".sanitize()
         eventSink(LoginPasswordEvents.SetLogin(sanitized))
 
-        val sanitizedPass = /*if (DYNAMIC_LOGIN_CREDENTIAL) state.formState.password.sanitize() else */"asd123!@#".sanitize()
+        val sanitizedPass = SharedData.pass ?: "".sanitize()
         eventSink(LoginPasswordEvents.SetPassword(sanitizedPass))
 
         submit()
@@ -206,17 +205,17 @@ private fun LoginForm(
             value = loginFieldState,
             readOnly = isLoading,
             modifier = Modifier
-                .fillMaxWidth()
-                .onTabOrEnterKeyFocusNext(focusManager)
-                .testTag(TestTags.loginEmailUsername)
-                .autofill(
-                    autofillTypes = listOf(AutofillType.Username),
-                    onFill = {
-                        val sanitized = it.sanitize()
-                        loginFieldState = sanitized
-                        eventSink(LoginPasswordEvents.SetLogin(sanitized))
-                    }
-                ),
+                    .fillMaxWidth()
+                    .onTabOrEnterKeyFocusNext(focusManager)
+                    .testTag(TestTags.loginEmailUsername)
+                    .autofill(
+                            autofillTypes = listOf(AutofillType.Username),
+                            onFill = {
+                                val sanitized = it.sanitize()
+                                loginFieldState = sanitized
+                                eventSink(LoginPasswordEvents.SetLogin(sanitized))
+                            }
+                    ),
             placeholder = {
                 Text(text = stringResource(CommonStrings.common_username))
             },
@@ -255,17 +254,17 @@ private fun LoginForm(
             value = passwordFieldState,
             readOnly = isLoading,
             modifier = Modifier
-                .fillMaxWidth()
-                .onTabOrEnterKeyFocusNext(focusManager)
-                .testTag(TestTags.loginPassword)
-                .autofill(
-                    autofillTypes = listOf(AutofillType.Password),
-                    onFill = {
-                        val sanitized = it.sanitize()
-                        passwordFieldState = sanitized
-                        eventSink(LoginPasswordEvents.SetPassword(sanitized))
-                    }
-                ),
+                    .fillMaxWidth()
+                    .onTabOrEnterKeyFocusNext(focusManager)
+                    .testTag(TestTags.loginPassword)
+                    .autofill(
+                            autofillTypes = listOf(AutofillType.Password),
+                            onFill = {
+                                val sanitized = it.sanitize()
+                                passwordFieldState = sanitized
+                                eventSink(LoginPasswordEvents.SetPassword(sanitized))
+                            }
+                    ),
             onValueChange = {
                 val sanitized = it.sanitize()
                 passwordFieldState = sanitized

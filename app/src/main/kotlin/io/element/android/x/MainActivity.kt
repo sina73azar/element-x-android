@@ -39,6 +39,7 @@ import io.element.android.x.di.AppBindings
 import io.element.android.x.intent.SafeUriHandler
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.util.Locale
 
 private val loggerTag = LoggerTag("MainActivity")
 
@@ -47,6 +48,9 @@ class MainActivity : NodeActivity() {
     private lateinit var appBindings: AppBindings
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val locale = Locale("fa")
+        Locale.setDefault(locale)
+/*        setLocale(this, "fr")*/
         Timber.tag(loggerTag.value).w("onCreate, with savedInstanceState: ${savedInstanceState != null}")
         installSplashScreen()
         super.onCreate(savedInstanceState)

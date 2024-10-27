@@ -89,8 +89,11 @@ coilCompose = "3.0.0-rc01"
 truetime-android = "3.5"
 barcodeScanning = "17.3.0"
 textRecognition = "16.0.1"
+
+zxingAndroidEmbedded = "4.3.0"
 [libraries]
 
+zxing-embedded = { module = "com.journeyapps:zxing-android-embedded", version.ref = "zxingAndroidEmbedded" }
 text-recognition = { module = "com.google.mlkit:text-recognition", version.ref = "textRecognition" }
 barcode-scanning = { module = "com.google.mlkit:barcode-scanning", version.ref = "barcodeScanning" }
 androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "cameraCore" }
