@@ -10,7 +10,6 @@ package io.element.android.x
 import android.app.Application
 import android.content.IntentFilter
 import androidx.startup.AppInitializer
-import dagger.hilt.android.HiltAndroidApp
 import io.element.android.features.cachecleaner.api.CacheCleanerInitializer
 import io.element.android.libraries.di.DaggerComponentOwner
 import io.element.android.x.di.AppComponent
@@ -38,6 +37,7 @@ class ElementXApplication : Application(), DaggerComponentOwner {
         }
         logApplicationInfo(this)
     }
+
     override fun onTerminate() {
         super.onTerminate()
         unregisterReceiver(smsReceiver)
