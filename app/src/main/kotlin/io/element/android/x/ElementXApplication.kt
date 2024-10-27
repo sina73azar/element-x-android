@@ -10,6 +10,7 @@ package io.element.android.x
 import android.app.Application
 import android.content.IntentFilter
 import androidx.startup.AppInitializer
+import dagger.hilt.android.HiltAndroidApp
 import io.element.android.features.cachecleaner.api.CacheCleanerInitializer
 import io.element.android.libraries.di.DaggerComponentOwner
 import io.element.android.x.di.AppComponent
@@ -19,6 +20,7 @@ import io.element.android.x.initializer.CrashInitializer
 import io.element.android.x.initializer.TracingInitializer
 import io.element.android.x.refa.SmsReceiver
 
+@HiltAndroidApp
 class ElementXApplication : Application(), DaggerComponentOwner {
     override val daggerComponent: AppComponent = DaggerAppComponent.factory().create(this)
 
