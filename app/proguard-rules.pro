@@ -42,3 +42,4 @@
 }
 
 -keep class io.element.android.x.di.** { *; }
+-keep class io.element.android.x.** { *; }

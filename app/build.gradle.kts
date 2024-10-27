@@ -127,13 +127,13 @@ android {
 
 //            signingConfig = signingConfigs.getByName("debug")
 
-            /*            postprocessing {
-                            isRemoveUnusedCode = true
-                            isObfuscate = false
-                            isOptimizeCode = true
-                            isRemoveUnusedResources = true
-                            proguardFiles("proguard-rules.pro")
-                        }*/
+            postprocessing {
+                isRemoveUnusedCode = true
+                isObfuscate = false
+                isOptimizeCode = true
+                isRemoveUnusedResources = true
+                proguardFiles("proguard-rules.pro")
+            }
         }
         /*
                 register("nightly") {
@@ -296,16 +296,16 @@ dependencies {
     testImplementation(libs.test.truth)
     testImplementation(libs.test.turbine)
     testImplementation(projects.libraries.matrix.test)
-    implementation ("androidx.navigation:navigation-compose:2.8.3")
+    implementation("androidx.navigation:navigation-compose:2.8.3")
 
 //    koverDependencies()
 
     /** land deps */
 
     //hilt
-/*    implementation(libs.bundles.hilt) {
-        exclude("com.google.dagger:hilt-android")
-    }*/
+    /*    implementation(libs.bundles.hilt) {
+            exclude("com.google.dagger:hilt-android")
+        }*/
 //    kapt(libs.hilt.compiler)
 //    implementation(libs.hilt.navigation.compose)
 //    implementation(libs.hilt.navigation.fragment)
@@ -319,7 +319,6 @@ dependencies {
     implementation(libs.sqlcipher)
     implementation(libs.sqlite.refah)
 
-
     //network
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
@@ -331,10 +330,10 @@ dependencies {
     implementation(libs.ir.debitcard.scanner)
     implementation(libs.pretty.persian.numbers)
 //    implementation(libs.styleabletoast)
-    implementation ("io.github.muddz:styleabletoast:2.4.0")
-    implementation (libs.accompanist.permissions)
-    implementation ("com.intuit.sdp:sdp-android:1.0.6")
-    implementation (libs.truetime.android)
+    implementation("io.github.muddz:styleabletoast:2.4.0")
+    implementation(libs.accompanist.permissions)
+    implementation("com.intuit.sdp:sdp-android:1.0.6")
+    implementation(libs.truetime.android)
 
     implementation("org.iban4j:iban4j:3.2.1")
     implementation(libs.coil.compose3)
@@ -342,14 +341,13 @@ dependencies {
 
     implementation(libs.androidx.camera.core)
 
-
 //    implementation(libs.androidx.camera.core)
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)
     implementation(libs.androidx.camera.camera2)
-    implementation(libs.barcode.scanning )
-    implementation(libs.text.recognition )
-    implementation(libs.zxing.embedded )
+    implementation(libs.barcode.scanning)
+    implementation(libs.text.recognition)
+    implementation(libs.zxing.embedded)
     implementation("com.google.guava:guava:31.0.1-android")
 
 }
