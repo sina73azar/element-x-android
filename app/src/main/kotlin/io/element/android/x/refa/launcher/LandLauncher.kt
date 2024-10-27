@@ -11,7 +11,6 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
@@ -28,7 +27,7 @@ import androidx.navigation.compose.rememberNavController
 import com.drp.refah.ui.data.model.SnackBarType
 import com.drp.refahland.navigation.AppBottomBar
 import com.drp.refahland.navigation.MainScreens
-import com.drp.refahland.navigation.Navigation
+import io.element.android.x.refa.launcher.navigation.Navigation
 import com.drp.refahland.ui.main.MainViewModel
 import com.drp.shared_ui.theme.ApplicationTheme
 import com.drp.shared_ui.widget.SnackBarCompose

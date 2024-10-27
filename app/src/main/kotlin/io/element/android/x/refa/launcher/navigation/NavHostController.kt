@@ -5,7 +5,7 @@
  * Please see LICENSE in the repository root for full details.
  */
 
-package com.drp.refahland.navigation
+package io.element.android.x.refa.launcher.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -13,7 +13,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -21,32 +20,48 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.drp.card_facilities.presentation.app_source_card_handler.InternetPackageTypeScreenModel
 import com.drp.card_facilities.presentation.balance.BalanceScreen
+import com.drp.card_facilities.presentation.balance.BalanceScreenViewModel
 import com.drp.card_facilities.presentation.bill.inquiry.separated.SeparatedBillInquiryScreen
+import com.drp.card_facilities.presentation.bill.inquiry.separated.SeparatedBillViewModel
 import com.drp.card_facilities.presentation.bill.inquiry.unified.BillInquiryScreen
+import com.drp.card_facilities.presentation.bill.inquiry.unified.BillViewModel
+import com.drp.card_facilities.presentation.card_to_card.compose.CardToCardViewModel
 import com.drp.card_facilities.presentation.card_to_card.compose.inquiry.CardToCardInquiryScreen
 import com.drp.card_facilities.presentation.history.HistoryScreen
+import com.drp.card_facilities.presentation.history.HistoryViewModel
 import com.drp.card_facilities.presentation.iban_convertor.IbanConvertorScreen
+import com.drp.card_facilities.presentation.iban_convertor.IbanConvertorViewModel
+import com.drp.card_facilities.presentation.insurance.InsuranceViewModel
 import com.drp.card_facilities.presentation.insurance.inquiry.InsuranceInquiryScreen
 import com.drp.card_facilities.presentation.internet_package.compose.inquiry.InternetPackageInquiryScreen
+import com.drp.card_facilities.presentation.internet_package.compose.inquiry.InternetPackageInquiryViewModel
 import com.drp.card_facilities.presentation.internet_package.compose.package_type.InternetPackageTypeScreen
+import com.drp.card_facilities.presentation.internet_package.compose.package_type.InternetPackageTypeViewModel
 import com.drp.card_facilities.presentation.last_ten_statement.LastTenStatementScreen
+import com.drp.card_facilities.presentation.last_ten_statement.LastTenStatementScreenViewModel
 import com.drp.card_facilities.presentation.last_ten_statement.result.LastTenStatementResultScreen
 import com.drp.card_facilities.presentation.licence_negative_score.LicenceNegativeScoreInquiryScreen
+import com.drp.card_facilities.presentation.licence_negative_score.LicenceNegativeScoreViewModel
 import com.drp.card_facilities.presentation.motor_violation.MotorViolationScreen
+import com.drp.card_facilities.presentation.motor_violation.MotorViolationViewModel
 import com.drp.card_facilities.presentation.qrcode.AnalyzerType
 import com.drp.card_facilities.presentation.qrcode.CameraScreen
-import com.drp.card_facilities.presentation.setting.SettingScreen
+import com.drp.card_facilities.presentation.topup.compose.TopUpViewModel
 import com.drp.card_facilities.presentation.topup.compose.inquiry.TopUpInquiryScreen
 import com.drp.card_facilities.presentation.tracking_post.TrackingPostScreen
-import com.drp.card_facilities.presentation.transaction_history.TransactionHistoryScreen
+import com.drp.card_facilities.presentation.tracking_post.TrackingPostViewModel
 import com.drp.card_facilities.presentation.vehicle_violation.VehicleViolationScreen
+import com.drp.card_facilities.presentation.vehicle_violation.VehicleViolationViewModel
 import com.drp.card_facilities.presentation.wallet_add.WalletAddScreen
 import com.drp.card_facilities.presentation.wallet_minus.WalletMinusScreen
+import com.drp.card_facilities.presentation.wallet_minus.WalletMinusViewModel
 import com.drp.card_facilities.presentation.wallet_to_wallet.WalletToWalletScreen
+import com.drp.card_facilities.presentation.wallet_to_wallet.WalletToWalletViewModel
 import com.drp.card_facilities.presentation.web_page.HomeItemWebUrlType
 import com.drp.card_facilities.presentation.web_page.WebPageScreen
 import com.drp.data.enums.BillType
 import com.drp.data.model.last_ten_statement.BankStatement
+import com.drp.refahland.navigation.MainScreens
 import com.drp.refahland.ui.main.CardScreen
 import com.drp.refahland.ui.main.ChatBotScreen
 import com.drp.refahland.ui.main.HomeScreen
@@ -54,6 +69,8 @@ import com.drp.refahland.ui.main.MainViewModel
 import com.drp.refahland.ui.main.MessengerScreen
 import com.drp.shared_ui.model.CardShotItemInfo
 import com.drp.shared_ui.naviagtion.Screens
+import io.element.android.x.refa.card_facilities.wallet_add.WalletAddViewModel
+import io.element.android.x.refa.di.DependencyProvider
 import kotlinx.serialization.json.Json
 import ui.main.BillScreen
 
@@ -67,6 +84,8 @@ fun Navigation(
         mutableStateOf("")
     }
     val context = LocalContext.current
+    val depProvider = DependencyProvider(context.applicationContext)
+
     val startDest =
         if (mainViewModel.getShahkarUserData().walletId != null) MainScreens.HomeScreen.route else Screens.ShahkarLoginScreen.route
     NavHost(navController = navController, startDestination = startDest) {
@@ -96,24 +115,46 @@ fun Navigation(
         /** Wallet Screens */
 
         composable(route = Screens.WalletAddScreen.route) {
-            WalletAddScreen(navController = navController, viewModel = hiltViewModel())
+            val walletAddViewModel = remember {
+                WalletAddViewModel(
+                    depProvider.dispatcher,
+                    depProvider.cardFacilityRepository,
+                    depProvider.cardFacilitiesUserRepository,
+                    depProvider.cardFacilitiesTransactionRepository
+                )
+            }
+            WalletAddScreen(navController = navController, viewModel = walletAddViewModel)
         }
 
         composable(route = Screens.WalletMinusScreen.route) {
-            WalletMinusScreen(navController = navController, viewModel = hiltViewModel())
+            val walletMinusViewModel = remember {
+                WalletMinusViewModel(
+                    depProvider.dispatcher,
+                    depProvider.cardFacilityRepository,
+                    depProvider.cardFacilitiesUserRepository,
+                )
+            }
+            WalletMinusScreen(navController = navController, viewModel = walletMinusViewModel)
         }
 
         composable(route = Screens.WalletToWalletScreen.route) {
+            val walletToWalletViewModel = remember {
+                WalletToWalletViewModel(
+                    depProvider.dispatcher,
+                    depProvider.cardFacilitiesUserRepository,
+                    depProvider.cardFacilityRepository
+                )
+            }
             WalletToWalletScreen(
                 navController = navController,
-                viewModel = hiltViewModel(),
+                viewModel = walletToWalletViewModel,
                 scannedWalletId = scannedWalletId,
                 resetScannedWalletIdToDefault = { scannedWalletId = "" }
             )
         }
 
         /** Setting Screens */
-        composable(
+        /*composable(
             route = Screens.SettingScreen.route
         ) {
             SettingScreen(
@@ -121,7 +162,7 @@ fun Navigation(
                 navController = navController,
                 finishActivity = finishActivity
             )
-        }
+        }*/
 
         composable(
             route = Screens.AuthenticationScreen.route
@@ -141,9 +182,17 @@ fun Navigation(
             val selectedCard = navBackStackEntry.arguments?.getString("selectedCard")?.let {
                 Json.decodeFromString<CardShotItemInfo>(it)
             }
+            val cardToCardViewModel = remember {
+                CardToCardViewModel(
+                    depProvider.dispatcher,
+                    depProvider.cardFacilityRepository,
+                    depProvider.cardFacilitiesUserRepository,
+                    depProvider.cardFacilitiesTransactionRepository
+                )
+            }
             CardToCardInquiryScreen(
                 navController = navController,
-                viewModel = hiltViewModel(),
+                viewModel = cardToCardViewModel,
                 selectedCard = selectedCard
             )
         }
@@ -158,9 +207,12 @@ fun Navigation(
             val selectedCard = navBackStackEntry.arguments?.getString("selectedCard")?.let {
                 Json.decodeFromString<CardShotItemInfo>(it)
             }
+            val balanceViewModel = remember {
+                BalanceScreenViewModel(depProvider.dispatcher, depProvider.cardFacilitiesUserRepository, depProvider.cardFacilityRepository)
+            }
             BalanceScreen(
                 navController = navController,
-                viewModel = hiltViewModel(),
+                viewModel = balanceViewModel,
                 selectedCard = selectedCard
             )
         }
@@ -175,9 +227,12 @@ fun Navigation(
             val selectedCard = navBackStackEntry.arguments?.getString("selectedCard")?.let {
                 Json.decodeFromString<CardShotItemInfo>(it)
             }
+            val lastTenStatementViewModel = remember {
+                LastTenStatementScreenViewModel(depProvider.dispatcher, depProvider.cardFacilitiesUserRepository, depProvider.cardFacilityRepository)
+            }
             LastTenStatementScreen(
                 navController = navController,
-                viewModel = hiltViewModel(),
+                viewModel = lastTenStatementViewModel,
                 selectedCard = selectedCard
             )
         }
@@ -195,8 +250,17 @@ fun Navigation(
             val selectedCard = navBackStackEntry.arguments?.getString("selectedCard")?.let {
                 Json.decodeFromString<CardShotItemInfo>(it)
             }
+            val billInquiryViewModel = remember {
+                BillViewModel(
+                    depProvider.cardFacilitiesBillRepository,
+                    depProvider.dispatcher,
+                    depProvider.cardFacilityRepository,
+                    depProvider.cardFacilitiesUserRepository,
+                    depProvider.cardFacilitiesTransactionRepository
+                )
+            }
             BillInquiryScreen(
-                viewModel = hiltViewModel(),
+                viewModel = billInquiryViewModel,
                 navController = navController,
                 selectedCard = selectedCard
             )
@@ -219,9 +283,18 @@ fun Navigation(
                 BillType.valueOf(it)
             }
             val billId = navBackStackEntry.arguments?.getString("billId")
+            val viewModel = remember {
+                SeparatedBillViewModel(
+                    depProvider.cardFacilitiesBillRepository,
+                    depProvider.cardFacilitiesUserRepository,
+                    depProvider.cardFacilityRepository,
+                    depProvider.cardFacilitiesTransactionRepository,
+                    depProvider.dispatcher
+                )
+            }
             billType?.let {
                 SeparatedBillInquiryScreen(
-                    viewModel = hiltViewModel(),
+                    viewModel = viewModel,
                     billType = it,
                     navController = navController,
                     billId = billId
@@ -256,9 +329,17 @@ fun Navigation(
             val selectedCard = navBackStackEntry.arguments?.getString("selectedCard")?.let {
                 Json.decodeFromString<CardShotItemInfo>(it)
             }
+            val viewModel = remember {
+                TopUpViewModel(
+                    depProvider.dispatcher,
+                    depProvider.cardFacilityRepository,
+                    depProvider.cardFacilitiesUserRepository,
+                    depProvider.cardFacilitiesTransactionRepository
+                )
+            }
             TopUpInquiryScreen(
                 navController = navController,
-                viewModel = hiltViewModel(),
+                viewModel = viewModel,
                 selectedCard = selectedCard
             )
         }
@@ -274,9 +355,17 @@ fun Navigation(
             val selectedCard = navBackStackEntry.arguments?.getString("selectedCard")?.let {
                 Json.decodeFromString<CardShotItemInfo>(it)
             }
+            val viewModel = remember {
+                InternetPackageInquiryViewModel(
+                    depProvider.dispatcher,
+                    depProvider.cardFacilityRepository,
+                    depProvider.cardFacilitiesUserRepository,
+                    depProvider.cardFacilitiesTransactionRepository
+                )
+            }
             InternetPackageInquiryScreen(
                 navController = navController,
-                viewModel = hiltViewModel(),
+                viewModel = viewModel,
                 selectedCard = selectedCard
             )
         }
@@ -294,23 +383,39 @@ fun Navigation(
                 navBackStackEntry.arguments?.getString("netPackTypeScreenModel")?.let {
                     Json.decodeFromString<InternetPackageTypeScreenModel>(it)
                 }
+            val viewModel = remember {
+                InternetPackageTypeViewModel(
+                    depProvider.cardFacilityRepository,
+                    depProvider.cardFacilitiesUserRepository,
+                    depProvider.cardFacilitiesTransactionRepository,
+                    depProvider.dispatcher
+                )
+            }
             InternetPackageTypeScreen(
                 navController = navController,
                 internetPackageTypeScreenModel = netPackTypeScreenModel,
-                viewModel = hiltViewModel()
+                viewModel = viewModel
             )
         }
 
-        composable(
+        /*composable(
             route = Screens.TransactionHistoryScreen.route
         ) {
             TransactionHistoryScreen(navController = navController, viewModel = hiltViewModel())
-        }
+        }*/
 
         composable(
             route = Screens.HistoryScreen.route
         ) {
-            HistoryScreen(navController = navController, viewModel = hiltViewModel())
+            val viewModel = remember {
+                HistoryViewModel(
+                    depProvider.cardFacilitiesTransactionRepository,
+                    depProvider.cardFacilitiesUserRepository,
+                    depProvider.cardFacilityRepository,
+                    depProvider.dispatcher
+                )
+            }
+            HistoryScreen(navController = navController, viewModel = viewModel)
         }
         composable(
             route = Screens.InsuranceInquiryScreen.route + "?selectedCard={selectedCard}",
@@ -323,9 +428,18 @@ fun Navigation(
             val selectedCard = navBackStackEntry.arguments?.getString("selectedCard")?.let {
                 Json.decodeFromString<CardShotItemInfo>(it)
             }
+            val viewModel = remember {
+                InsuranceViewModel(
+                    depProvider.cardFacilityRepository,
+                    depProvider.cardFacilitiesUserRepository,
+                    depProvider.cardFacilitiesBillRepository,
+                    depProvider.cardFacilitiesTransactionRepository,
+                    depProvider.dispatcher
+                )
+            }
             InsuranceInquiryScreen(
                 navController = navController,
-                viewModel = hiltViewModel(),
+                viewModel = viewModel,
                 selectedCard = selectedCard
             )
         }
@@ -357,37 +471,71 @@ fun Navigation(
         }
 
         composable(route = Screens.LicenceNegativeScoreInquiryScreen.route) {
+            val viewModel = remember {
+                LicenceNegativeScoreViewModel(
+                    depProvider.dispatcher,
+                    depProvider.cardFacilitiesUserRepository,
+                    depProvider.cardFacilityRepository
+                )
+            }
             LicenceNegativeScoreInquiryScreen(
                 navController = navController,
-                viewModel = hiltViewModel()
+                viewModel = viewModel
             )
         }
 
         composable(route = Screens.TrackingPostScreen.route) {
+            val viewModel = remember {
+                TrackingPostViewModel(
+                    depProvider.dispatcher,
+                    depProvider.cardFacilityRepository
+                )
+            }
             TrackingPostScreen(
                 navController = navController,
-                viewModel = hiltViewModel()
+                viewModel = viewModel
             )
         }
 
         composable(route = Screens.IbanConvertorScreen.route) {
+            val viewModel = remember {
+                IbanConvertorViewModel(
+                    depProvider.dispatcher,
+                    depProvider.cardFacilitiesUserRepository,
+                    depProvider.cardFacilityRepository
+                )
+            }
             IbanConvertorScreen(
                 navController = navController,
-                viewModel = hiltViewModel()
+                viewModel = viewModel
             )
         }
 
         composable(route = Screens.VehicleViolationScreen.route) {
+            val viewModel = remember {
+                VehicleViolationViewModel(
+                    depProvider.dispatcher,
+                    depProvider.cardFacilityRepository,
+                    depProvider.cardFacilitiesUserRepository
+                )
+            }
             VehicleViolationScreen(
                 navController = navController,
-                viewModel = hiltViewModel()
+                viewModel = viewModel
             )
         }
 
         composable(route = Screens.MotorViolationScreen.route) {
+            val viewModel = remember {
+                MotorViolationViewModel(
+                    depProvider.dispatcher,
+                    depProvider.cardFacilityRepository,
+                    depProvider.cardFacilitiesUserRepository
+                )
+            }
             MotorViolationScreen(
                 navController = navController,
-                viewModel = hiltViewModel()
+                viewModel = viewModel
             )
         }
 
